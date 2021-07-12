@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { HEADER_CONTROL_BTNS } from 'src/constants/componentsСonsts';
+import { APP_ROUTES } from 'src/constants/reactRoutes';
 import { StControl } from './styled';
-import { HEADER_CONTROL_BTNS } from '/src/constants/componentsСonsts';
 import Button from '../../UI/Button';
-import { APP_ROUTES } from '/src/constants/reactRoutes';
 import { ROUTS_WITHOUT_MY_ACCOUNT } from '../../../constants/ui';
 import { support } from '../../../helpers/support';
 import { colorDefault } from '../../UI/baseLayout';

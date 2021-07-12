@@ -1,16 +1,15 @@
 import { takeEvery, call, select, put } from 'redux-saga/effects';
-import { postRequest } from '/src/helpers/requests';
-import { routes } from '/src/constants/routes';
+import { postRequest } from 'src/helpers/requests';
+import { routes } from 'src/constants/routes';
 import i18next from 'i18next';
 import { NotificationManager } from 'react-notifications';
+import { validation } from 'src/helpers/validation';
+import { support } from 'src/helpers/support';
 import { actionTypes } from './actionTypes';
 import { logValues } from './selectors';
 import { userNotifSettings } from '../user/selectors';
-import { validation } from '/src/helpers/validation';
 import { setLoginValue, clearLoginInputs, reciveErrorRequest, reciveSuccessRequest } from './actions';
-import { support } from '/src/helpers/support';
 import { setAuthValues, setValue } from '../user/actions';
-import { init } from '../chat/actions';
 
 export function* workerLogin() {
     try {
@@ -29,7 +28,6 @@ export function* workerLogin() {
             yield put(setAuthValues({ token, userInfo }));
             yield put(setValue({ name: 'init', value: true }));
             yield put(setLoginValue({ name: 'success', value: true }));
-            yield put(init());
             const notif = yield select(userNotifSettings);
             if (notif) yield call([support, support.playAudio], './public/assets/music/welcome.mp3');
         } else {

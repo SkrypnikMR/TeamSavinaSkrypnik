@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NotificationManager } from 'react-notifications';
 import { useTranslation } from 'react-i18next';
+import Input from 'src/components/UI/Input';
+import Button from 'src/components/UI/Button';
 import { CreateRoomsWrapper } from './styled';
-import Input from '/src/components/UI/Input';
-import Button from '/src/components/UI/Button';
 
 const CreateRoomsView = ({ createNewRoom, changeModalVisibility }) => {
     const { t } = useTranslation();

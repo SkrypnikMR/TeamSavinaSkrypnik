@@ -1,12 +1,12 @@
 import { takeEvery, call, select, put } from 'redux-saga/effects';
-import { postRequest } from '/src/helpers/requests';
-import { routes } from '/src/constants/routes';
+import { postRequest } from 'src/helpers/requests';
+import { routes } from 'src/constants/routes';
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
+import { validation } from 'src/helpers/validation';
 import { actionTypes } from './actionTypes';
 import { regValues } from './selectors';
 import { setRegistrationValue, clearRegistrationInputs, reciveErrorRequest, reciveSuccessRequest } from './actions';
-import { validation } from '/src/helpers/validation';
 
 export function* workerRegistration() {
     try {
