@@ -1,7 +1,7 @@
 export const regInputs = [{
-    id: 'email',
-    label: 'email_label',
-    placeholder: 'email_placeholder',
+    id: 'login',
+    label: 'login_label',
+    placeholder: 'login_placeholder',
 },
 {
     id: 'password',
@@ -12,21 +12,11 @@ export const regInputs = [{
     id: 'confirm',
     label: 'confirm_label',
     placeholder: 'confirm_placeholder',
-},
-{
-    id: 'firstName',
-    label: 'first_name_label',
-    placeholder: 'first_name_placeholder',
-},
-{
-    id: 'lastName',
-    label: 'last_name_label',
-    placeholder: 'last_name_placeholder',
 }];
 export const logInputs = [{
-    id: 'email',
-    label: 'email_label',
-    placeholder: 'email_placeholder',
+    id: 'login',
+    label: 'login_label',
+    placeholder: 'login_placeholder',
 },
 {
     id: 'password',
@@ -34,16 +24,6 @@ export const logInputs = [{
     placeholder: 'password_placeholder',
 }];
 export const HEADER_CONTROL_BTNS = [
-    {
-        id: 'notif_btn',
-        value: '1',
-        content: '🔕',
-    },
-    {
-        id: 'notif_btn',
-        value: '',
-        content: '🔔',
-    },
     {
         id: 'theme_btn',
         value: 'light',
@@ -63,12 +43,6 @@ export const HEADER_CONTROL_BTNS = [
         id: 'ru',
         content: 'russian_translate_btn',
         value: 'ru',
-    },
-    {
-        id: 'logOut',
-        content: '🚪',
-        rout: '/',
-        value: 'logOut',
     }];
 export const INPUT__MESSAGE = [{
     id: 'message',

@@ -1,11 +1,9 @@
 import { actionTypes } from './actionTypes';
 
 export const initialState = {
-    email: '',
+    login: '',
     password: '',
     confirm: '',
-    firstName: '',
-    lastName: '',
     success: null,
     isLoading: false,
     error: null,

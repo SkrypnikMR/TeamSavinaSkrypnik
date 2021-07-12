@@ -1,8 +1,8 @@
 {
     "authorization": "Sign In",
     "registration": "Sign Up",
-    "email_label": "Email",
-    "email_placeholder": "Enter your email...",
+    "login_label": "Login",
+    "login_placeholder": "Enter your login...",
     "password_label": "Password",
     "password_placeholder": "Enter your password...",
     "confirm_label": "Confirm",

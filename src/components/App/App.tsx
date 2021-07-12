@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { useTranslation } from 'react-i18next';
-import { APP_ROUTES } from 'src/constants/reactRoutes';
+import { APP_ROUTES } from '../../constants/reactRoutes';
 import Registration from '../Registration';
 import Login from '../Login';
 import ModalComponent from '../UI/Modal';

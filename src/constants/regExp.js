@@ -1,5 +1,4 @@
 export const regExp = {
-    emailRegExp: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+    loginRegExp: /^[a-z0-9A-Z]{1,25}/i,
     passwordRegExp: /^[a-z0-9A-Z]{6,25}/i,
-    firstAndLastNameRegExp: /^[a-zA-Za-яА-Я]{2,30}/,
 };
