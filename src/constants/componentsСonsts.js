@@ -65,17 +65,6 @@ export const HEADER_CONTROL_BTNS = [
         value: 'ru',
     },
     {
-        id: 'ar',
-        content: 'arabian_translate_btn',
-        value: 'ar',
-    },
-    {
-        id: 'account',
-        content: '👨‍💻',
-        rout: '/account',
-        value: 'account',
-    },
-    {
         id: 'logOut',
         content: '🚪',
         rout: '/',
