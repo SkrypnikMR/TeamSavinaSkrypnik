@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { setRegistrationValue, sendRegistrationRequest } from 'src/Store/registration/actions';
+import { registrationStore } from 'src/Store/registration/selectors';
 import Registration from './Registration.jsx';
-import { setRegistrationValue, sendRegistrationRequest } from '/src/Store/registration/actions';
-import { registrationStore } from '/src/Store/registration/selectors';
 
 const mapStateToProps = state => ({ fields: registrationStore(state) });
 
