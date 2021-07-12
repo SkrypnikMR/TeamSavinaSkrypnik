@@ -19,8 +19,7 @@ export const postRequest = async (url, body, optionalHeaders = {}) => {
     body: JSON.stringify(body),
   };
   const answer = await fetch(`${baseUrl}${url}`, options);
-  const result = await answer.json();
-  return result;
+  return answer;
 };
 
 export const putRequest = async (url, body, optionalHeaders = {}) => {

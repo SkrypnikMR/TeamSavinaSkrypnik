@@ -6,5 +6,4 @@ const mapStateToProps = state => ({
   userTheme: userTheme(state),
   userThemeMode: userThemeMode(state),
 });
-
 export default connect(mapStateToProps)(App);

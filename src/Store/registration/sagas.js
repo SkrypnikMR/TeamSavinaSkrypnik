@@ -16,15 +16,15 @@ export function* workerRegistration() {
         if (!isValid) {
             return yield call([NotificationManager, NotificationManager.error], i18next.t(validateMessage), i18next.t('input_error'), 2000);
         }
-        const { message } = yield call(postRequest, routes.account.registration, { ...data, confirm: undefined });
-        if (message === 'done') {
+        const answer = yield call(postRequest, routes.account.registration, { ...data, confirm: undefined });
+        if (answer.status === 201) {
             yield (put(clearRegistrationInputs()));
             yield put(setRegistrationValue({ name: 'success', value: true }));
             yield put(reciveSuccessRequest());
         } else {
             yield put(setRegistrationValue({ name: 'success', value: false }));
             yield put(reciveErrorRequest());
-            yield call([NotificationManager, NotificationManager.error], i18next.t(message), i18next.t('reg_error'), 2000);
+            yield call([NotificationManager, NotificationManager.error], i18next.t(answer), i18next.t('reg_error'), 2000);
         }
     } catch (e) {
         yield put(setRegistrationValue({ name: 'success', value: false }));

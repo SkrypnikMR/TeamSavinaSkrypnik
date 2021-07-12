@@ -54,43 +54,6 @@ export const INPUT_PLACEHOLDER_SEARCH = [
         placeholder: 'placeholder_shearch_input',
     },
 ];
-export const MY_ACCOUNT_EDIT = [{
-    id: 'firstName',
-    label: 'first_name_label',
-    name: 'firstName',
-    value: 'first_name_update',
-},
-{
-    id: 'lastName',
-    label: 'last_name_label',
-    name: 'lastName',
-    value: 'last_name_update',
-},
-{
-    id: 'age',
-    label: 'age',
-    name: 'age',
-    value: 'age',
-},
-{
-    id: 'city',
-    label: 'city',
-    name: 'city',
-    value: 'city',
-},
-{
-    id: 'company',
-    label: 'company',
-    name: 'company',
-    value: 'company',
-},
-{
-    id: 'hobby',
-    label: 'hobby',
-    name: 'hobby',
-    value: 'hobby',
-},
-];
 export const MODAL_USERS_BUTTON = [{
     id: 'closeModal',
     content: 'modal_users_cancel',
