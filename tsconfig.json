@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ]
+    },
     "jsx": "react",
     "target": "ESNEXT",
     "module": "commonjs",
