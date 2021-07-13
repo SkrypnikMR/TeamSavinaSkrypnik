@@ -6,6 +6,7 @@ export const StHeader = styled.div`
     justify-content: flex-start;
     align-items: center;
     height:10vh;
-    ${({ backgroundColor = TRANSPARENT_BACKGROUND }) => backgroundColor && `background-color: ${backgroundColor}`};
+    background: #404040;
+    /* ${({ backgroundColor = TRANSPARENT_BACKGROUND }) => backgroundColor && `background-color: ${backgroundColor}`}; */
     ${({ transition = 'all 300ms ease-in-out' }) => transition && `transition: ${transition}`};
 `;
