@@ -10,9 +10,12 @@
         "src/store/*"
       ]
     },
+    "lib": [
+      "ES2015"
+    ],
     "resolveJsonModule": true,
     "jsx": "react",
-    "target": "es5",
+    "target": "ESNext",
     "module": "commonjs",
     "sourceMap": true,
     "strict": true,

@@ -1,13 +1,14 @@
 import { actionTypes } from './actionTypes';
+import { IState, IAction } from './types/allTypes';
 
-export const initialState = {
+export const initialState: IState = {
     email: '',
     password: '',
-    success: null,
+    success: false,
     isLoading: false,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state:IState = initialState, action: IAction) => {
     switch (action.type) {
         case actionTypes.SET_VALUE:
             return { ...state, [action.payload.name]: action.payload.value };

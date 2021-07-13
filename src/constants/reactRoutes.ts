@@ -7,5 +7,5 @@ interface IRoutes {
 export const APP_ROUTES: IRoutes = {
     registration: '/registration',
     login: '/',
-    mainPage: '/mainPage'
+    mainPage: '/mainPage',
 };
