@@ -1,33 +1,31 @@
 import { actionTypes } from './actionTypes';
+import { IActions, TInitialState } from './types/allTypes';
 
-export const initialState = {
+export const initialState: TInitialState = {
     login: '',
     password: '',
     confirm: '',
-    success: null,
+    success: false,
     isLoading: false,
-    error: null,
+    error: false,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state: TInitialState = initialState, action: IActions) => {
     switch (action.type) {
-        case actionTypes.SET_VALUE:
-            return { ...state, [action.payload.name]: action.payload.value };
+        case actionTypes.SET_VALUE: return { ...state, [action.payload.name]: action.payload.value };
         case actionTypes.SEND_REGISTRATION_REQUEST:
             return { ...state, isLoading: true };
         case actionTypes.REGISTRATION_REQUEST_SUCCESS:
             return { ...state, isLoading: false, success: false };
         case actionTypes.REGISTRATION_REQUEST_ERROR:
-            return { ...state, isLoading: false, error: action.payload };
+            return { ...state, isLoading: false };
         case actionTypes.CLEAR_INPUTS_VALUES:
             return {
                 ...state,
                 email: '',
                 password: '',
                 confirm: '',
-                firstName: '',
-                lastName: '',
             };
-        default: return { ...state };
+        default: return state;
     }
 };

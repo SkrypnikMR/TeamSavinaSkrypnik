@@ -1,12 +1,12 @@
-import React from "react";
-import { StAddRoom } from "./styled";
+import React from 'react';
+import { StAddRoom } from './styled';
 
-const AddRoom=()=>{
-    return(
+const AddRoom = () => {
+    return (
         <StAddRoom>
             +
         </StAddRoom>
-    )
-}
+    );
+};
 
-export default AddRoom
+export default AddRoom;

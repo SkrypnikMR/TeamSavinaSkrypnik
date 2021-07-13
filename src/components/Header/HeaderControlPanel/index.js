@@ -1,7 +1,7 @@
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { setValue } from 'src/Store/user/actions';
-import { userThemeMode, userNotifSettings } from 'src/Store/user/selectors';
+import { setValue } from 'src/store/user/actions';
+import { userThemeMode, userNotifSettings } from 'src/store/user/selectors';
 import HeaderControlPanel from './HeaderControlPanel';
 
 const mapStateToProps = state => ({

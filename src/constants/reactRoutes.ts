@@ -9,5 +9,5 @@ export const APP_ROUTES: IRoutes = {
     registration: '/registration',
     login: '/',
     mainPage: '/mainPage',
-    statistics: '/statistics'
+    statistics: '/statistics',
 };

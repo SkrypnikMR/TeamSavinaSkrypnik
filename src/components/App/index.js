@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { userTheme, userThemeMode } from 'src/Store/user/selectors';
+import { userTheme, userThemeMode } from 'src/store/user/selectors';
 import App from './App';
 
 const mapStateToProps = state => ({

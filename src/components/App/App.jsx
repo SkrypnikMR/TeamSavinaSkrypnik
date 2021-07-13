@@ -8,11 +8,8 @@ import Registration from '../Registration';
 import Login from '../Login';
 import ModalComponent from '../UI/Modal';
 import Component from '../UI/Modal/ModalTestComponent.jsx';
-import Header from '../Header';
 import { StAppDiv } from './styled';
-import ModalInviteUsers from '../UI/Modals/ModalInviteUsers';
-import ModalCreateRoom from '../UI/Modals/ModalCreateRoom';
-import MainPage from '../MainPage'
+import MainPage from '../MainPage';
 import StatisticPage from '../StatisticPage';
 
 const App = () => {
@@ -31,8 +28,6 @@ const App = () => {
         Component={Component}
         headerTextKey="notification_settings"
       />
-      <ModalCreateRoom />
-      <ModalInviteUsers />
       <NotificationContainer />
     </StAppDiv >
   );
