@@ -9,7 +9,7 @@ export const TRANSPARENT_BACKGROUND = 'rgba(0, 0, 0, 0.4)';
 //Button
 export const bgColorDefault = '#23EFFC';
 export const colorDefault = 'white';
-export const focusColorDefault = 'black';
+export const focusColorDefault = '#26FDF0';
 export const disabledColor = '#666666';
 export const bgColorDisabledDefault = '#cccccc';
 export const disabledBorder = '1px solid #999999';

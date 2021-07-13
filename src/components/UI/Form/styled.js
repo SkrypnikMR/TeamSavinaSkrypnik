@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import { colorDefault, TRANSPARENT_BACKGROUND } from '../baseLayout';
 
 export const StFormDiv = styled.div`
-    ${({ backgroundColor = TRANSPARENT_BACKGROUND }) => backgroundColor && `background-color: ${backgroundColor}`};
-    min-height: 80vh;
+    /* ${({ backgroundColor = TRANSPARENT_BACKGROUND }) => backgroundColor && `background-color: ${backgroundColor}`}; */
+    min-height: 60vh;
     display: flex;
     width: 40%;
-    margin: 20px auto 0 auto;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;

@@ -64,15 +64,17 @@ const HeaderControlPanel = ({
                         key={el.id}
                         color={colorDefault}
                         fontSize='26px'
-                        width='60px'
-                        height="10vh"
+                        width='40px'
                         borderRadius="0px"
                         value={el.value}
                         bgColor="transparent"
                         onClick={getFunctionForButtons(el)}
                     />
                 );
+                                    
+
             })}
+            <img src="../../../../public/assets/images/log-out.png"/>
         </StControl>
     );
 };
