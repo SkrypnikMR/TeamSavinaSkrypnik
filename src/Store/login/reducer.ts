@@ -21,7 +21,7 @@ export const reducer = (state:IState = initialState, action: IAction) => {
         case actionTypes.CLEAR_INPUTS_VALUES:
             return {
                 ...state,
-                email: '',
+                login: '',
                 password: '',
             };
         default: return { ...state };

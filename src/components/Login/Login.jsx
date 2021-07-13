@@ -14,7 +14,7 @@ const Login = ({ sendLoginRequest, setLoginValue, fields, setValue }) => {
 
   if (fields.success) {
     setValue({ name: 'success', value: false });
-    return <Redirect to={APP_ROUTES.chat} />;
+    return <Redirect to={APP_ROUTES.mainPage} />;
   }
   return (
     <StLoginDiv>

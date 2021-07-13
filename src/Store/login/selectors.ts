@@ -4,5 +4,5 @@ import { TStore } from '../allStoreTypes/types';
 export const loginStore = (store: TStore) => store.login;
 export const logValues = createSelector(
     loginStore,
-    ({ email, password }) => ({ email, password }),
+    ({ login, password }) => ({ login, password }),
 );

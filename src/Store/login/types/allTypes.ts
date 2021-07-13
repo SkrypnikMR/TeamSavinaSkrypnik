@@ -1,7 +1,7 @@
 import { actionTypes } from '../actionTypes';
 
 export interface IState{
-    email: string;
+    login: string;
     password: string;
     success: boolean;
     isLoading: boolean;
