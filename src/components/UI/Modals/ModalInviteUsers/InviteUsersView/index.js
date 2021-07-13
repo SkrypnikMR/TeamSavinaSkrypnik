@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getModalDataByType } from 'src/Store/modals/selectors';
-import { changeModalVisibility } from 'src/Store/modals/actions';
+import { getModalDataByType } from 'src/store/modals/selectors';
+import { changeModalVisibility } from 'src/store/modals/actions';
 import InviteUsersView from './InviteUsersView.jsx';
 
 const mapStateToProps = (state, ownProps) => ({
