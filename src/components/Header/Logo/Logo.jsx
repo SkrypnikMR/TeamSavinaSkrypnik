@@ -13,8 +13,9 @@ const Logo = ({ history, setValue }) => {
     const { t } = useTranslation();
     return (
         <StLogo onClick={handleClick}>
-            <img src="./public/assets/images/logo.png" />
-            <h1>{t('logo')}</h1>
+            {/* <img src="./public/assets/images/logo.png" />
+            <h1>{t('logo')}</h1> */}
+            <div>LOGO</div>
         </StLogo>
     );
 };
