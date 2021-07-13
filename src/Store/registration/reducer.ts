@@ -12,6 +12,7 @@ export const initialState: TInitialState = {
 
 export const reducer = (state: TInitialState = initialState, action: IActions) => {
     switch (action.type) {
+        case actionTypes.SET_VALUE: return { ...state, [action.payload.name]: action.payload.value };
         case actionTypes.SEND_REGISTRATION_REQUEST:
             return { ...state, isLoading: true };
         case actionTypes.REGISTRATION_REQUEST_SUCCESS:

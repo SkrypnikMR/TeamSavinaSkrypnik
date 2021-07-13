@@ -1,34 +1,15 @@
 import { actionTypes } from './actionTypes';
+import { TModalState, TChangeModalVis } from './types/allModalsTypes';
 
-export const initialState = {
-  notificationSettings: {
-    type: 'notificationSettings',
-    data: {},
-    isOpen: false,
-  },
-  logOut: {
-    type: 'logOut',
-    data: {},
-    isOpen: false,
-  },
-  allNotification: {
-    type: 'allNotification',
-    data: {},
-    isOpen: false,
-  },
-  usersInChat: {
-    type: 'usersInChat',
-    data: {},
-    isOpen: false,
-  },
-  createChat: {
-    type: 'createChat',
+export const initialState: TModalState = {
+  gameAddition: {
+    type: 'gameAddition',
     data: {},
     isOpen: false,
   },
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state: TModalState = initialState, action: TChangeModalVis) => {
   switch (action.type) {
     case actionTypes.CHANGE_MODAL_VISIBILITY: {
       const { isOpen, modalType, data } = action.payload;
