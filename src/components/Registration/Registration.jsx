@@ -20,6 +20,7 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
     };
     return (
         <StRegDiv>
+            <img src="../../../public/assets/images/game-development.png"/>
             <Form>
                 <p>{t('registration')}</p>
                 {regInputs.map(input => (

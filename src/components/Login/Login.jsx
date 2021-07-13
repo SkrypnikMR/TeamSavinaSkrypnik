@@ -18,6 +18,7 @@ const Login = ({ sendLoginRequest, setLoginValue, fields, setValue }) => {
   }
   return (
     <StLoginDiv>
+      <img src="../../../public/assets/images/game-development.png"/>
       <Form>
         <p>{t('authorization')}</p>
         {logInputs.map(input => (
@@ -47,7 +48,7 @@ const Login = ({ sendLoginRequest, setLoginValue, fields, setValue }) => {
         </span>
       </Form>
     </StLoginDiv>
-  );
+  ); 
 };
 
 Login.propTypes = {

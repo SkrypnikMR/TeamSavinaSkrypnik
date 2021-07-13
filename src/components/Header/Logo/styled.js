@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const StLogo = styled.div`
     display:flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     width:30%;
     font-family: 'Play', sans-serif;
@@ -11,7 +12,8 @@ export const StLogo = styled.div`
             font-size: 30px;
         }
         img{
-            height: 8vh;
+            height: 45px;
+            margin-top: 15px;
         }
     cursor: pointer;
 `;
