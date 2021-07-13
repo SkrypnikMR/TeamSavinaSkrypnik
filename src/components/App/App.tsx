@@ -13,6 +13,7 @@ import { StAppDiv } from './styled';
 import ModalInviteUsers from '../UI/Modals/ModalInviteUsers';
 import ModalCreateRoom from '../UI/Modals/ModalCreateRoom';
 import MainPage from '../MainPage'
+import StatisticPage from '../StatisticPage';
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -23,6 +24,7 @@ const App = () => {
           <Route path={APP_ROUTES.login} exact component={Login} />
           <Route path={APP_ROUTES.registration} exact component={Registration} />
           <Route path={APP_ROUTES.mainPage} exact component={MainPage} />
+          <Route path={APP_ROUTES.statistics} exact component={StatisticPage} />
         </Switch>
       </BrowserRouter>
       <ModalComponent

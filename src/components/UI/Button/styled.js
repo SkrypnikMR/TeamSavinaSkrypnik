@@ -9,7 +9,7 @@ import {
 } from '../baseLayout';
 
 export const StButton = styled.button`
-  ${({ margin = '0 0 3px 0' }) => margin && `margin: ${margin}`};
+  ${({ margin = '0 0 7px 0' }) => margin && `margin: ${margin}`};
   font-family: 'Play', sans-serif;
   padding: ${({ padding = '5px' }) => padding};
   width: ${({ width = '170px' }) => width};

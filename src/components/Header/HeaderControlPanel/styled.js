@@ -9,4 +9,10 @@ export const StControl = styled.div`
         p{
                 color:white;
         }
+        img{
+                width: 20px;
+                margin-right: 20px;
+                margin-left: 5px;
+                cursor: pointer;
+        }
 `;
