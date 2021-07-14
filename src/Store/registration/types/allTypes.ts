@@ -1,7 +1,7 @@
 import { actionTypes } from '../actionTypes';
 
 
-export type IPayload = boolean;
+export type IPayload = boolean | string | {name: string, value: any};
 export type ISendRegistrationRequest = {
     type: typeof actionTypes.SEND_REGISTRATION_REQUEST
 }
@@ -26,6 +26,11 @@ export type TInitialState = {
     success: boolean,
     isLoading: boolean,
     error: boolean,
+}
+export type TRegValues = {
+    login: string;
+    password: string;
+    confirm: string;
 }
 
 export type IActions = ISendRegistrationRequest | ISetRegistrationValue | IReciveErrorRequest | IReciveSuccessRequest;

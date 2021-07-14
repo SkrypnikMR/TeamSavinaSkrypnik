@@ -10,5 +10,5 @@ export const clearRegistrationInputs = ()
     : types.IClearRegistrationInputs => ({ type: actionTypes.CLEAR_INPUTS_VALUES });
 export const reciveSuccessRequest = ()
     : types.IReciveSuccessRequest => ({ type: actionTypes.REGISTRATION_REQUEST_SUCCESS });
-export const reciveErrorRequest = (payload: types.IPayload)
-    : types.IReciveErrorRequest => ({ type: actionTypes.REGISTRATION_REQUEST_ERROR, payload });
+export const reciveErrorRequest = ()
+    : types.IReciveErrorRequest => ({ type: actionTypes.REGISTRATION_REQUEST_ERROR });
