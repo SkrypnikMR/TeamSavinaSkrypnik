@@ -1,19 +1,18 @@
-import React from 'react'
-import SingleSell from './SingleSell'
-import { StChessPlate } from './styled'
+import React from 'react';
+import SingleSell from './SingleSell';
+import { StChessPlate } from './styled';
 
-const Chessplate=()=>{
-    const items=[]
-    for(let i=63; i>-1; i--){
-        items.push(i)
+const Chessplate = () => {
+    const items = [];
+    for (let i = 63; i > -1; i--) {
+        items.push(i);
     }
-    return(
+    return (
         <StChessPlate>
-            {items.map(item =>
-                <SingleSell id={item} key={item}/>
+            {items.map(item => <SingleSell id={item} key={item}/>,
             )}
         </StChessPlate>
-    )
-}
+    );
+};
 
-export default Chessplate
+export default Chessplate;

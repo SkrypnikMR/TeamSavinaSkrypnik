@@ -1,15 +1,15 @@
-import React from "react";
-import { StSingleSell } from "./styled";
+import React from 'react';
+import { StSingleSell } from './styled';
+import { TSingleSell } from './types';
 
-const SingleSell=(props)=>{
-    const { id } = props
-    const handleClick=(e)=>{
-        console.log(e.target.id)
-    }
+const SingleSell = ({ id } : TSingleSell) => {
+    const handleClick = (e) => {
+        console.log(e.target.id);
+    };
 
-    return(
-        <StSingleSell id={id+1} style={{background:  parseInt((id / 8) + id) % 2 == 0 ? 'black' : 'white'}} onClick={handleClick}>{id+1}</StSingleSell>
-    )
-}
+    return (
+        <StSingleSell id={id + 1} style={{ background: parseInt((id / 8) + id) % 2 === 0 ? 'black' : 'white' }} onClick={handleClick}>{id + 1}</StSingleSell>
+    );
+};
 
-export default SingleSell
+export default SingleSell;
