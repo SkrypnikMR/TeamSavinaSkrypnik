@@ -8,6 +8,7 @@ export const StSingleRoom = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
     :hover {
         -webkit-transform: scale(1.005);
         -ms-transform: scale(1.005);
