@@ -32,7 +32,6 @@ const App = () => {
         headerTextKey="notification_settings"
       />
       <ModalCreateRoom />
-      <ModalInviteUsers />
       <NotificationContainer />
     </StAppDiv >
   );
