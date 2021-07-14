@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { APP_ROUTES } from '../../constants/reactRoutes';
 import Registration from '../Registration';
 import Login from '../Login';
-import ModalComponent from '../UI/Modal';
-import Component from '../UI/Modal/ModalTestComponent.jsx';
 import { StAppDiv } from './styled';
 import MainPage from '../MainPage';
 import StatisticPage from '../StatisticPage';
@@ -24,10 +22,6 @@ const App = () => {
           <Route path={APP_ROUTES.statistics} exact component={StatisticPage} />
         </Switch>
       </BrowserRouter>
-      <ModalComponent
-        Component={Component}
-        headerTextKey="notification_settings"
-      />
       <NotificationContainer />
     </StAppDiv >
   );
