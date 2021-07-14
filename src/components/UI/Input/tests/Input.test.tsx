@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Input from '../Input';
+import { IInput } from '../types';
 
 describe('Input', () => {
-    let props;
+    let props: IInput;
     beforeEach(() => {
         props = {
             id: 'id',
@@ -11,7 +12,6 @@ describe('Input', () => {
             width: '100px',
             value: 'value',
             onChange: jest.fn(),
-            maxLength: 120,
             placeholder: 'Test',
         };
     });

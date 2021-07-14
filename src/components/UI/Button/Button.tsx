@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { StButton } from './styled';
+import { IButton } from './types';
 
 const Button = ({
     id,
@@ -25,7 +25,7 @@ const Button = ({
     content,
     transition,
     focusColor,
-}) => {
+} : IButton) => {
     const { t } = useTranslation();
     return (
         <StButton
@@ -53,30 +53,6 @@ const Button = ({
             {t(content)}
         </StButton>
     );
-};
-
-Button.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    value: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
-    title: PropTypes.string,
-    borderRadius: PropTypes.string,
-    isDisabled: PropTypes.string,
-    color: PropTypes.string,
-    fontSize: PropTypes.string,
-    fontWeight: PropTypes.string,
-    bgColor: PropTypes.string,
-    bgColorHover: PropTypes.string,
-    height: PropTypes.string,
-    width: PropTypes.string,
-    padding: PropTypes.string,
-    margin: PropTypes.string,
-    content: PropTypes.string,
-    transition: PropTypes.string,
-    focusColor: PropTypes.string,
-    bgColorDisabled: PropTypes.string,
 };
 
 export default Button;

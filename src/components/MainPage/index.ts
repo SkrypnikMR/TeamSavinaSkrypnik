@@ -1,3 +1,9 @@
+import { connect } from 'react-redux';
+import { getSockJSConnection } from '../../store/game/actions';
 import MainPage from './MainPage';
 
-export default MainPage;
+const mapDispatchToProps = dispatch => ({
+    getSockJSConnection: () => dispatch(getSockJSConnection()),
+});
+
+export default connect(null, mapDispatchToProps)(MainPage);

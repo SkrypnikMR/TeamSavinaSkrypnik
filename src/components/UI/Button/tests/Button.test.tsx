@@ -1,18 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Button from '../Button';
+import { IButton } from '../types';
 
 describe('Button', () => {
-    let props;
+    let props: IButton;
     beforeEach(() => {
         props = {
             id: 'id',
             onClick: jest.fn(),
             title: 'Button',
             name: 'name',
-            type: 'Button',
+            type: 'button',
             value: 'value',
-            isDisabled: 'false',
+            isDisabled: false,
         };
     });
     it('Should match snapshot', () => {
