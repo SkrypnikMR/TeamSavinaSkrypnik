@@ -27,7 +27,7 @@ const getPath = url => path.resolve(__dirname, `src/${url}`);
 
 module.exports = {
     entry: {
-        bundle: getPath('index.js'),
+        bundle: getPath('index.tsx'),
     },
     resolve: {
         alias: {
