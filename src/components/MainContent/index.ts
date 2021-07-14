@@ -1,3 +1,3 @@
 import MainContent from './MainContent';
 
-export default MainContent
+export default MainContent;

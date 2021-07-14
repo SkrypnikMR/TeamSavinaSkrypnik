@@ -5,4 +5,4 @@ export const StMainContent = styled.div`
     margin: 10px;
     height: 84vh;
     display: flex;
-`
+`;

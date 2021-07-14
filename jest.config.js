@@ -3,15 +3,19 @@ module.exports = {
     moduleFileExtensions: [
         'js',
         'jsx',
+        'ts',
+        'tsx',
     ],
     globals: {
         window: true,
     },
-    collectCoverageFrom: ['**/*.jsx', '**/*.js'],
+    collectCoverageFrom: ['**/*.jsx', '**/*.js', '**/*.tsx', '**/*.ts'],
     moduleDirectories: ['node_modules', '.', 'src'],
     testMatch: [
         '**/*.(test|spec).(js)',
         '**/*.(test|spec).(jsx)',
+        '**/*.(test|spec).(ts)',
+        '**/*.(test|spec).(tsx)',
     ],
     coverageReporters: [
         'json',

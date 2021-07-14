@@ -4,7 +4,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 
-const StatisticPage=()=>{
+const StatisticPage = () => {
     return(
         <StStatisticPage>
             <Header/>
@@ -14,4 +14,4 @@ const StatisticPage=()=>{
     )
 }
 
-export default StatisticPage
+export default StatisticPage;

@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { StErrorSpan, StInput, StInputContainer, StLabel } from './styled';
+import { IInput } from './types';
 
 const Input = ({
     id,
@@ -13,8 +13,6 @@ const Input = ({
     height,
     margin,
     onChange,
-    onKeyUpEnter,
-    maxLength,
     inputHeight,
     borderRadius,
     bgColor,
@@ -25,11 +23,10 @@ const Input = ({
     borderColor,
     placeholder,
     errorMessage,
-}) => {
+} : IInput) => {
     const { t } = useTranslation();
-    const handleOnchange = e => onChange({ name: e.target.name, value: e.target.value });
-    const handleOnKeyUpEnter = (e) => {
-        if (e.key === 'Enter') if (onKeyUpEnter) onKeyUpEnter();
+    const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) : void => {
+        onChange({ name: e.target.name, value: e.target.value });
     };
     return (
         <StInputContainer width={width} height={height}>
@@ -42,13 +39,11 @@ const Input = ({
                 margin={margin}
                 color={color}
                 onChange={handleOnchange}
-                maxLength={maxLength}
                 borderRadius={borderRadius}
                 inputHeight={inputHeight}
                 placeholder={t(placeholder)}
                 bgColor={bgColor}
                 padding={padding}
-                onKeyUp={handleOnKeyUpEnter}
                 borderColor={borderColor}
                 fontSizeInp={fontSizeInp}
                 bgFocusColor={bgFocusColor}
@@ -56,30 +51,6 @@ const Input = ({
             {!!errorMessage && <StErrorSpan>{errorMessage}</StErrorSpan>}
         </StInputContainer>
     );
-};
-
-Input.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    label: PropTypes.string,
-    width: PropTypes.string,
-    value: PropTypes.string,
-    margin: PropTypes.string,
-    height: PropTypes.string,
-    bgColor: PropTypes.string,
-    padding: PropTypes.string,
-    fontSizeInp: PropTypes.string,
-    borderColor: PropTypes.string,
-    inputHeight: PropTypes.string,
-    maxLength: PropTypes.number,
-    onChange: PropTypes.func.isRequired,
-    borderRadius: PropTypes.string,
-    placeholder: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string,
-    bgFocusColor: PropTypes.string,
-    onKeyUpEnter: PropTypes.func,
-    color: PropTypes.string,
 };
 
 export default Input;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { colorDefault, TRANSPARENT_BACKGROUND } from '../baseLayout';
+import { colorDefault } from '../baseLayout';
+import { IStForm } from './types';
 
-export const StFormDiv = styled.div`
-    /* ${({ backgroundColor = TRANSPARENT_BACKGROUND }) => backgroundColor && `background-color: ${backgroundColor}`}; */
+export const StFormDiv = styled.div < IStForm > `
     min-height: 60vh;
     display: flex;
     width: 40%;

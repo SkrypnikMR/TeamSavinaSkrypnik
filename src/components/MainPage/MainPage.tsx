@@ -4,8 +4,6 @@ import { StMainPage } from './styled';
 import MainContent from '../MainContent';
 import Footer from '../Footer';
 
-
-
 const MainPage = () => {
     return(
         <StMainPage>
@@ -17,4 +15,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default MainPage;

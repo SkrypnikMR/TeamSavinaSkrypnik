@@ -1,6 +1,6 @@
 import React from 'react';
-import Registration from '../Registration.jsx';
-import { shallowSmart, mountSmart } from '/src/helpers/testHelper';
+import Registration from '../Registration';
+import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 import 'react-router-dom';
 import '/src/i18n';
 
@@ -34,7 +34,7 @@ describe('Registration', () => {
     });
     it('should render inputs', () => {
         const component = mountSmart(<Registration {...props} />);
-        expect(component.find('Input')).toHaveLength(5);
+        expect(component.find('Input')).toHaveLength(3);
     });
     it('should render button', () => {
         const component = mountSmart(<Registration {...props} />);

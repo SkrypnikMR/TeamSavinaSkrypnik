@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StSingleRoom = styled.div`
     background: #808080;

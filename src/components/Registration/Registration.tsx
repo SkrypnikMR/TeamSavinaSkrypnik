@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { regInputs } from 'src/constants/componentsСonsts';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { APP_ROUTES } from '/src/constants/reactRoutes';
+import { APP_ROUTES } from '../../constants/reactRoutes';
+import { regInputs } from '../../constants/componentsСonsts';
 import { StRegDiv } from './styled';
 import Form from '../UI/Form';
 import Input from '../UI/Input';

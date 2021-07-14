@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { IStyledLabel, IStyledInput, IStyledContainer } from './types';
 import { 
   bgInpColorDefault, 
   bgFocusColorDefault, 
   focusColorDefaultInput, 
   colorDefaultInput } from '../baseLayout';
 
-export const StLabel = styled.label`
+export const StLabel = styled.label < IStyledLabel > `
    ${({ margin = '0 0px 10px 0' }) => margin && `margin: ${margin}`};
    padding: 0;
    justify-content: flex-start;
@@ -14,7 +15,7 @@ export const StLabel = styled.label`
    ${({ fontWeight = 'bold' }) => fontWeight && `font-weight: ${fontWeight}`};
 `;
 
-export const StInput = styled.input`
+export const StInput = styled.input < IStyledInput > `
     width: 100%;
     height: ${({ inputHeight = '100%' }) => inputHeight};
     padding: ${({ padding = '5px' }) => padding};
@@ -52,7 +53,7 @@ export const StErrorSpan = styled.span`
     color: ${({ color = 'red' }) => color}; // ToDo Move color to color matrix
 `;
 
-export const StInputContainer = styled.div`
+export const StInputContainer = styled.div < IStyledContainer > `
     ${({ width = '100%' }) => width && `width: ${width}`};
     ${({ height = '50px' }) => height && `height: ${height}`};
 `;

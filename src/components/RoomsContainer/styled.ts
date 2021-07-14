@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StRoomsContainer = styled.div`
     background: #C4C4C4;
