@@ -7,9 +7,7 @@ import { validation } from 'src/helpers/validation';
 import { support } from 'src/helpers/support';
 import { actionTypes } from './actionTypes';
 import { logValues } from './selectors';
-import { userNotifSettings } from '../user/selectors';
 import { setLoginValue, clearLoginInputs, reciveErrorRequest, reciveSuccessRequest } from './actions';
-import { setAuthValues, setValue } from '../user/actions';
 
 export function* workerLogin() {
     try {

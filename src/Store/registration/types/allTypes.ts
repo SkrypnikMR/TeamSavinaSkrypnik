@@ -1,9 +1,10 @@
 import { actionTypes } from '../actionTypes';
 
-
-export type IPayload = boolean | string | {name: string, value: any};
+export type TPay = { name: string, value: any };
+export type IPayload = boolean | string | TPay;
 export type ISendRegistrationRequest = {
-    type: typeof actionTypes.SEND_REGISTRATION_REQUEST
+    type: typeof actionTypes.SEND_REGISTRATION_REQUEST,
+    payload: any
 }
 export type ISetRegistrationValue = {
     type: typeof actionTypes.SET_VALUE,
@@ -11,13 +12,15 @@ export type ISetRegistrationValue = {
 }
 export type IReciveErrorRequest = {
     type: typeof actionTypes.REGISTRATION_REQUEST_ERROR,
-    payload?: IPayload
+    payload: any
 }
 export type IReciveSuccessRequest = {
-    type: typeof actionTypes.REGISTRATION_REQUEST_SUCCESS
+    type: typeof actionTypes.REGISTRATION_REQUEST_SUCCESS,
+    payload: any
 }
 export type IClearRegistrationInputs = {
-    type: typeof actionTypes.CLEAR_INPUTS_VALUES
+    type: typeof actionTypes.CLEAR_INPUTS_VALUES,
+    payload: any
 }
 export type TInitialState = {
      login: string,
@@ -33,4 +36,8 @@ export type TRegValues = {
     confirm: string;
 }
 
-export type IActions = ISendRegistrationRequest | ISetRegistrationValue | IReciveErrorRequest | IReciveSuccessRequest;
+export type IActions = ISetRegistrationValue
+    | ISendRegistrationRequest
+    | ISetRegistrationValue
+    | IReciveErrorRequest
+    | IReciveSuccessRequest;
