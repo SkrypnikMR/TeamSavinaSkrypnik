@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { SINGLE_ROOM_BG } from '../UI/baseLayout';
 
 export const StSingleRoom = styled.div`
-    background: #808080;
+    background: ${SINGLE_ROOM_BG};
     margin: 5px;
     padding: 10px;
     border-radius: 5px;

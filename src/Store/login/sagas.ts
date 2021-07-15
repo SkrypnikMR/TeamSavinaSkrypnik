@@ -18,13 +18,12 @@ export function* workerLogin() {
                 i18next.t(validateMessage), i18next.t('input_error'), 2000);
         }
         const answer = yield call(postRequest, routes.account.login, data);
-
         if (answer.ok) {    
             yield (put(clearLoginInputs()));
             yield put(reciveSuccessRequest());
             const token = yield call([answer, answer.text]);
             yield call([support, support.setTokenInCookie], token);
-            yield put(setLoginValue({ name: 'success', value: true })); 
+            yield put(setLoginValue({ name: 'success', value: true }));
         } else {
             yield put(setLoginValue({ name: 'success', value: false }));
             yield put(reciveErrorRequest());

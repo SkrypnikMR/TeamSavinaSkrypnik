@@ -1,9 +1,3 @@
-// import styled from 'styled-components';
-
-export const backgroundUrls = {
-  light: './public/assets/images/lightTheme.jpg',
-  dark: './public/assets/images/darkTheme.jpg',
-};
 // default color for all transparent backgrounds, use this :)
 export const TRANSPARENT_BACKGROUND = 'rgba(0, 0, 0, 0.4)';
 //Button
@@ -23,3 +17,12 @@ export const colorDefaultInput = 'black';
 export const bgColorDefaultFon = 'rgba(0, 0, 0, 0.4)';
 export const bgMessage = 'rgba(196, 196, 196, 0.5)';
 export const textColorBlack = 'black';
+
+//MainPage
+export const MAIN_PAGE_BG = '#404040';
+
+//RoomContainer
+export const ROOMS_CONTAINER_BG = '#C4C4C4';
+
+//SingleRoom
+export const SINGLE_ROOM_BG = '#808080';

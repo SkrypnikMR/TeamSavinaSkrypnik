@@ -1,5 +1,6 @@
 import styled from 'styled-components';
+import { MAIN_PAGE_BG } from '../UI/baseLayout';
 
 export const StMainPage = styled.div`
-    background: #404040;
+    background: ${MAIN_PAGE_BG}
 `;

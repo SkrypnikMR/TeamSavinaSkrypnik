@@ -1,3 +1,4 @@
 import { actionTypes } from './actionTypes';
+import { TypeActionWithoutPayload } from './types/allTypes';
 
-export const getSockJSConnection = (): { type: string;} => ({ type: actionTypes.GET_SOCKJS_CONNECTION });
+export const getSockJSConnection = (): TypeActionWithoutPayload => ({ type: actionTypes.GET_SOCKJS_CONNECTION });
