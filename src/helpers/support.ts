@@ -7,7 +7,6 @@ export const support = {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
   },
-
   deleteTokenFromCookie: (name: string) => {
     support.setTokenInCookie(name, -1);
   },
