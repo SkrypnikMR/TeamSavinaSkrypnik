@@ -2,7 +2,7 @@ import { actionTypes } from './actionTypes';
 import { IState, IAction } from './types/allTypes';
 
 export const initialState: IState = {
-    email: '',
+    login: '',
     password: '',
     success: false,
     isLoading: false,

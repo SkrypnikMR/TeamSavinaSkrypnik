@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IStyledButton } from './types';
 import {
   bgColorDefault,
   colorDefault,
@@ -8,7 +9,7 @@ import {
   disabledBorder,
 } from '../baseLayout';
 
-export const StButton = styled.button`
+export const StButton = styled.button < IStyledButton > `
   ${({ margin = '0 0 7px 0' }) => margin && `margin: ${margin}`};
   font-family: 'Play', sans-serif;
   padding: ${({ padding = '5px' }) => padding};
