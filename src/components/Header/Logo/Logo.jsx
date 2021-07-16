@@ -18,14 +18,14 @@ const Logo = ({ history }) => {
             <img src="../../../public/assets/images/game-development.png" onClick={goToGames} />
             <div>
                 <Button
-                    content="GameZone"
+                    content={t('game_zone')}
                     fontSize='20px'
                     borderRadius="0px"
                     bgColor="transparent"
                     onClick={goToGames}
                 />
                 <Button
-                    content="Statistics"
+                    content={t('statistics')}
                     fontSize='20px'
                     borderRadius="0px"
                     bgColor="transparent"

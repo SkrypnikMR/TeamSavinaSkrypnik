@@ -1,14 +1,16 @@
-import React from 'react'
-import {StGameContent} from './styled'
-import GameZone from '../GameZone'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { StGameContent } from './styled';
+import GameZone from '../GameZone';
 
-const GameContent=()=>{
-    return(
+const GameContent = () => {
+    const { t } = useTranslation();
+    return (
         <StGameContent>
-            Checkers
+            {t('checkers')}
             <GameZone/>
         </StGameContent>
-    )
-}
+    );
+};
 
-export default GameContent
+export default GameContent;

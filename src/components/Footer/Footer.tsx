@@ -1,14 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { StFooter } from './styled';
 
 const Footer = () => {
+    const { t } = useTranslation();
     return (
         <StFooter>
-            create for &nbsp; 
-            <a href="https://deveducation.com/" target="_blank" rel="noreferrer">
+            {t('create_for')}
+{' '}
+&nbsp; 
+<a href="https://deveducation.com/" target="_blank" rel="noreferrer">
                 dev
             {'{Education}'} 
-            </a> 
+</a> 
         </StFooter>
     );
 };

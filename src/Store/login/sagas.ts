@@ -28,7 +28,7 @@ export function* workerLogin() {
             yield put(setLoginValue({ name: 'success', value: false }));
             yield put(reciveErrorRequest());
             return yield call([NotificationManager, NotificationManager.error],
-                i18next.t('auth_error'), i18next.t('login_error'), 2000);
+                i18next.t('wrong_user_or_password'), i18next.t('login_error'), 2000);
         }
     } catch (e) {
         yield put(setLoginValue({ name: 'success', value: false }));
