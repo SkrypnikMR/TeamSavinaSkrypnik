@@ -1,7 +1,7 @@
 import React from 'react';
 import { StRoomsContainer } from './styled';
 import SingleRoom from '../SingleRoom';
-import AddRoom from '../AddRoom';
+/* import AddRoom from '../AddRoom'; */
 
 const RoomsContainer = () => {
     return (
@@ -9,7 +9,7 @@ const RoomsContainer = () => {
             <SingleRoom />
             <SingleRoom />
             <SingleRoom />
-            <AddRoom />
+  {/*           <AddRoom /> */}
         </StRoomsContainer>
     );
 };
