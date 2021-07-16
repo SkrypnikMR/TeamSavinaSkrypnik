@@ -1,20 +1,22 @@
 import React from 'react';
+
 import Header from '../Header';
-import { StMainPage } from './styled';
 import MainContent from '../MainContent';
 import Footer from '../Footer';
+import { useTheme } from '../Hook/useTheme';
 
-
+import { StMainPage } from './styled';
 
 const MainPage = () => {
-    return(
-        <StMainPage>
+    const { colors, theme } = useTheme();
+    return (
+        <StMainPage colors={colors} theme={theme}>
             <Header />
             <MainContent />
             <Footer/>
         </StMainPage>
         
-    )
-}
+    );
+};
 
-export default MainPage
+export default MainPage;

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { setRegistrationValue, sendRegistrationRequest } from 'src/store/registration/actions';
 import { registrationStore } from 'src/store/registration/selectors';
 import Registration from './Registration.jsx';

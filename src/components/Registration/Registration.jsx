@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { regInputs } from 'src/constants/componentsСonsts';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import { regInputs } from 'src/constants/componentsСonsts';
 import { APP_ROUTES } from '/src/constants/reactRoutes';
-import { StRegDiv } from './styled';
 import Form from '../UI/Form';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
+import { useTheme } from '../Hook/useTheme';
+
+import { StRegDiv } from './styled';
 
 const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields }) => {
     const { t } = useTranslation();
@@ -18,8 +21,10 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
         if (error) setRegistrationValue({ name: 'error', value: null });
         setRegistrationValue(data);
     };
+    const { colors, theme } = useTheme();
+
     return (
-        <StRegDiv>
+        <StRegDiv colors={colors} theme={theme}>
             <img src="../../../public/assets/images/game-development.png"/>
             <Form>
                 <p>{t('registration')}</p>
@@ -43,6 +48,7 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
                     content="reg_btn"
                     id="registration"
                     onClick={sendRegistrationRequest}
+                    focusColor="black"
                 />
                 <span>
                     {t('reg_span_text')}

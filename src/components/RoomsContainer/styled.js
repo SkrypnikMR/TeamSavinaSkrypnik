@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StRoomsContainer = styled.div`
-    background: #C4C4C4;
+    background: ${({ colors, theme }) => colors[theme].backgroundSecondary};
     width: 30%;
     margin: 10px;
     max-height: 100%;

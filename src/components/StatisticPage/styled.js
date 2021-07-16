@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+import { darkGrey, midGrey } from '../UI/baseLayout';
+
 export const StStatisticPage = styled.div`
   min-height: 100vh;
-  background: #404040;
+  background: ${darkGrey};
   display: flex;
   flex-direction: column;
   .timeless{
-      background: #696969;
+      background: ${midGrey};
       height: 84vh;
       margin: 10px;
       color: white;

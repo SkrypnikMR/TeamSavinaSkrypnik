@@ -1,3 +1,3 @@
-import SingleRoom from './SingleRoom'
+import SingleRoom from './SingleRoom';
 
-export default SingleRoom
+export default SingleRoom;

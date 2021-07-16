@@ -1,22 +1,27 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { HEADER_CONTROL_BTNS } from 'src/constants/componentsСonsts';
 import { APP_ROUTES } from 'src/constants/reactRoutes';
-import { StControl } from './styled';
+
+import { HEADER_CONTROL_BTNS } from 'src/constants/componentsСonsts';
 import Button from '../../UI/Button';
 import { support } from '../../../helpers/support';
 import { colorDefault } from '../../UI/baseLayout';
+import { useTheme } from 'src/components/Hook/useTheme';
+
+import { StControl } from './styled';
 
 const HeaderControlPanel = ({
     history,
     location }) => {
     const { i18n } = useTranslation();
+    const { changeTheme } = useTheme();
     const handleChangeLanguage = (e) => {
         i18n.changeLanguage(e.target.value);
         localStorage.setItem('lang', e.target.value);
     };
     const handleThemeClick = ({ target }) => {
-        support.setSessionStorageItem('themeMode', target.value);
+        changeTheme();
+        // support.setSessionStorageItem('themeMode', target.value);
     };
     const handleLogOutClick = () => {
         history.push(APP_ROUTES.login);
@@ -57,6 +62,5 @@ const HeaderControlPanel = ({
         </StControl>
     );
 };
-
 
 export default HeaderControlPanel;

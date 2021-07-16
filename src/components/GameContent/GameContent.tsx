@@ -1,14 +1,18 @@
-import React from 'react'
-import {StGameContent} from './styled'
-import GameZone from '../GameZone'
+import React from 'react';
 
-const GameContent=()=>{
-    return(
-        <StGameContent>
+import GameZone from '../GameZone';
+import { useTheme } from '../Hook/useTheme';
+
+import { StGameContent } from './styled';
+
+const GameContent = () => {
+    const { colors, theme } = useTheme();
+    return (
+        <StGameContent colors={colors} theme={theme}>
             Checkers
             <GameZone/>
         </StGameContent>
-    )
-}
+    );
+};
 
-export default GameContent
+export default GameContent;

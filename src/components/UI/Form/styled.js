@@ -11,7 +11,8 @@ export const StFormDiv = styled.div`
     flex-direction: column;
     font-family: 'Play', sans-serif;
     border-radius: 20px;
-    ${({ color = colorDefault }) => color && `color: ${color}`};
+    color: ${({ colors, theme }) => colors[theme].textColor};
+
     ${({ transition = 'all 300ms ease-in-out' }) => transition && `transition: ${transition}`};
         p{
           font-size: 65px;

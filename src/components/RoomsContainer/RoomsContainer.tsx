@@ -1,17 +1,21 @@
 import React from 'react';
-import {StRoomsContainer} from './styled';
-import SingleRoom from '../SingleRoom'
-import AddRoom from '../AddRoom';
 
-const RoomsContainer = () =>{
-    return(
-        <StRoomsContainer >
+import SingleRoom from '../SingleRoom';
+import AddRoom from '../AddRoom';
+import { useTheme } from '../Hook/useTheme';
+
+import { StRoomsContainer } from './styled';
+
+const RoomsContainer = () => {
+    const { colors, theme } = useTheme();
+    return (
+        <StRoomsContainer colors={colors} theme={theme}>
             <SingleRoom />
             <SingleRoom />
             <SingleRoom />
             <AddRoom />
         </StRoomsContainer>
-    )
-}
+    );
+};
 
-export default RoomsContainer
+export default RoomsContainer;

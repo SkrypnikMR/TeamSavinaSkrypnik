@@ -6,6 +6,8 @@ import {
   disabledColor,
   bgColorDisabledDefault,
   disabledBorder,
+  bgColorDefaultFon,
+  bgMessage,
 } from '../baseLayout';
 
 export const StButton = styled.button`
@@ -23,7 +25,8 @@ export const StButton = styled.button`
   ${({ transition = 'all 300ms ease-in-out' }) => transition && `transition: ${transition}`};
   font-size: ${({ fontSize = '16px' }) => fontSize};
   &:hover {
-    color: ${({ focusColor = focusColorDefault }) => focusColor}; 
+    background: ${({ bgColor = bgMessage }) => bgColor};
+    color: ${({ colors, theme }) => colors[theme].buttonText};
     border: ${({ border = 'none' }) => border};
     }
   &:focus {
