@@ -32,5 +32,6 @@
     "game_zone": "Игровая Зона",
     "statistics": "Статистика",
     "checkers": "Шашки",
-    "create_for": "Сделано для"
+    "create_for": "Сделано для",
+    "your_turn": "Твоя очередь"
 }
