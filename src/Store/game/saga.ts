@@ -1,10 +1,11 @@
 import { takeEvery, call, select, put } from 'redux-saga/effects';
 import SockJS from 'sockjs-client';
 import { actionTypes } from './actionTypes';
+import { routes } from '../../constants/routes';
  
 let sockjs;
 
-const connection = () => new SockJS('http://35.176.167.155:8089/game-menu');
+const connection = () => new SockJS(routes.webSocketUrl);
 
 
 function* workerConnection() {

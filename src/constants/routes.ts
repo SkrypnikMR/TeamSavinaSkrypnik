@@ -4,4 +4,5 @@ export const routes = {
         registration: 'registration/reg',
         login: 'authorization/auth',
     },
+    webSocketUrl: 'ws://35.176.167.155:8082',
 };
