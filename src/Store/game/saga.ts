@@ -11,16 +11,13 @@ let stompClient = null;
             const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
            stompClient = Stomp.over(socket);
      stompClient.connect({ Authorization: `Bearer ${token}` }, (message) => {
-         stompClient.subscribe('user/topic/game/', (data) => {
-             console.log(data);
-         });
+        // you can subscribe here!
      });
      return stompClient;
 }
 function* workerConnection() {
     const token = yield call([support, support.getTokenFromCookie], 'token');
     stompClient = yield call(connection, token);
-    console.log(stompClient);
 }
 
 export function* watcherGame() {
