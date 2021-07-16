@@ -1,13 +1,23 @@
 import React from 'react';
+import { useState } from 'react';
+
+import ModalCreateRoom from '../ModalCreateRoom';
+
 import { StAddRoom } from './styled';
 
 const AddRoom = () => {
-    return (
+    const [isOpen, setIsOpen] = useState(false);
+    const handleClick = () => setIsOpen((prev) => !prev);
 
-        <StAddRoom>
-            +
-        </StAddRoom>
+    return (
+        <div>
+            <StAddRoom onClick={handleClick}>
+                +
+            </StAddRoom>
+            {isOpen && <ModalCreateRoom handlecloseModal={handleClick}/>}
+        </div>
+
     );
 };
 
-export default AddRoom
+export default AddRoom;
