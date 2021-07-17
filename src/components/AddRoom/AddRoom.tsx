@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import ModalCreateRoom from '../ModalCreateRoom';
 
@@ -7,7 +6,7 @@ import { StAddRoom } from './styled';
 
 const AddRoom = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const handleClick = () => setIsOpen((prev) => !prev);
+    const handleClick = () => setIsOpen(prev => !prev);
 
     return (
         <div>

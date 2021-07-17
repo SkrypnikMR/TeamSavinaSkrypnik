@@ -1,15 +1,23 @@
+import { routes } from 'src/constants/routes';
 import { takeEvery, call, select, put } from 'redux-saga/effects';
-import SockJS from 'sockjs-client';
+import { Stomp } from '@stomp/stompjs';
+import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
- 
-let sockjs;
-
-const connection = () => new SockJS('http://35.176.167.155:8089/game-menu');
 
 
+let stompClient = null;
+
+ function connection(token) {
+            const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
+           stompClient = Stomp.over(socket);
+     stompClient.connect({ Authorization: `Bearer ${token}` }, (message) => {
+        // you can subscribe here!
+     });
+     return stompClient;
+}
 function* workerConnection() {
-    sockjs = yield call(connection);
-    console.log(sockjs);
+    const token = yield call([support, support.getTokenFromCookie], 'token');
+    stompClient = yield call(connection, token);
 }
 
 export function* watcherGame() {
