@@ -1,13 +1,12 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import Chessplate from '../ChessPlate';
 import { StGameZone } from './styled';
+import Turn from '../Turn';
 
 const GameZone = () => {
-    const { t } = useTranslation();
     return (
         <StGameZone>
-            {t('your_turn')}
+              <Turn/>
             <Chessplate/>
         </StGameZone>
     );
