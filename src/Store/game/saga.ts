@@ -1,13 +1,13 @@
 import { routes } from 'src/constants/routes';
 import { takeEvery, call, select, put } from 'redux-saga/effects';
-import { Stomp } from '@stomp/stompjs';
+import { Stomp, CompatClient } from '@stomp/stompjs';
 import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
 
 
-let stompClient = null;
+let stompClient: CompatClient | null = null;
 
- function connection(token) {
+ function connection(token: string) {
             const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
            stompClient = Stomp.over(socket);
      stompClient.connect({ Authorization: `Bearer ${token}` }, (message) => {
@@ -16,7 +16,7 @@ let stompClient = null;
      return stompClient;
 }
 function* workerConnection() {
-    const token = yield call([support, support.getTokenFromCookie], 'token');
+    const token: string = yield call([support, support.getTokenFromCookie], 'token');
     stompClient = yield call(connection, token);
 }
 
