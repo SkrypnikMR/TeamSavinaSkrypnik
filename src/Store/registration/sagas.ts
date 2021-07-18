@@ -18,9 +18,11 @@ export function* workerRegistration(): SagaIterator {
             [validation, validation.registrationValidation], data);
         if (!isValid) {
             //@ts-ignore
-            return yield call([NotificationManager, NotificationManager.error], i18next.t(validateMessage), i18next.t('input_error'), 2000);
+            return yield call([NotificationManager, NotificationManager.error],
+                i18next.t(validateMessage), i18next.t('input_error'), 2000);
         }
-        const answer = yield call(postRequest, routes.account.registration, { ...data, confirm: undefined });
+        const answer = yield call(postRequest, routes.account.registration,
+            { ...data, confirm: undefined });
         if (answer.status < 205) {
             yield (put(clearRegistrationInputs()));
             yield put(setRegistrationValue({ name: 'success', value: true }));
@@ -28,13 +30,14 @@ export function* workerRegistration(): SagaIterator {
         } else {
             yield put(setRegistrationValue({ name: 'success', value: false }));
             yield put(reciveErrorRequest());
-            yield call([NotificationManager, NotificationManager.error], i18next.t('registartion_error'), i18next.t('reg_error'), 2000);
+            yield call([NotificationManager, NotificationManager.error],
+                i18next.t('registartion_error'), i18next.t('reg_error'), 2000);
         }
     } catch (e) {
-        console.log(e);
         yield put(setRegistrationValue({ name: 'success', value: false }));
         yield put(reciveErrorRequest());
-        yield call([NotificationManager, NotificationManager.error], i18next.t('server_error_text'), i18next.t('server_error'), 2000);
+        yield call([NotificationManager, NotificationManager.error],
+            i18next.t('server_error_text'), i18next.t('server_error'), 2000);
     }
 }
 

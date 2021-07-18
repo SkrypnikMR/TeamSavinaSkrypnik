@@ -10,7 +10,7 @@ describe('registration actions', () => {
             expect(typeof actions.setRegistrationValue).toBe('function');
         });
         it('should return value', () => {
-            const payload = { email: 'emailValue' };
+            const payload = { name: 'login', value: 'newLogin' };
             expect(actions.setRegistrationValue(payload)).toEqual({ type: actionTypes.SET_VALUE, payload });
         });
     });
