@@ -9,13 +9,11 @@ describe('Registration', () => {
     const sendRegistrationRequest = jest.fn();
     const setRegistrationValue = jest.fn();
     const fields = {
-        email: '',
+        login: '',
         password: '',
         confrim: '',
-        firstName: '',
-        lastName: '',
-        success: null,
-        error: null,
+        success: false,
+        error: false,
     };
     beforeEach(() => {
         props = {
@@ -47,8 +45,8 @@ describe('Registration', () => {
     });
     it('should click change input', () => {
         const component = mountSmart(<Registration {...props} />);
-        component.find('input').at(0).simulate('change', { target: { name: 'email', value: 'emailValue' } });
-        expect(setRegistrationValue).toHaveBeenCalledWith({ name: 'email', value: 'emailValue' });
+        component.find('input').at(0).simulate('change', { target: { name: 'login', value: 'emailValue' } });
+        expect(setRegistrationValue).toHaveBeenCalledWith({ name: 'login', value: 'emailValue' });
     });
     it('should click change input with error', () => {
         props.fields = {
