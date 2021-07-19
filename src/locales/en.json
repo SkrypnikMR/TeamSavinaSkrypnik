@@ -34,7 +34,10 @@
     "no_result": "No results",
     "game_zone": "Game Zone",
     "statistics": "Statistics",
-    "checkers": "Checkers",
+    "Checkers": "Checkers",
     "create_for": "Create for",
-    "your_turn": "Your turn"
+    "your_turn": "Your turn",
+    "your_room": "Your Room",
+    "play_with_bot": "Play with bot",
+    "join": "Join"
 }

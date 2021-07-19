@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface IStyledButton{
     margin?: string;
     padding?: string;
@@ -20,8 +22,8 @@ export interface IStyledButton{
 export interface IButton {
     id: string;
     name: string;
-    onClick: () => void;
-    value: string;
+    onClick: (e: React.MouseEvent<Element, MouseEvent>) => void;
+    value?: string;
     type: 'submit' | 'reset' | 'button' | undefined;
     title: string;
     borderRadius?: string;
