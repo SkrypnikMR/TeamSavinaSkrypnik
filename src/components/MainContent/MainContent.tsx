@@ -1,7 +1,9 @@
 import React from 'react';
+
 import RoomsContainer from '../RoomsContainer';
-import { StMainContent } from './styled';
 import GameContent from '../GameContent';
+
+import { StMainContent } from './styled';
 
 const MainContent = () => {
     return (

@@ -1,3 +1,3 @@
-import StatisticPage from "./StatisticPage";
+import StatisticPage from './StatisticPage';
 
-export default StatisticPage
+export default StatisticPage;

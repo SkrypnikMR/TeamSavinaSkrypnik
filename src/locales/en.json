@@ -39,5 +39,9 @@
     "your_turn": "Your turn",
     "your_room": "Your Room",
     "play_with_bot": "Play with bot",
-    "join": "Join"
+    "join": "Join",
+    "create_new_game": "Create new game",
+    "tic_tac_toe": "Tic tac toe",
+    "chesses": "Chesses",
+    "cancel": "Cancel" 
 }

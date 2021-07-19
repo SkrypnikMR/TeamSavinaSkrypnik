@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { SINGLE_ROOM_BG } from '../UI/baseLayout';
 
 export const StSingleRoom = styled.div`

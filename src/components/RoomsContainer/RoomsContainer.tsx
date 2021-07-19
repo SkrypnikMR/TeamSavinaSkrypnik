@@ -1,11 +1,12 @@
 import React from 'react';
-import { StRoomsContainer } from './styled';
 import SingleRoom from '../SingleRoom';
 import { TInitialGame, TRoom } from '../../store/game/types';
+import { useTheme } from '../Hook/useTheme';
+import { StRoomsContainer } from './styled';
 
 const RoomsContainer = ({ rooms, userLogin }: TInitialGame) => {
     return (
-        <StRoomsContainer >
+        <StRoomsContainer colors={colors} theme={theme}>
             {rooms.map((room : TRoom) => {
                 return (
                     <SingleRoom
