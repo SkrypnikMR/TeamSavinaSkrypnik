@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { darkGrey, midGrey } from '../UI/baseLayout';
+import { darkGrey, midGrey, white } from '../UI/baseLayout';
 
 export const StStatisticPage = styled.div`
   min-height: 100vh;
@@ -11,7 +11,7 @@ export const StStatisticPage = styled.div`
       background: ${midGrey};
       height: 84vh;
       margin: 10px;
-      color: white;
+      color: ${white};
       font-size: 25px;
       text-align: center;
   }

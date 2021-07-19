@@ -11,8 +11,7 @@ const TicTacToePlate = () => {
     }
     return (
         <StTicTacToePlate>
-            {items.map((item) => <SingleSellTicTac id={item} key={item} />,
-            )}
+            {items.map((item) => <SingleSellTicTac id={item} key={item} />)}
         </StTicTacToePlate>
     );
 };

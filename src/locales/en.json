@@ -36,5 +36,9 @@
     "statistics": "Statistics",
     "checkers": "Checkers",
     "create_for": "Create for",
-    "your_turn": "Your turn"
+    "your_turn": "Your turn",
+    "create_new_game": "Create new game",
+    "tic_tac_toe": "Tic tac toe",
+    "chesses": "Chesses",
+    "cancel": "Cancel" 
 }
