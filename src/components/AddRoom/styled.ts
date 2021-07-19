@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export const StAddRoom = styled.div`
-    background: #808080;
+import { IDiv } from './types';
+import { midGrey, bgColorDefault } from '../UI/baseLayout';
+
+export const StAddRoom = styled.div < IDiv > `
+    background: ${midGrey};
     bottom: 0px;
     right: 0px;
     padding: 2px;
@@ -9,7 +12,7 @@ export const StAddRoom = styled.div`
     font-weight: bold;
     width: 30px;
     height: 30px;
-    color: #23EFFC;
+    color: ${bgColorDefault};
     border-radius: 50%;
     line-height: 33px;
     text-align: center;

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const StControl = styled.div`
+import { IDiv } from './types';
+
+export const StControl = styled.div < IDiv > `
         display: flex;
         justify-content: flex-end;
         align-items: center;

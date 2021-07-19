@@ -4,7 +4,7 @@ export const StRegDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #404040;
+    background: ${({ colors, theme }) => colors[theme].backgroundLogReg};
     height: 100vh;
     img{
         height: 40vh;

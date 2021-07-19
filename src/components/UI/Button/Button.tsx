@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StButton } from './styled';
+import { useTheme } from '../../Hook/useTheme';
 import { IButton } from './types';
 
 const Button = ({
@@ -27,6 +28,8 @@ const Button = ({
     focusColor,
 } : IButton) => {
     const { t } = useTranslation();
+    const { colors, theme } = useTheme();
+
     return (
         <StButton
             id={id}
@@ -49,6 +52,8 @@ const Button = ({
             margin={margin}
             transition={transition}
             focusColor={focusColor}
+            colors={colors}
+            theme={theme}
         >
             {t(content)}
         </StButton>

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Button from '../UI/Button';
+
 import { StSingleRoom } from './styled';
 
 const SingleRoom = () => {
