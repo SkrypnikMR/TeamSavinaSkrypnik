@@ -1,34 +1,28 @@
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
-import { routes } from 'src/constants/routes';
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
+import { routes } from '../../../constants/routes';
 import * as sagas from '../sagas';
 import { logValues } from '../selectors';
-import { postRequest } from 'src/helpers/requests';
+import { postRequest } from '../../../helpers/requests';
 import * as actions from '../actions';
-import { setAuthValues } from '../../user/actions';
-import { support } from '/src/helpers/support';
+import { support } from '../../../helpers/support';
 import { actionTypes } from '../actionTypes';
-import { validation } from '/src/helpers/validation';
+import { validation } from '../../../helpers/validation';
 
 
 describe('loginSaga', () => {
     describe('workerLogin', () => {
-        let action;
-        beforeEach(() => {
-            action = {
-                type: actionTypes.SEND_LOGIN_REQUEST,
-            };
-        });
+        const error = new Error('error');
         it('should call workerLogin with noValid data', () => {
             const mocklogValues = { login: 'login', password: '123456' };
             const mockFalseValidation = { message: 'invalid', isValid: false };
             const validateMessage = mockFalseValidation.message;
-            testSaga(sagas.workerLogin, action)
+            testSaga(sagas.workerLogin)
                 .next()
                 .select(logValues)
                 .next(mocklogValues)
-                .call(validation.loginValidation, mocklogValues)
+                .call([validation, validation.loginValidation], mocklogValues)
                 .next(mockFalseValidation)
                 .call([NotificationManager, NotificationManager.error],
                     i18next.t(validateMessage), i18next.t('input_error'), 2000)
@@ -40,11 +34,11 @@ describe('loginSaga', () => {
             const mockValidation = { message: '', isValid: true };
             const invalidAcc = { message: 'not valid acc' };
             const { message } = invalidAcc;
-            testSaga(sagas.workerLogin, action)
+            testSaga(sagas.workerLogin)
                 .next()
                 .select(logValues)
                 .next(mocklogValues)
-                .call(validation.loginValidation, mocklogValues)
+                .call([validation, validation.loginValidation], mocklogValues)
                 .next(mockValidation)
                 .call(postRequest, routes.account.login, mocklogValues)
                 .next(invalidAcc)
@@ -59,42 +53,32 @@ describe('loginSaga', () => {
         it('should call workerLogin with Valid data and success request', () => {
             const mocklogValues = { login: 'login', password: '123456' };
             const mockValidation = { message: '', isValid: true };
-            const mockServerAnswer = {
-                token: 'someToken',
-                message: 'yep',
-                userInfo: {
-                    email: 'Smartick@qip.ru',
-                    firstName: 'Egor',
-                    lastName: 'Letov',
-                },
-            };
-            const { token, userInfo } = mockServerAnswer;
-            testSaga(sagas.workerLogin, action)
+            const token = 'somestringOfToken';
+            const answer = { ok: true, text: jest.fn().mockReturnValue(token) };
+            testSaga(sagas.workerLogin)
                 .next()
                 .select(logValues)
                 .next(mocklogValues)
-                .call(validation.loginValidation, mocklogValues)
+                .call([validation, validation.loginValidation], mocklogValues)
                 .next(mockValidation)
                 .call(postRequest, routes.account.login, mocklogValues)
-                .next(mockServerAnswer)
+                .next(answer)
                 .put(actions.clearLoginInputs())
                 .next()
                 .put(actions.reciveSuccessRequest())
                 .next()
-                .call([support, support.setSessionStorageItem], 'token', token)
-                .next()
-                .call([support, support.setSessionStorageItem], 'userInfo', userInfo)
-                .next()
-                .put(setAuthValues({ token, userInfo }))
+                .call([answer, answer.text])
+                .next(token)
+                .call([support, support.setTokenInCookie], token)
                 .next()
                 .put(actions.setLoginValue({ name: 'success', value: true }))
                 .next()
                 .isDone();
         });
         it('should call workerLogin and error ', () => {
-            testSaga(sagas.workerLogin, action)
+            testSaga(sagas.workerLogin)
                 .next()
-                .throw()
+                .throw(error)
                 .put(actions.setLoginValue({ name: 'success', value: false }))
                 .next()
                 .put(actions.reciveErrorRequest())

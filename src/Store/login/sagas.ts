@@ -1,3 +1,4 @@
+import { SagaIterator } from '@redux-saga/types';
 import { takeEvery, call, select, put } from 'redux-saga/effects';
 import { postRequest } from 'src/helpers/requests';
 import { routes } from 'src/constants/routes';
@@ -9,10 +10,10 @@ import { logValues } from './selectors';
 import { support } from '../../helpers/support';
 import { setLoginValue, clearLoginInputs, reciveErrorRequest, reciveSuccessRequest } from './actions';
 
-export function* workerLogin() {
+export function* workerLogin() : SagaIterator {
     try {
         const data = yield select(logValues);
-        const { message: validateMessage, isValid } = yield call(validation.loginValidation, data);
+        const { message: validateMessage, isValid } = yield call([validation, validation.loginValidation], data);
         if (!isValid) {
             return yield call([NotificationManager, NotificationManager.error],
                 i18next.t(validateMessage), i18next.t('input_error'), 2000);

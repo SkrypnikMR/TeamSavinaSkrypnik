@@ -1,3 +1,3 @@
-import GameZone from "./GameZone";
+import GameZone from './GameZone';
 
-export default GameZone
+export default GameZone;

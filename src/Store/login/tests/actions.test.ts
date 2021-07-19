@@ -10,8 +10,20 @@ describe('login actions', () => {
             expect(typeof actions.setLoginValue).toBe('function');
         });
         it('should return value', () => {
-            const payload = { email: 'emailValue' };
+            const payload = { name: 'login', value: 'newLogin' };
             expect(actions.setLoginValue(payload)).toEqual({ type: actionTypes.SET_VALUE, payload });
+        });
+    });
+      describe('actions.setValue', () => {
+        it('toBe defined', () => {
+            expect(actions.setValue).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.setValue).toBe('function');
+        });
+        it('should return value', () => {
+            const payload = { name: 'login', value: 'newLogin' };
+            expect(actions.setValue(payload)).toEqual({ type: actionTypes.SET_VALUE, payload });
         });
     });
     describe('actions.sendLoginRequest', () => {

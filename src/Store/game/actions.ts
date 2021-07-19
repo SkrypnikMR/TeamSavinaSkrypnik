@@ -1,4 +1,4 @@
-import { actionTypes } from './actionTypes';
-import { TypeActionWithoutPayload } from './types/allTypes';
+import { action } from 'typesafe-actions';
+import { actionTypes as AT } from './actionTypes';
 
-export const getSockJSConnection = (): TypeActionWithoutPayload => ({ type: actionTypes.GET_SOCKJS_CONNECTION });
+export const getSockJSConnection = () => action(AT.GET_SOCKJS_CONNECTION);
