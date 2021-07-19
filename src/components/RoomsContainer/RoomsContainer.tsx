@@ -5,6 +5,7 @@ import { useTheme } from '../Hook/useTheme';
 import { StRoomsContainer } from './styled';
 
 const RoomsContainer = ({ rooms, userLogin }: TInitialGame) => {
+    const { colors, theme } = useTheme();
     return (
         <StRoomsContainer colors={colors} theme={theme}>
             {rooms.map((room : TRoom) => {
