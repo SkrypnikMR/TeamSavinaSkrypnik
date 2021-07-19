@@ -9,6 +9,7 @@ import { actionTypes } from './actionTypes';
 import { logValues } from './selectors';
 import { support } from '../../helpers/support';
 import { setLoginValue, clearLoginInputs, reciveErrorRequest, reciveSuccessRequest } from './actions';
+import { setUserLogin } from '../game/actions';
 
 export function* workerLogin() : SagaIterator {
     try {
@@ -24,6 +25,8 @@ export function* workerLogin() : SagaIterator {
             yield put(reciveSuccessRequest());
             const token = yield call([answer, answer.text]);
             yield call([support, support.setTokenInCookie], token);
+            yield call([localStorage, localStorage.setItem], 'login', data.login);
+            yield put(setUserLogin(data.login));
             yield put(setLoginValue({ name: 'success', value: true }));
         } else {
             yield put(setLoginValue({ name: 'success', value: false }));

@@ -7,9 +7,9 @@ export const StSingleRoom = styled.div`
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template: 1fr/ 3fr 3fr 1fr;
+    align-self: center;
     cursor: pointer;
     :hover {
         -webkit-transform: scale(1.005);

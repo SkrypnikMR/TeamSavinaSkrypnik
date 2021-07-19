@@ -31,9 +31,12 @@
     "apply": "Подтвердить",
     "game_zone": "Игровая Зона",
     "statistics": "Статистика",
-    "checkers": "Шашки",
+    "Checkers": "Шашки",
     "create_for": "Сделано для",
     "your_turn": "Твоя очередь",
+    "your_room": "Твоя комната",
+    "play_with_bot": "Играть с ботом",
+    "join": "Войти"
     "create_new_game": "Создать новую игру",
     "tic_tac_toe": "Крестики-нолики",
     "chesses": "Шашки",

@@ -1,18 +1,23 @@
 import React from 'react';
 import SingleRoom from '../SingleRoom';
-import AddRoom from '../AddRoom';
+import { TInitialGame, TRoom } from '../../store/game/types';
 import { useTheme } from '../Hook/useTheme';
-
 import { StRoomsContainer } from './styled';
 
-const RoomsContainer = () => {
-    const { colors, theme } = useTheme();
+const RoomsContainer = ({ rooms, userLogin }: TInitialGame) => {
     return (
         <StRoomsContainer colors={colors} theme={theme}>
-            <SingleRoom />
-            <SingleRoom />
-            <SingleRoom />
-            <AddRoom />
+            {rooms.map((room : TRoom) => {
+                return (
+                    <SingleRoom
+                        key={room.id}
+                        id={room.id}
+                        creatorLogin={room.creatorLogin}
+                        userLogin={userLogin}
+                        gameType={room.gameType}
+                    />
+                );
+            })}
         </StRoomsContainer>
     );
 };
