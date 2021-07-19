@@ -12,23 +12,23 @@ import { putRooms } from './actions';
 
 let stompClient: CompatClient | null = null;
 
-const connection = (token: string) => {
+export const connection = (token: string) => {
     const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
     stompClient = Stomp.over(socket);
     return new Promise(resolve => stompClient
          .connect({ Authorization: `Bearer ${token}` }, () => resolve(stompClient)));
 };
-const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
+export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
     return () => {
         roomsSub.unsubscribe();
     };
 });
-const init = (stompClient: CompatClient) => {
-    stompClient.send(`${routes.ws.actions.getRooms}`);
+export const init = (stompClient: CompatClient) => {
+    stompClient.send(routes.ws.actions.getRooms);
 };
 
-function* workerConnection() :SagaIterator {
+export function* workerConnection() :SagaIterator {
     try {
         const token: string = yield call([support, support.getTokenFromCookie], 'token');
         const stompClient = yield call(connection, token);

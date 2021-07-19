@@ -9,6 +9,7 @@ import * as actions from '../actions';
 import { support } from '../../../helpers/support';
 import { actionTypes } from '../actionTypes';
 import { validation } from '../../../helpers/validation';
+import { setUserLogin } from '../../game/actions';
 
 
 describe('loginSaga', () => {
@@ -70,6 +71,10 @@ describe('loginSaga', () => {
                 .call([answer, answer.text])
                 .next(token)
                 .call([support, support.setTokenInCookie], token)
+                .next()
+                .call([localStorage, localStorage.setItem], 'login', mocklogValues.login)
+                .next()
+                .put(setUserLogin(mocklogValues.login))
                 .next()
                 .put(actions.setLoginValue({ name: 'success', value: true }))
                 .next()
