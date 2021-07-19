@@ -1,9 +1,8 @@
 import React from 'react';
-
 import { StSingleSell } from './styled';
+import { TSingleSell } from './types';
 
-const SingleSell = (props) => {
-    const { id } = props;
+const SingleSell = ({ id } : TSingleSell) => {
     const handleClick = (e) => {
         console.log(e.target.id);
     };

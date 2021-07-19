@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Input Should match snapshot 1`] = `"<div width=\\"100px\\" class=\\"styled__StInputContainer-w3ykst-3 czTdij\\"><input type=\\"text\\" id=\\"id\\" name=\\"name\\" value=\\"value\\" maxLength=\\"120\\" placeholder=\\"Test\\" class=\\"styled__StInput-w3ykst-1 cfNpNq\\"/></div>"`;

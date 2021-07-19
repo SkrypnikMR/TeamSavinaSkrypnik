@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Form Should match snapshot 1`] = `"<div class=\\"styled__StFormDiv-sc-1xa63f-0 hNLlQX\\"><button id=\\"1\\" type=\\"button\\" class=\\"styled__StButton-sc-1a6hck8-0 jZiUSN\\"></button></div>"`;

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { colors } from '../UI/baseLayout';
 
 export interface ITheme {

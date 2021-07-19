@@ -13,7 +13,7 @@ const Footer = () => {
             <a href="https://deveducation.com/" target="_blank" rel="noreferrer">
                 dev
             {'{Education}'} 
-            </a> 
+</a> 
         </StFooter>
     );
 };

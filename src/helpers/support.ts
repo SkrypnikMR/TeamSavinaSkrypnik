@@ -1,15 +1,13 @@
-import { TName, TData } from './types/supportTypes';
-
 export const support = {
-    setSessionStorageItem: (name: TName, data: TData) : void => {
-        if (typeof data !== 'string') data = JSON.stringify(data);
-        localStorage.setItem(name, data);
-    },
-    killSessionStorageItem: (name: TName) => {
-        localStorage.removeItem(name);
-    },
-    getSessionStorageItem: (name: TName) => {
-        const item = localStorage.getItem(name);
-        return item?.charAt(0) === '{' ? JSON.parse(item) : item;
-    },
+    setTokenInCookie: (payload: string, age: number = 3600 * 8) => {
+    document.cookie = `token=${payload}; path=/; max-age=${age}`;
+  },
+  getTokenFromCookie: (name: string) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  },
+  deleteTokenFromCookie: (name: string) => {
+    support.setTokenInCookie(name, -1);
+  },
 };

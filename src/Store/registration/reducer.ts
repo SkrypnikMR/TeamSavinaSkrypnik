@@ -21,7 +21,7 @@ export const reducer = (state: TInitialState = initialState, action: IActions) =
         case actionTypes.CLEAR_INPUTS_VALUES:
             return {
                 ...state,
-                email: '',
+                login: '',
                 password: '',
                 confirm: '',
             };

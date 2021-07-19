@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Should match snapshot 1`] = `"<button id=\\"id\\" name=\\"name\\" type=\\"button\\" value=\\"value\\" title=\\"Button\\" class=\\"styled__StButton-sc-1y35zax-0 iGEgSK\\"></button>"`;

@@ -8,7 +8,7 @@ const SingleRoom = () => {
     return (
         <StSingleRoom>
             Who create
-            <Button content="Join" width="70px" bgColorHover="red"/>
+            <Button content="Join" width="70px" />
         </StSingleRoom>
     );
 };

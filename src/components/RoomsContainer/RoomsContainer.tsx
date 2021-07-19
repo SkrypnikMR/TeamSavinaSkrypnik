@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SingleRoom from '../SingleRoom';
 import AddRoom from '../AddRoom';
 import { useTheme } from '../Hook/useTheme';
