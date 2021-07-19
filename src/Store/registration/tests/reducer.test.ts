@@ -23,20 +23,16 @@ describe('registrationReducer', () => {
             .toEqual({ ...initialState, isLoading: false, success: false });
     });
     it('REGISTRATION_REQUEST_ERROR', () => {
-        const payload = 'somerror';
-        expect(reducer(initialState, reciveErrorRequest(payload)))
-            .toEqual({ ...initialState, isLoading: false, error: payload });
+        expect(reducer(initialState, reciveErrorRequest()))
+            .toEqual({ ...initialState, isLoading: false });
     });
     it('CLEAR_INPUTS_VALUES', () => {
         expect(reducer(initialState, clearRegistrationInputs()))
             .toEqual({
                 ...initialState,
-                email: '',
+                login: '',
                 password: '',
                 confirm: '',
-                firstName: '',
-                lastName: '',
             });
     });
-    it('default', () => expect(reducer(undefined, { type: '' })).toEqual(initialState));
 });

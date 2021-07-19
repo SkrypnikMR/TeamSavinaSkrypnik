@@ -1,14 +1,9 @@
-import { actionTypes } from './actionTypes';
-import * as types from './types/allTypes';
+import { action } from 'typesafe-actions';
+import { actionTypes as AT } from './actionTypes';
+import { TRegistartionPayload } from './types';
 
-
-export const setRegistrationValue = (payload: types.IPayload)
-    : types.ISetRegistrationValue => ({ type: actionTypes.SET_VALUE, payload });
-export const sendRegistrationRequest = ()
-    : types.ISendRegistrationRequest => ({ type: actionTypes.SEND_REGISTRATION_REQUEST });
-export const clearRegistrationInputs = ()
-    : types.IClearRegistrationInputs => ({ type: actionTypes.CLEAR_INPUTS_VALUES });
-export const reciveSuccessRequest = ()
-    : types.IReciveSuccessRequest => ({ type: actionTypes.REGISTRATION_REQUEST_SUCCESS });
-export const reciveErrorRequest = ()
-    : types.IReciveErrorRequest => ({ type: actionTypes.REGISTRATION_REQUEST_ERROR });
+export const setRegistrationValue = (payload: TRegistartionPayload) => action(AT.SET_VALUE, payload);
+export const sendRegistrationRequest = () => action(AT.SEND_REGISTRATION_REQUEST);
+export const clearRegistrationInputs = () => action(AT.CLEAR_INPUTS_VALUES);
+export const reciveSuccessRequest = () => action(AT.REGISTRATION_REQUEST_SUCCESS);
+export const reciveErrorRequest = () => action(AT.REGISTRATION_REQUEST_ERROR);

@@ -17,14 +17,14 @@ describe('validation', () => {
         });
         it('should return "Invalid password" ', () => {
             const candidate = {
-                login: 'keepcalm312000@gmail.com',
+                login: 'login',
                 password: 'asd',
             };
             expect(validation.loginValidation(candidate)).toEqual({ message: 'invalid_password', isValid: false });
         });
         it('should return false ', () => {
             const candidate = {
-                login: 'keepcalm312000@gmail.com',
+                login: 'login',
                 password: 'asdasdsad',
             };
             expect(validation.loginValidation(candidate)).toEqual({ message: '', isValid: true });

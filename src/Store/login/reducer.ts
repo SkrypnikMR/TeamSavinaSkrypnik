@@ -1,24 +1,31 @@
-import { actionTypes } from './actionTypes';
-import { IState, IAction } from './types/allTypes';
+import { Reducer } from 'redux';
+import { ActionType } from 'typesafe-actions';
+import * as actions from './actions';
+import { actionTypes as AT } from './actionTypes';
+import { TInitialLogin } from './types';
 
-export const initialState: IState = {
+export const initialState: TInitialLogin = {
     login: '',
     password: '',
     success: false,
     isLoading: false,
 };
 
-export const reducer = (state:IState = initialState, action: IAction) => {
+const actionTypes1 = actions;
+type TActions = typeof actionTypes1;
+export type TActionLogin = ActionType<TActions>;
+
+export const reducer: Reducer<TInitialLogin, TActionLogin> = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_VALUE:
+        case AT.SET_VALUE:
             return { ...state, [action.payload.name]: action.payload.value };
-        case actionTypes.SEND_LOGIN_REQUEST:
+        case AT.SEND_LOGIN_REQUEST:
             return { ...state, isLoading: true };
-        case actionTypes.LOGIN_REQUEST_SUCCESS:
+        case AT.LOGIN_REQUEST_SUCCESS:
             return { ...state, isLoading: false };
-        case actionTypes.LOGIN_REQUEST_ERROR:
+        case AT.LOGIN_REQUEST_ERROR:
             return { ...state, isLoading: false };
-        case actionTypes.CLEAR_INPUTS_VALUES:
+        case AT.CLEAR_INPUTS_VALUES:
             return {
                 ...state,
                 login: '',

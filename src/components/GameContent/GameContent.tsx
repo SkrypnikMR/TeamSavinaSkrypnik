@@ -1,9 +1,7 @@
 import React from 'react';
-
-import GameZone from '../GameZone';
-import { useTheme } from '../Hook/useTheme';
-
 import { StGameContent } from './styled';
+import GameZone from '../GameZone/';
+import { useTheme } from '../Hook/useTheme';
 
 const GameContent = () => {
     const { colors, theme } = useTheme();

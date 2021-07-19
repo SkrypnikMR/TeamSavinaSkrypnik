@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface IStForm{
+export interface IStForm {
     color?: string;
     transition?: string;
 }
