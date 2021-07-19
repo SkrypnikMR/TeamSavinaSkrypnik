@@ -27,7 +27,6 @@ export const createStompChannel = (stompClient: CompatClient) => eventChannel((e
 export const init = (stompClient: CompatClient) => {
     stompClient.send(routes.ws.actions.getRooms);
 };
-
 export function* workerConnection() :SagaIterator {
     try {
         const token: string = yield call([support, support.getTokenFromCookie], 'token');
@@ -43,6 +42,11 @@ export function* workerConnection() :SagaIterator {
             i18next.t('server_error_text'), i18next.t('server_error'), 2000);
     }
 }
+export function* workerJoinRoom({ payload }): SagaIterator {
+    console.log(payload);
+}
+
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
+    yield takeEvery(actionTypes.JOIN_ROOM, workerJoinRoom);
 }
