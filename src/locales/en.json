@@ -41,7 +41,7 @@
     "play_with_bot": "Play with bot",
     "join": "Join",
     "create_new_game": "Create new game",
-    "tic_tac_toe": "Tic tac toe",
-    "chesses": "Chesses",
-    "cancel": "Cancel" 
+    "Tic-tac-toe": "Tic tac toe",
+    "cancel": "Cancel",
+    "game_error": ""
 }

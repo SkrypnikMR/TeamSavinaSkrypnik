@@ -1,4 +1,3 @@
-
 export type TRoom = {
     creatorLogin: string;
     gameType: string;

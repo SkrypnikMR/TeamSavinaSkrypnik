@@ -4,7 +4,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { regInputs } from 'src/constants/componentsСonsts';
-import { APP_ROUTES } from './../../constants/reactRoutes';
+import { APP_ROUTES } from '../../constants/reactRoutes';
 import Form from '../UI/Form';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
@@ -14,6 +14,7 @@ import { StRegDiv } from './styled';
 
 const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields }) => {
     const { t } = useTranslation();
+    const { colors, theme } = useTheme();
     const { success } = fields;
     if (success) return <Redirect to={APP_ROUTES.login} />;
     const handleOnChange = (data) => {
@@ -21,14 +22,13 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
         if (error) setRegistrationValue({ name: 'error', value: null });
         setRegistrationValue(data);
     };
-    const { colors, theme } = useTheme();
 
     return (
         <StRegDiv colors={colors} theme={theme}>
             <img src="../../../public/assets/images/game-development.png"/>
             <Form>
                 <p>{t('registration')}</p>
-                {regInputs.map(input => (
+                {regInputs.map((input) => (
                     <Input
                         width="80%"
                         id={input.id}
@@ -49,6 +49,10 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
                     id="registration"
                     onClick={sendRegistrationRequest}
                     focusColor="black"
+                    name=""
+                    value=""
+                    type="button"
+                    title=""
                 />
                 <span>
                     {t('reg_span_text')}
