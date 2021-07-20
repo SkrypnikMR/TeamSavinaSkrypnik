@@ -59,3 +59,7 @@ export const MODAL_USERS_BUTTON = [{
     content: 'modal_users_confirm',
     value: '',
 }];
+export const GAME_TYPE = {
+    tic_tac_toe: 'Tic-tac-toe',
+    checkers: 'Checkers',
+};

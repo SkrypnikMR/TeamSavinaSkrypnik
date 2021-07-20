@@ -26,6 +26,8 @@ const Button = ({
     content,
     transition,
     focusColor,
+    position,
+    right,
 } : IButton) => {
     const { t } = useTranslation();
     const { colors, theme } = useTheme();
@@ -54,6 +56,8 @@ const Button = ({
             focusColor={focusColor}
             colors={colors}
             theme={theme}
+            position={position}
+            right={right}
         >
             {t(content)}
         </StButton>

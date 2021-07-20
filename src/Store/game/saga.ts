@@ -20,7 +20,7 @@ export const connection = (token: string) => {
 };
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
-    const errorSub = stompClient.subscribe('/user/topic/errors', support.errorCatcher);
+    const errorSub = stompClient.subscribe(routes.ws.subs.user_errors, support.errorCatcher);
     return () => {
         roomsSub.unsubscribe();
         errorSub.unsubscribe();
@@ -58,6 +58,8 @@ export function* createRoomSaga({ payload }): SagaIterator {
         id: uuidv4(),
     };
     const token: string = yield call([support, support.getTokenFromCookie], 'token');
-    yield call([stompClient, stompClient.send], '/radioactive/create-room', { Authorization: token }, JSON.stringify(body));
-    yield call([stompClient, stompClient.send], '/radioactive/update-room', { Authorization: token });
+    yield call(
+        [stompClient, stompClient.send], routes.ws.actions.createRoom, { Authorization: token }, JSON.stringify(body),
+        );
+    yield call([stompClient, stompClient.send], routes.ws.actions.getRooms, { Authorization: token });
 }
