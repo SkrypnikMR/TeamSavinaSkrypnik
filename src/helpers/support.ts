@@ -1,3 +1,6 @@
+import { NotificationManager } from 'react-notifications';
+import i18next from 'i18next';
+
 export const support = {
     setTokenInCookie: (payload: string, age: number = 3600 * 8) => {
     document.cookie = `token=${payload}; path=/; max-age=${age}`;
@@ -9,5 +12,9 @@ export const support = {
   },
   deleteTokenFromCookie: (name: string) => {
     support.setTokenInCookie(name, -1);
+  },
+  errorCatcher: ({ body }) => {
+    const { body: parsedBody } = JSON.parse(body);
+    NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
   },
 };

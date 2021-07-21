@@ -20,7 +20,6 @@ const SingleRoom = ({ creatorLogin, gameType, userLogin, id, joinRoom, playWithB
     };
     const { content, onClickFunc } = onClickDistributor(creatorLogin, userLogin);
 
-
     return (
         <StSingleRoom>
             <p>{roomOwner}</p>

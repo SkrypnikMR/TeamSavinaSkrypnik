@@ -1,5 +1,9 @@
 import { routes } from 'src/constants/routes';
+<<<<<<< HEAD
 import { takeEvery, call, take, put, select } from 'redux-saga/effects';
+=======
+import { takeEvery, call, take, put, select} from 'redux-saga/effects';
+>>>>>>> dev
 import { Stomp, CompatClient } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
 import { NotificationManager } from 'react-notifications';
@@ -9,19 +13,23 @@ import { getUserLogin } from './selectors';
 import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
 import { putRooms } from './actions';
-
+import { getUserLogin } from './selectors';
 
 let stompClient: CompatClient | null = null;
 
 export const connection = (token: string) => {
     const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
     stompClient = Stomp.over(socket);
-    return new Promise(resolve => stompClient
+    return new Promise((resolve) => stompClient
          .connect({ Authorization: `Bearer ${token}` }, () => resolve(stompClient)));
 };
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
+<<<<<<< HEAD
     const errorSub = stompClient.subscribe('/user/topic/errors', ({ body }) => console.log(body));
+=======
+    const errorSub = stompClient.subscribe(routes.ws.subs.user_errors, support.errorCatcher);
+>>>>>>> dev
     return () => {
         roomsSub.unsubscribe();
         errorSub.unsubscribe();
@@ -57,4 +65,19 @@ export function* workerJoinRoom({ payload }): SagaIterator {
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
     yield takeEvery(actionTypes.JOIN_ROOM, workerJoinRoom);
+    yield takeEvery(actionTypes.CREATE_ROOM, createRoomSaga);
+}
+
+export function* createRoomSaga({ payload }): SagaIterator {
+    const creatorLogin = yield select(getUserLogin);
+    const body = {
+        creatorLogin,
+        gameType: payload,
+        id: uuidv4(),
+    };
+    const token: string = yield call([support, support.getTokenFromCookie], 'token');
+    yield call(
+        [stompClient, stompClient.send], routes.ws.actions.createRoom, { Authorization: token }, JSON.stringify(body),
+        );
+    yield call([stompClient, stompClient.send], routes.ws.actions.getRooms, { Authorization: token });
 }

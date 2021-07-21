@@ -9,10 +9,11 @@ export const routes = {
         game_menu: 'game-menu',
         subs: {
             rooms: '/topic/rooms',
-            user_errors: '/user/topic/errors',
+            user_errors: '/user/topic/errors', 
         },
         actions: {
             getRooms: '/radioactive/update-room',
+            createRoom: '/radioactive/create-room',
         },
     },
 

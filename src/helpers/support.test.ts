@@ -1,8 +1,14 @@
 import { support } from './support';
+import { NotificationManager } from 'react-notifications';
 
 const { setTokenInCookie,
     getTokenFromCookie,
-    deleteTokenFromCookie } = support;
+    deleteTokenFromCookie,
+    errorCatcher } = support;
+
+jest.mock('react-notifications', () => ({
+    NotificationManager: { error: jest.fn() },
+}));
 
 describe('support', () => {
     describe('setTokenInCookie', () => {
@@ -45,6 +51,21 @@ describe('support', () => {
             setTokenInCookie(token);
             deleteTokenFromCookie('token');
             expect(getTokenFromCookie('token')).toBe(undefined);
+        });
+    });
+    describe('errorCatcher', () => {
+        it('should be defined', () => {
+            expect(errorCatcher).toBeDefined();
+        });
+        it('should be function', () => {
+            expect(typeof errorCatcher).toBe('function');
+        });
+        it('should call NotificationManager.error with right arguments', () => {
+            const errorMessage = 'error message';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            errorCatcher(message);
+            expect(NotificationManager.error).toHaveBeenCalledWith(errorMessage, undefined, 3000);
         });
     });
 });
