@@ -3,6 +3,7 @@ import SingleRoom from '../SingleRoom';
 import { TInitialGame, TRoom } from '../../store/game/types';
 import { useTheme } from '../Hook/useTheme';
 import { StRoomsContainer } from './styled';
+import AddRoom from '../AddRoom';
 
 const RoomsContainer = ({ rooms, userLogin }: TInitialGame) => {
     const { colors, theme } = useTheme();
@@ -19,6 +20,7 @@ const RoomsContainer = ({ rooms, userLogin }: TInitialGame) => {
                     />
                 );
             })}
+            <AddRoom/>
         </StRoomsContainer>
     );
 };

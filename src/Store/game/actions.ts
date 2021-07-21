@@ -7,3 +7,4 @@ export const putRooms = (payload: TRoom[]) => action(AT.PUT_ROOMS, payload);
 export const setUserLogin = (payload: string) => action(AT.SET_USER_LOGIN, payload);
 export const joinRoom = (payload: string) => action(AT.JOIN_ROOM, payload);
 export const playWithBot = (payload: string) => action(AT.PLAY_WITH_BOT, payload);
+export const createRoom = (payload: string) => action(AT.CREATE_ROOM, payload);

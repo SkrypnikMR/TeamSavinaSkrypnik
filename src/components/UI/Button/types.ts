@@ -18,6 +18,8 @@ export interface IStyledButton{
     isDisabled?: boolean;
     fontWeight?: string;
     bgColorHover?: string;
+    position?: string;
+    right?:string;
 }
 export interface IButton {
     id: string;
@@ -41,4 +43,6 @@ export interface IButton {
     transition?: string;
     focusColor?: string;
     bgColorDisabled?: string;
+    position?: string;
+    right?:string;
 }

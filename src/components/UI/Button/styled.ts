@@ -25,6 +25,8 @@ export const StButton = styled.button < IStyledButton > `
   outline: ${({ outline = 'none' }) => outline};
   ${({ transition = 'all 300ms ease-in-out' }) => transition && `transition: ${transition}`};
   font-size: ${({ fontSize = '16px' }) => fontSize};
+  position: ${({ position = 'static' }) => position};
+  right: ${( right = '0px' ) => right};
   &:hover {
     background: ${({ bgColor = bgMessage }) => bgColor};
     color: ${({ colors, theme }) => colors[theme].buttonText};

@@ -5,7 +5,7 @@ import 'react-notifications/lib/notifications.css';
 import { useTranslation } from 'react-i18next';
 
 import { APP_ROUTES } from '../../constants/reactRoutes';
-import Registration from '../Registration/Registration';
+import Registration from '../Registration';
 import Login from '../Login';
 import MainPage from '../MainPage';
 import StatisticPage from '../StatisticPage';
