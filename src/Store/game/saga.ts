@@ -1,10 +1,11 @@
 import { routes } from 'src/constants/routes';
-import { takeEvery, call, take, put } from 'redux-saga/effects';
+import { takeEvery, call, take, put, select } from 'redux-saga/effects';
 import { Stomp, CompatClient } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
 import { NotificationManager } from 'react-notifications';
 import { eventChannel, SagaIterator } from 'redux-saga';
 import i18next from 'i18next';
+import { getUserLogin } from './selectors';
 import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
 import { putRooms } from './actions';
@@ -20,8 +21,10 @@ export const connection = (token: string) => {
 };
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
+    const errorSub = stompClient.subscribe('/user/topic/errors', ({ body }) => console.log(body));
     return () => {
         roomsSub.unsubscribe();
+        errorSub.unsubscribe();
     };
 });
 export const init = (stompClient: CompatClient) => {
@@ -43,7 +46,12 @@ export function* workerConnection() :SagaIterator {
     }
 }
 export function* workerJoinRoom({ payload }): SagaIterator {
-    console.log(payload);
+    const userLogin = yield select(getUserLogin);
+    const body = { guestLogin: userLogin, id: payload };
+    stompClient.subscribe(`/topic/game/${payload}`, (message) => {
+        console.log(message);
+    });
+    stompClient.send('/radioactive/join-room', {}, JSON.stringify(body));
 }
 
 export function* watcherGame() {
