@@ -1,5 +1,7 @@
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
+import { store } from '../index';
+import { setActualRoom } from '../store/game/actions';
 
 export const support = {
     setTokenInCookie: (payload: string, age: number = 3600 * 8) => {
@@ -16,5 +18,10 @@ export const support = {
   errorCatcher: ({ body }) => {
     const { body: parsedBody } = JSON.parse(body);
     NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
+  },
+  subGame: (message) => {
+    const parsedBody = JSON.parse(message.body);
+    store.dispatch(setActualRoom(parsedBody));
+    localStorage.setItem('actualRoom', message.body);
   },
 };

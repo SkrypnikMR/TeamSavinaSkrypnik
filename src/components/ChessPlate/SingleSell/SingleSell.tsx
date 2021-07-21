@@ -8,7 +8,16 @@ const SingleSell = ({ id } : TSingleSell) => {
     };
 
     return (
-        <StSingleSell id={id + 1} style={{ background: parseInt((id / 8) + id) % 2 === 0 ? 'black' : 'white' }} onClick={handleClick}>{id + 1}</StSingleSell>
+        <StSingleSell
+            id={id + 1}
+            style={{
+                background: parseInt((id / 8) + id) % 2 === 0
+                    ? 'black' : 'white',
+            }}
+onClick={handleClick}
+        >
+{id + 1}
+        </StSingleSell>
     );
 };
 

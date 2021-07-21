@@ -11,7 +11,7 @@ import './i18n';
 const devTools = window?.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const saga = createSagaMiddleware();
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(saga),
