@@ -6,6 +6,7 @@ import { GAME_TYPE } from '../../constants/componentsСonsts';
 import { lightGray } from '../UI/baseLayout';
 
 import { StModalCreateRoom, StModalContent, StModalContentItems, StModalHeader, StModalButtonBox } from './styled';
+import Select from '../UI/Select/Select';
 
 const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
     const [state, setState] = useState({ gameType: GAME_TYPE.tic_tac_toe });
@@ -37,10 +38,11 @@ const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
                         <StModalHeader>
                             {t('create_new_game')}
                         </StModalHeader>
-                        <select onChange={handleOnchange} value={state.gameType}>
+                        {/* <select onChange={handleOnchange} value={state.gameType}>
                             <option value={GAME_TYPE.tic_tac_toe}>{t('tic_tac_toe')}</option>
                             <option value={GAME_TYPE.checkers}>{t('Checkers')}</option>
-                        </select>
+                        </select> */}
+                        <Select onChange={handleOnchange} value={state.gameType} options={[GAME_TYPE.tic_tac_toe, GAME_TYPE.checkers]}/>
                         <StModalButtonBox>
                             <Button 
                                 content="OK"

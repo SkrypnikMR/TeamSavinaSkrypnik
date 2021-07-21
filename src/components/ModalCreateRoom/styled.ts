@@ -25,11 +25,6 @@ export const StModalContent = styled.div`
 export const StModalContentItems = styled.div`
     display: flex;
     flex-direction: column;
-      select{
-    margin: 10px;
-    padding: 10px;
-    border: none;
-  }
 `;
 
 export const StModalHeader = styled.div`
