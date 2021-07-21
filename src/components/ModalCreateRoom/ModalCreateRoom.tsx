@@ -38,11 +38,11 @@ const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
                         <StModalHeader>
                             {t('create_new_game')}
                         </StModalHeader>
-                        {/* <select onChange={handleOnchange} value={state.gameType}>
-                            <option value={GAME_TYPE.tic_tac_toe}>{t('tic_tac_toe')}</option>
-                            <option value={GAME_TYPE.checkers}>{t('Checkers')}</option>
-                        </select> */}
-                        <Select onChange={handleOnchange} value={state.gameType} options={[GAME_TYPE.tic_tac_toe, GAME_TYPE.checkers]}/>
+                        <Select
+                            onChange={handleOnchange}
+                            value={state.gameType}
+                            options={[GAME_TYPE.tic_tac_toe, GAME_TYPE.checkers]}
+                        />
                         <StModalButtonBox>
                             <Button 
                                 content="OK"
