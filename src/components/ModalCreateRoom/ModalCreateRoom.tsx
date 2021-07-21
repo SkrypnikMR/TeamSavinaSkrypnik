@@ -6,7 +6,7 @@ import { GAME_TYPE } from '../../constants/componentsСonsts';
 import { lightGray } from '../UI/baseLayout';
 
 import { StModalCreateRoom, StModalContent, StModalContentItems, StModalHeader, StModalButtonBox } from './styled';
-import Select from '../UI/Select/Select';
+import Select from '../UI/Select';
 
 const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
     const [state, setState] = useState({ gameType: GAME_TYPE.tic_tac_toe });
