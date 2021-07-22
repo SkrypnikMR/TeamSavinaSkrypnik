@@ -1,5 +1,5 @@
 import { routes } from 'src/constants/routes';
-import { takeEvery, call, take, put, select} from 'redux-saga/effects';
+import { takeEvery, call, take, put, select } from 'redux-saga/effects';
 import { Stomp, CompatClient } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
 import { NotificationManager } from 'react-notifications';
@@ -7,7 +7,7 @@ import { eventChannel, SagaIterator } from 'redux-saga';
 import i18next from 'i18next';
 import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
-import { putRooms } from './actions';
+import { putRooms, setUserLogin, logOut } from './actions';
 import { getUserLogin } from './selectors';
 
 let stompClient: CompatClient | null = null;
@@ -48,6 +48,7 @@ export function* workerConnection() :SagaIterator {
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
     yield takeEvery(actionTypes.CREATE_ROOM, createRoomSaga);
+    // yield takeEvery(actionTypes.LOG_OUT, logOutSaga);
 }
 
 export function* createRoomSaga({ payload }): SagaIterator {
@@ -62,4 +63,8 @@ export function* createRoomSaga({ payload }): SagaIterator {
         [stompClient, stompClient.send], routes.ws.actions.createRoom, { Authorization: token }, JSON.stringify(body),
         );
     yield call([stompClient, stompClient.send], routes.ws.actions.getRooms, { Authorization: token });
+}
+
+export function* logOutSaga() {
+    // yield put(setUserLogin({ }));
 }

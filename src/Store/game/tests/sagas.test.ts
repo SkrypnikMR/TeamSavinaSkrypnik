@@ -6,7 +6,6 @@ import { support } from '../../../helpers/support';
 import { routes } from '../../../constants/routes';
 import * as sagas from '../saga';
 
-
 describe('loginSaga', () => {
     describe('fork', () => {
         it('should fork watchers', () => {

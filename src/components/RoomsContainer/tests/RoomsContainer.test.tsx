@@ -2,7 +2,6 @@ import React from 'react';
 import RoomsContainer from '../RoomsContainer';
 import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 
-
 describe('RoomsContainer', () => {
     it('Should match snapshot', () => {
         const component = shallowSmart(<RoomsContainer />);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Chessplate from '../ChessPlate/';
+// import Chessplate from '../ChessPlate';
 import TicTacToePlate from '../TicTacToePlate';
 import { useTheme } from '../Hook/useTheme';
 
@@ -14,8 +14,8 @@ const GameZone = () => {
     return (
         <StGameZone colors={colors} theme={theme}>
             <Turn/>
-            <Chessplate/>
-            {/* <TicTacToePlate /> */}
+            {/* <Chessplate/> */}
+            <TicTacToePlate />
         </StGameZone>
     );
 };

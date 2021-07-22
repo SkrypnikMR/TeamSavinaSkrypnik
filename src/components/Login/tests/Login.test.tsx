@@ -1,12 +1,13 @@
 import React from 'react';
-import { shallowSmart, mountSmart } from '/src/helpers/testHelper';
-import Login from '../Login.jsx';
+import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
+import Login from '../Login';
 import '/src/i18n';
 
 describe('Login', () => {
     let props;
     const sendLoginRequest = jest.fn();
     const setLoginValue = jest.fn();
+    const setValue = jest.fn();
     const fields = {
         email: '',
         password: '',
@@ -17,6 +18,7 @@ describe('Login', () => {
             setLoginValue,
             sendLoginRequest,
             fields,
+            setValue,
         };
     });
     it('Should match snapshot', () => {

@@ -19,9 +19,8 @@ const HeaderControlPanel = ({
         i18n.changeLanguage(e.target.value);
         localStorage.setItem('lang', e.target.value);
     };
-    const handleThemeClick = ({ target }) => {
+    const handleThemeClick = () => {
         changeTheme();
-        // support.setSessionStorageItem('themeMode', target.value);
     };
     const handleLogOutClick = () => {
         history.push(APP_ROUTES.login);
@@ -58,7 +57,7 @@ const HeaderControlPanel = ({
                     />
                 );
             })}
-            <img src="../../../../public/assets/images/log-out.png"/>
+            <img src="../../../../public/assets/images/log-out.png" onClick={handleLogOutClick}/>
         </StControl>
     );
 };

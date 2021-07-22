@@ -4,5 +4,6 @@ export enum actionTypes{
     SET_USER_LOGIN = '@@game/SET_USER_LOGIN',
     JOIN_ROOM = '@@game/JOIN_ROOM',
     PLAY_WITH_BOT = '@@game/PLAY_WITH_BOT',
-    CREATE_ROOM = '@@game/CREATE_ROOM'
+    CREATE_ROOM = '@@game/CREATE_ROOM',
+    LOG_OUT = '@@game/LOGOUT'
 }

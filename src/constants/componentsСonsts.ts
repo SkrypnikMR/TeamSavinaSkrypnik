@@ -27,7 +27,7 @@ export const HEADER_CONTROL_BTNS = [
     {
         id: 'theme_btn',
         value: 'dark',
-        content: '🌞',
+        content: '💡',
     },
     {
         id: 'en',
