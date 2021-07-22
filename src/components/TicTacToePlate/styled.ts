@@ -7,7 +7,6 @@ export const StTicTacToePlate = styled.div`
     background: ${white};
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row-reverse;
     color: gray; //temporary
     margin: 10px auto;
 `;

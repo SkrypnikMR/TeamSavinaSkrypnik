@@ -34,6 +34,7 @@
     "Checkers": "Шашки",
     "create_for": "Сделано для",
     "your_turn": "Твоя очередь",
+    "not_your_turn": "Очередь соперника",
     "your_room": "Твоя комната",
     "play_with_bot": "Играть с ботом",
     "join": "Войти",

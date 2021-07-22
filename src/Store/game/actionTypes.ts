@@ -8,4 +8,8 @@ export enum actionTypes{
     CREATE_ROOM = '@@game/CREATE_ROOM',
     SET_ACTUAL_ROOM = '@@game/SET_ACTUAL_ROOM',
     DELETE_ROOM = '@@game/DELETE_ROOM',
+    GET_STEP_ORDER = '@@game/GET_STEP_ORDER',
+    SET_STEP_ORDER = '@@game/SET_STEP_ORDER',
+    DO_TIC_STEP = '@@game/DO_TIC_STEP',
+    SET_STEP_HISTORY = '@@game/SET_STEP_HISTORY'
 }

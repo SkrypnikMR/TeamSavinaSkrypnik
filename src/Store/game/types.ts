@@ -16,4 +16,10 @@ export type TInitialGame = {
     rooms: TRoom[] | [];
     userLogin: string;
     actualRoom: TActualRoom;
+    stepOrder: string;
+}
+
+export type TStepOrder = {
+    uuid: string;
+    gameType: string;
 }
