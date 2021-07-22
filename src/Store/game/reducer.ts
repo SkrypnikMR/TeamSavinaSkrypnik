@@ -18,6 +18,7 @@ export const initialState: TInitialGame = {
     stepHistory: localStorage.getItem('stepHistory')
         ? JSON.parse(localStorage.getItem('stepHistory'))
         : [],
+    winner: '',
 };
 
 export const reducer: Reducer<TInitialGame, TActionsRegistration> = (state = initialState, action) => {
@@ -27,6 +28,7 @@ export const reducer: Reducer<TInitialGame, TActionsRegistration> = (state = ini
         case AT.SET_ACTUAL_ROOM: return { ...state, actualRoom: action.payload };
         case AT.SET_STEP_ORDER: return { ...state, stepOrder: action.payload };
         case AT.SET_STEP_HISTORY: return { ...state, stepHistory: action.payload };
+        case AT.SET_WINNER: return { ...state, winner: action.payload };
         default: return state;
     }
 };

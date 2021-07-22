@@ -9,7 +9,7 @@ import { routes } from '../../constants/routes';
 import { getUserLogin, getActualRoom } from './selectors';
 import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
-import { putRooms, setActualRoom, subscribeRoom, getStepOrder } from './actions';
+import { putRooms, setActualRoom, getStepOrder, setStepHistory } from './actions';
 
 let stompClient: CompatClient | null = null;
 
@@ -22,11 +22,9 @@ export const connection = (token: string) => {
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
     const errorSub = stompClient.subscribe(routes.ws.subs.user_errors, support.errorCatcher);
-    const gameSub = stompClient.subscribe('/user/topic/game/', message => console.log('game', message));
     return () => {
         roomsSub.unsubscribe();
         errorSub.unsubscribe();
-        gameSub.unsubscribe();
     };
 });
 export const init = (stompClient: CompatClient) => {
@@ -100,7 +98,11 @@ export function* workerTicStep({ payload }) {
     }));
     yield call(workerGetStepOrder, { payload: { gameType, uuid: id } });
 }
-
+export function* workerCleanOldGame() {
+    yield call([localStorage, localStorage.removeItem], 'actualRoom');
+    yield call([localStorage, localStorage.removeItem], 'stepHistory');
+    yield put(setStepHistory([]));
+}
 
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
@@ -110,4 +112,5 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.DELETE_ROOM, workerDeleteRoom);
     yield takeEvery(actionTypes.GET_STEP_ORDER, workerGetStepOrder);
     yield takeEvery(actionTypes.DO_TIC_STEP, workerTicStep);
+    yield takeEvery(actionTypes.CLEAN_OLD_GAME, workerCleanOldGame);
 }

@@ -11,5 +11,7 @@ export enum actionTypes{
     GET_STEP_ORDER = '@@game/GET_STEP_ORDER',
     SET_STEP_ORDER = '@@game/SET_STEP_ORDER',
     DO_TIC_STEP = '@@game/DO_TIC_STEP',
-    SET_STEP_HISTORY = '@@game/SET_STEP_HISTORY'
+    SET_STEP_HISTORY = '@@game/SET_STEP_HISTORY',
+    SET_WINNER = '@@game/SET_WINNER',
+    CLEAN_OLD_GAME = '@@game/CLEAN_OLD_GAME',
 }

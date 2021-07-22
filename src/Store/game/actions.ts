@@ -15,3 +15,5 @@ export const getStepOrder = (payload: TStepOrder) => action(AT.GET_STEP_ORDER, p
 export const setStepOrder = (payload: string) => action(AT.SET_STEP_ORDER, payload);
 export const doTicStep = (payload: string) => action(AT.DO_TIC_STEP, payload);
 export const setStepHistory = (payload: []) => action(AT.SET_STEP_HISTORY, payload);
+export const setWinner = (payload: string) => action(AT.SET_WINNER, payload);
+export const cleanOldGame = () => action(AT.CLEAN_OLD_GAME);
