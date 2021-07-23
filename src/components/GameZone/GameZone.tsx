@@ -10,11 +10,11 @@ const GameZone = ({ gameType }: TGZ) => {
     const { colors, theme } = useTheme();
     switch (gameType) {
         case 'Checkers': return (
-<StGameZone colors={colors} theme={theme}>
-<Turn/>
-<Chessplate />
-</StGameZone>
-);
+    <StGameZone colors={colors} theme={theme}>
+    <Turn/>
+    <Chessplate />
+    </StGameZone>
+    );
         case 'Tic-tac-toe': return (
 <StGameZone colors={colors} theme={theme}>
 <Turn/>
