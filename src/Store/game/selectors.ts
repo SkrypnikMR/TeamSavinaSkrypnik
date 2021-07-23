@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { setStepHistory } from './actions';
 import { ApplicationState } from '../types';
 
 export const gameStore = (store: ApplicationState) => store.game;
