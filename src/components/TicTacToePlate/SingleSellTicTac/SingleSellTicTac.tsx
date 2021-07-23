@@ -2,14 +2,11 @@ import React from 'react';
 
 import { StSingleSellTicTac } from './styled';
 
-const SingleSellTicTac = ( props ) => {
-    const { id } = props;
-    const handleClick = (e) => {
-        console.log(e.target.id);
-    };
+const SingleSellTicTac = ({ id, doStep, status }) => {
+    const handleClick = () => doStep(id);
     return (
         <StSingleSellTicTac id={id} onClick={handleClick}>
-            {id}
+            {status}
         </StSingleSellTicTac>
     );
 };

@@ -11,12 +11,24 @@ export type TActionsRegistration = ActionType<TActions>;
 export const initialState: TInitialGame = {
     rooms: [],
     userLogin: localStorage.getItem('login') || '',
+    actualRoom: localStorage.getItem('actualRoom')
+        ? JSON.parse(localStorage.getItem('actualRoom'))
+        : { gameType: '', creatorLogin: '', guestLogin: '', startTime: 0, id: '', stepDoList: [] },
+    stepOrder: '',
+    stepHistory: localStorage.getItem('stepHistory')
+        ? JSON.parse(localStorage.getItem('stepHistory'))
+        : [],
+    winner: '',
 };
 
 export const reducer: Reducer<TInitialGame, TActionsRegistration> = (state = initialState, action) => {
     switch (action.type) {
         case AT.PUT_ROOMS: return { ...state, rooms: action.payload };
         case AT.SET_USER_LOGIN: return { ...state, userLogin: action.payload };
+        case AT.SET_ACTUAL_ROOM: return { ...state, actualRoom: action.payload };
+        case AT.SET_STEP_ORDER: return { ...state, stepOrder: action.payload };
+        case AT.SET_STEP_HISTORY: return { ...state, stepHistory: action.payload };
+        case AT.SET_WINNER: return { ...state, winner: action.payload };
         default: return state;
     }
 };

@@ -11,7 +11,7 @@ const Chessplate = () => {
     }
     return (
         <StChessPlate>
-            {items.map((item) => <SingleSell id={item} key={item} />,
+            {items.map(item => <SingleSell id={item} key={item} />,
             )}
         </StChessPlate>
     );

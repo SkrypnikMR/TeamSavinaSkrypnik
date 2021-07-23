@@ -2,12 +2,19 @@ import { Stomp } from '@stomp/stompjs';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
+import { v4 as uuidv4 } from 'uuid';
+import { setStepHistory } from '../actions';
+import { getActualRoom, getUserLogin } from '../selectors';
+
 import { support } from '../../../helpers/support';
 import { routes } from '../../../constants/routes';
 import * as sagas from '../saga';
 
+jest.mock('../../../index', () => ({ store: { dispatch: jest.fn() } }));
+Date.now = jest.fn().mockReturnValue(1);
 
-describe('loginSaga', () => {
+
+describe('gameSaga', () => {
     describe('fork', () => {
         it('should fork watchers', () => {
             expectSaga(sagas.watcherGame)
@@ -43,6 +50,8 @@ describe('loginSaga', () => {
                 .next(stompClient)
                 .call(sagas.createStompChannel, stompClient)
                 .next()
+                .call([localStorage, localStorage.getItem], 'actualRoom')
+                .next(null)
                 .call(sagas.init, stompClient)
                 .next()
                 .isDone();
@@ -54,6 +63,119 @@ describe('loginSaga', () => {
                 .throw(error)
                 .call([NotificationManager, NotificationManager.error],
                     i18next.t('server_error_text'), i18next.t('server_error'), 2000)
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerSubscribeRoom', () => {
+        it('should call workerSubscribeRoom', () => {
+            const payload = 'someuuuuuuoid';
+            testSaga(sagas.workerSubscribeRoom, { payload })
+                .next()
+                .call([sagas.stompClient, sagas.stompClient.subscribe],
+                    `${routes.ws.subs.newGame}${payload}`, support.subGame)
+                .next()
+                .isDone();
+        });
+    });
+    describe('createRoomSaga', () => {
+        it('should call createRoomSaga', () => {
+            const payload = 'Checkers';
+            const userLogin = 'kekShrek';
+            const token = 'sometokenstring';
+            const uuid = '21361287362183127836213';
+            const testBody = JSON.stringify({
+                creatorLogin: userLogin,
+                gameType: payload,
+                id: uuid,
+            });
+            testSaga(sagas.createRoomSaga, { payload })
+                .next()
+                .select(getUserLogin)
+                .next(userLogin)
+                .call(uuidv4)
+                .next(uuid)
+                .call([support, support.getTokenFromCookie], 'token')
+                .next(token)
+                .call([sagas.stompClient, sagas.stompClient.send],
+                     routes.ws.actions.createRoom, { Authorization: token }, testBody)
+                .next()
+                .call([sagas.stompClient, sagas.stompClient.send],
+                    routes.ws.actions.getRooms, { Authorization: token })
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerJoinRoom', () => {
+        it('should call workerJoinRoom', () => {
+            const payload = '1237123821y3hdasdsahd';
+            const userLogin = 'kekShrek';
+            const testBody = JSON.stringify({
+                guestLogin: userLogin,
+                id: payload,
+            });
+            testSaga(sagas.workerJoinRoom, { payload })
+                .next()
+                .select(getUserLogin)
+                .next(userLogin)
+                .call([sagas.stompClient, sagas.stompClient.send], routes.ws.actions.joinRoom, {}, testBody)
+                .next()
+                .call([sagas.stompClient, sagas.stompClient.send], routes.ws.actions.getRooms)
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerGetStepOrder', () => {
+        it('should call workerJoinRoom', () => {
+            const payload = { gameType: 'Checkers', uuid: '2187378213621y312321' };
+            const testBody = JSON.stringify({ gameType: payload.gameType });
+            testSaga(sagas.workerGetStepOrder, { payload })
+                .next()
+                .call([sagas.stompClient, sagas.stompClient.send],
+                     routes.ws.actions.getStepOrder, { uuid: payload.uuid }, testBody)
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerTicStep', () => {
+        it('should call workerTicStep', () => {
+            const payload = '4';
+            const testActualRoom = { id: '213123213', gameType: 'Chekers' };
+            const testLogin = 'KekShrek';
+            const testBody = JSON.stringify({
+                gameType: testActualRoom.gameType,
+                stepDto: {
+                    login: testLogin,
+                    step: payload,
+                    time: Date.now(),
+                    id: testActualRoom.id,
+                },
+            });
+            testSaga(sagas.workerTicStep, { payload })
+                .next()
+                .select(getActualRoom)
+                .next(testActualRoom)
+                .select(getUserLogin)
+                .next(testLogin)
+                .call([sagas.stompClient, sagas.stompClient.send],
+                    routes.ws.actions.doStep, { uuid: testActualRoom.id },
+                    testBody)
+                .next()
+                .call(sagas.workerGetStepOrder,
+                    { payload: { gameType: testActualRoom.gameType, uuid: testActualRoom.id } })
+                .next()
+                .isDone();
+        });
+    });
+        describe('workerCleanOldGame', () => {
+            it('should call workerCleanOldGame', () => {
+            testSaga(sagas.workerCleanOldGame)
+                .next()
+                .call([localStorage, localStorage.removeItem], 'actualRoom')
+                .next()
+                .call([localStorage, localStorage.removeItem], 'stepHistory')
+                .next()
+                .put(setStepHistory([]))
                 .next()
                 .isDone();
         });

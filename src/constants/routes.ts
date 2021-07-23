@@ -9,11 +9,17 @@ export const routes = {
         game_menu: 'game-menu',
         subs: {
             rooms: '/topic/rooms',
-            user_errors: '/user/topic/errors', 
+            user_errors: '/user/topic/errors',
+            user_game: '/user/topic/game',
+            newGame: '/topic/game/',
         },
         actions: {
             getRooms: '/radioactive/update-room',
             createRoom: '/radioactive/create-room',
+            joinRoom: '/radioactive/join-room',
+            deleteRoom: '/radioactive/delete-room',
+            getStepOrder: '/radioactive/get-step-order',
+            doStep: '/radioactive/do-step',
         },
     },
 
