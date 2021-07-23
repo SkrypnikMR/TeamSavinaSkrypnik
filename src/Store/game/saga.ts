@@ -11,7 +11,7 @@ import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
 import { putRooms, setActualRoom, getStepOrder, setStepHistory } from './actions';
 
-export let stompClient: CompatClient | any = { send: jest.fn(), subscribe: jest.fn() };
+export let stompClient: CompatClient | null = null;
 
 export const connection = (token: string) => {
     const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
