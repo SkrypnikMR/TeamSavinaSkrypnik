@@ -38,6 +38,7 @@ export function* workerConnection() :SagaIterator {
         const stringifyActualRoom = yield call([localStorage, localStorage.getItem], 'actualRoom');
         if (stringifyActualRoom) {
             const actualRoom = yield call([JSON, JSON.parse], stringifyActualRoom);
+            if (actualRoom.guestLogin === 'Bot') yield call(workerBotSub, actualRoom.id);
             yield call(workerSubscribeRoom, { payload: actualRoom.id });
             yield put(setActualRoom(actualRoom));
             yield put(getStepOrder({ gameType: actualRoom.gameType, uuid: actualRoom.id }));
@@ -97,6 +98,27 @@ export function* workerCleanOldGame() {
     yield call([localStorage, localStorage.removeItem], 'stepHistory');
     yield put(setStepHistory([]));
 }
+export function* workerAddBot({ payload }) {
+    const body = { guestLogin: 'Bot', id: payload };
+    yield call(workerBotSub, payload);
+    yield call([stompClient, stompClient.send], routes.ws.actions.joinRoom, {}, JSON.stringify(body));
+}
+export function* workerAskBotStep() {
+    const { id, gameType } = yield select(getActualRoom);
+    const body = { id, gameType };
+    yield call([stompClient, stompClient.send], routes.ws.actions.getBotStep, {uuid: id}, JSON.stringify(body))
+}
+export function* workerBotSub(payload) {
+    yield call([stompClient, stompClient.subscribe], `${routes.ws.subs.botStep}${payload}`, support.subBot);
+}
+export function* workerDoBotStepTic({payload}){
+    const { id, gameType } = yield select(getActualRoom);
+    const userLogin = 'Bot';
+    yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
+        gameType, stepDto: { login: userLogin, step: payload, time: Date.now(), id },
+     }));
+     yield call(workerGetStepOrder, { payload: { gameType, uuid: id } });
+}
 
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
@@ -106,4 +128,7 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.GET_STEP_ORDER, workerGetStepOrder);
     yield takeEvery(actionTypes.DO_TIC_STEP, workerTicStep);
     yield takeEvery(actionTypes.CLEAN_OLD_GAME, workerCleanOldGame);
+    yield takeEvery(actionTypes.PLAY_WITH_BOT, workerAddBot);
+    yield takeEvery(actionTypes.ASK_BOT_STEP, workerAskBotStep);
+    yield takeEvery(actionTypes.DO_BOT_STEP_TIC, workerDoBotStepTic);
 }

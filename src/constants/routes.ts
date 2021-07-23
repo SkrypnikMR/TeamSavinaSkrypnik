@@ -12,6 +12,7 @@ export const routes = {
             user_errors: '/user/topic/errors',
             user_game: '/user/topic/game',
             newGame: '/topic/game/',
+            botStep: '/topic/bot/',
         },
         actions: {
             getRooms: '/radioactive/update-room',
@@ -20,6 +21,7 @@ export const routes = {
             deleteRoom: '/radioactive/delete-room',
             getStepOrder: '/radioactive/get-step-order',
             doStep: '/radioactive/do-step',
+            getBotStep: '/radioactive/get-bot-step',
         },
     },
 

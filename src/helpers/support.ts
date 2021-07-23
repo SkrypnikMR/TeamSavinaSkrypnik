@@ -1,8 +1,15 @@
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
 import { store } from '../index';
-import { setActualRoom, getStepOrder, setStepOrder, setStepHistory, setWinner } from '../store/game/actions';
-
+import { 
+  setActualRoom, 
+  getStepOrder, 
+  setStepOrder, 
+  setStepHistory, 
+  setWinner,
+  askBotStep,
+  doBotStepTic,
+} from '../store/game/actions';
 export const support = {
     setTokenInCookie: (payload: string, age: number = 3600 * 8) => {
     document.cookie = `token=${payload}; path=/; max-age=${age}`;
@@ -52,6 +59,12 @@ export const support = {
     if (message.body.charAt(0) === '[') {
       return 2;
     }
-      store.dispatch(setStepOrder(message.body));
+        if (message.body === 'Bot') {
+          store.dispatch(askBotStep());
+        }
+        store.dispatch(setStepOrder(message.body));
   },
+  subBot: (message) => {
+    store.dispatch(doBotStepTic(message.body));
+  }, 
 };
