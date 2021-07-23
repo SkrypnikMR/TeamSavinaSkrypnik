@@ -58,12 +58,12 @@ export function* workerConnection() :SagaIterator {
     }
 }
 export function* workerSubscribeRoom({ payload }): SagaIterator {
-    yield call([stompClient, stompClient.subscribe], `/topic/game/${payload}`, support.subGame);
+    yield call([stompClient, stompClient.subscribe], `${routes.ws.subs.newGame}${payload}`, support.subGame);
 }
 export function* workerJoinRoom({ payload }): SagaIterator {
     const userLogin = yield select(getUserLogin); 
     const body = { guestLogin: userLogin, id: payload };
-    yield call([stompClient, stompClient.send], '/radioactive/join-room', {}, JSON.stringify(body));
+    yield call([stompClient, stompClient.send], routes.ws.actions.joinRoom, {}, JSON.stringify(body));
     yield call([stompClient, stompClient.send], routes.ws.actions.getRooms);
 }
 export function* createRoomSaga({ payload }): SagaIterator {
@@ -84,16 +84,16 @@ export function* workerDeleteRoom() {
     const { id } = yield select(getActualRoom);
     const guestLogin = yield select(getUserLogin);
     const body = { guestLogin, id };
-    yield call([stompClient, stompClient.send], '/radioactive/delete-room', {}, JSON.stringify(body));
+    yield call([stompClient, stompClient.send], routes.ws.actions.deleteRoom, {}, JSON.stringify(body));
 }
 export function* workerGetStepOrder({ payload }) {
-    yield call([stompClient, stompClient.send], '/radioactive/get-step-order',
+    yield call([stompClient, stompClient.send], routes.ws.actions.getStepOrder,
         { uuid: payload.uuid }, JSON.stringify({ gameType: payload.gameType }));
 }
 export function* workerTicStep({ payload }) {
     const { id, gameType } = yield select(getActualRoom);
     const userLogin = yield select(getUserLogin);
-    yield call([stompClient, stompClient.send], '/radioactive/do-step', { uuid: id }, JSON.stringify({
+    yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
        gameType, stepDto: { login: userLogin, step: payload, time: Date.now(), id },
     }));
     yield call(workerGetStepOrder, { payload: { gameType, uuid: id } });
