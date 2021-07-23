@@ -1,3 +1,5 @@
+import { setStepHistory } from './actions';
+
 export type TRoom = {
     creatorLogin: string;
     gameType: string;
@@ -12,14 +14,23 @@ export type TActualRoom = {
     stepDoList: []
 }
 
+export type TStepOrder = {
+    uuid: string;
+    gameType: string;
+}
+
+export type TStepInStepHistory = {
+    login: string;
+    step: string;
+    time: Date;
+    id: string;
+}
+
 export type TInitialGame = {
     rooms: TRoom[] | [];
     userLogin: string;
     actualRoom: TActualRoom;
     stepOrder: string;
-}
-
-export type TStepOrder = {
-    uuid: string;
-    gameType: string;
+    stepHistory: TStepInStepHistory[] | [];
+    winner: string;
 }
