@@ -12,3 +12,13 @@ export const getUserLogin = createSelector(
     gameStore,
     ({ userLogin }) => userLogin,
 );
+
+export const getCheckerDesk = createSelector(
+    gameStore,
+    (checker) => checker,
+);
+
+export const getCurrentChecker = createSelector(
+    gameStore,
+    (currentChecker) => currentChecker,
+);
