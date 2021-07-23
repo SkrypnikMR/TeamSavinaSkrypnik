@@ -11,7 +11,7 @@ import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
 import { putRooms, setActualRoom, getStepOrder, setStepHistory } from './actions';
 
-let stompClient: CompatClient | null = null;
+export let stompClient: CompatClient | any = { send: jest.fn(), subscribe: jest.fn() };
 
 export const connection = (token: string) => {
     const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
@@ -68,7 +68,7 @@ export function* workerJoinRoom({ payload }): SagaIterator {
 }
 export function* createRoomSaga({ payload }): SagaIterator {
     const creatorLogin = yield select(getUserLogin);
-    const newUUID = uuidv4();
+    const newUUID = yield call(uuidv4);
     const body = {
         creatorLogin,
         gameType: payload,
@@ -79,12 +79,6 @@ export function* createRoomSaga({ payload }): SagaIterator {
         [stompClient, stompClient.send], routes.ws.actions.createRoom, { Authorization: token }, JSON.stringify(body),
         );
     yield call([stompClient, stompClient.send], routes.ws.actions.getRooms, { Authorization: token });
-}
-export function* workerDeleteRoom() {
-    const { id } = yield select(getActualRoom);
-    const guestLogin = yield select(getUserLogin);
-    const body = { guestLogin, id };
-    yield call([stompClient, stompClient.send], routes.ws.actions.deleteRoom, {}, JSON.stringify(body));
 }
 export function* workerGetStepOrder({ payload }) {
     yield call([stompClient, stompClient.send], routes.ws.actions.getStepOrder,
@@ -109,7 +103,6 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.SUBSCRIBE_ROOM, workerSubscribeRoom);
     yield takeEvery(actionTypes.CREATE_ROOM, createRoomSaga);
     yield takeEvery(actionTypes.JOIN_ROOM, workerJoinRoom);
-    yield takeEvery(actionTypes.DELETE_ROOM, workerDeleteRoom);
     yield takeEvery(actionTypes.GET_STEP_ORDER, workerGetStepOrder);
     yield takeEvery(actionTypes.DO_TIC_STEP, workerTicStep);
     yield takeEvery(actionTypes.CLEAN_OLD_GAME, workerCleanOldGame);
