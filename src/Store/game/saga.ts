@@ -82,6 +82,7 @@ export function* createRoomSaga({ payload }): SagaIterator {
     yield call([stompClient, stompClient.send], routes.ws.actions.getRooms, { Authorization: token });
 }
 export function* workerGetStepOrder({ payload }) {
+    console.log('payload', payload);
     yield call([stompClient, stompClient.send], routes.ws.actions.getStepOrder,
         { uuid: payload.uuid }, JSON.stringify({ gameType: payload.gameType }));
 }
@@ -102,16 +103,17 @@ export function* workerAddBot({ payload }) {
     const body = { guestLogin: 'Bot', id: payload };
     yield call(workerBotSub, payload);
     yield call([stompClient, stompClient.send], routes.ws.actions.joinRoom, {}, JSON.stringify(body));
+    yield call([stompClient, stompClient.send], routes.ws.actions.getRooms);
 }
 export function* workerAskBotStep() {
     const { id, gameType } = yield select(getActualRoom);
     const body = { id, gameType };
-    yield call([stompClient, stompClient.send], routes.ws.actions.getBotStep, {uuid: id}, JSON.stringify(body))
+    yield call([stompClient, stompClient.send], routes.ws.actions.getBotStep, { uuid: id }, JSON.stringify(body));
 }
 export function* workerBotSub(payload) {
     yield call([stompClient, stompClient.subscribe], `${routes.ws.subs.botStep}${payload}`, support.subBot);
 }
-export function* workerDoBotStepTic({payload}){
+export function* workerDoBotStepTic({ payload }) {
     const { id, gameType } = yield select(getActualRoom);
     const userLogin = 'Bot';
     yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
