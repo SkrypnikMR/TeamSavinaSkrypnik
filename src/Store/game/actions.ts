@@ -20,3 +20,4 @@ export const cleanOldGame = () => action(AT.CLEAN_OLD_GAME);
 export const askBotStep = () => action(AT.ASK_BOT_STEP);
 export const doBotStepTic = (payload: string) => action(AT.DO_BOT_STEP_TIC, payload);
 export const gameEvent = (payload: string) => action(AT.GAME_EVENT, payload);
+export const disconnect = () => action(AT.DISCONNECT);

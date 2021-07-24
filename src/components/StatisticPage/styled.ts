@@ -7,12 +7,17 @@ export const StStatisticPage = styled.div`
   background: ${darkGrey};
   display: flex;
   flex-direction: column;
-  .timeless{
-      background: ${midGrey};
-      height: 84vh;
-      margin: 10px;
-      color: ${white};
-      font-size: 25px;
-      text-align: center;
-  }
+`;
+export const StStatisticContent = styled.div`
+  background: ${midGrey};
+  height: 80vh;
+  margin: 10px;
+  color: ${white};
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  justify-items: center;
+  align-items: center;
+  grid-gap: 10px;
+  overflow-x : hidden;
+  overflow-y: auto;
 `;
