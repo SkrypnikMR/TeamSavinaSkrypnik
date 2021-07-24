@@ -8,7 +8,7 @@ import i18next from 'i18next';
 import { routes } from '../../constants/routes';
 import { getUserLogin, getActualRoom, getStepOrderSelector } from './selectors';
 import { support } from '../../helpers/support';
-import { BOT_NAME } from '../../constants/simpleConstants';
+import { BOT_NAME, DRAW } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
 import {
     putRooms,
@@ -133,6 +133,7 @@ export function* workerDoBotStepTic({ payload }) {
 }
 export function* workerGameEvent({ payload }) {
     const parsedBody = yield call([JSON, JSON.parse], payload);
+    if (parsedBody.winner === null) return yield put(setWinner(DRAW));
     if (parsedBody.winner) return yield put(setWinner(parsedBody.winner));
     if (parsedBody.field) {
         const { id, gameType } = yield select(getActualRoom);

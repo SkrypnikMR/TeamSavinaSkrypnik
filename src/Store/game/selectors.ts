@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import i18next from 'i18next';
+import { DRAW } from '../../constants/simpleConstants';
 import { ApplicationState } from '../types';
 
 export const gameStore = (store: ApplicationState) => store.game;
@@ -36,5 +38,14 @@ export const getTicStatus = createSelector(
 
 export const getWinner = createSelector(
     gameStore,
-    ({ winner }) => winner,
+    ({ winner, userLogin }) => {
+        switch (winner) {
+            case userLogin: return i18next.t('winner');
+            case DRAW: return i18next.t(DRAW);
+            default: {
+                if (winner === '') return '';
+                if (winner !== userLogin) return i18next.t('loser');
+            }
+        }
+    },
 );
