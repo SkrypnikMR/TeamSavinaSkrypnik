@@ -6,7 +6,7 @@ import { NotificationManager } from 'react-notifications';
 import { eventChannel } from 'redux-saga';
 import i18next from 'i18next';
 import { routes } from '../../constants/routes';
-import { getUserLogin, getActualRoom } from './selectors';
+import { getUserLogin, getActualRoom, getStepOrderSelector } from './selectors';
 import { support } from '../../helpers/support';
 import { actionTypes } from './actionTypes';
 import {
@@ -142,7 +142,7 @@ export function* workerGameEvent({ payload }) {
         yield call([localStorage, localStorage.setItem], 'stepHistory', stringifyField);
         yield put(setStepHistory(parsedBody.field));
         yield put(getStepOrder({ uuid: id, gameType }));
-        return 1;
+        return 2;
     }
     if (parsedBody.stepDtoList) {
         const firstStepHistory = yield call([JSON, JSON.stringify], []);
@@ -151,13 +151,14 @@ export function* workerGameEvent({ payload }) {
         yield put(setWinner(''));
         yield call([localStorage, localStorage.setItem], 'actualRoom', payload);
         yield call([localStorage, localStorage.setItem], 'stepHistory', firstStepHistory);
-        return 1;
+        return 3;
     }
     if (parsedBody.stepOrderLogin) {
-        const stepOrder = yield select(getStepOrder);
-        if (stepOrder === parsedBody.setStepOrderLogin) return 1;
+        const stepOrder = yield select(getStepOrderSelector);
+        if (stepOrder === parsedBody.stepOrderLogin) return 1;
         if (parsedBody.stepOrderLogin === 'Bot') yield put(askBotStep());
         yield put(setStepOrder(parsedBody.stepOrderLogin));
+        return 4;
     }
 }
 export function* watcherGame() {

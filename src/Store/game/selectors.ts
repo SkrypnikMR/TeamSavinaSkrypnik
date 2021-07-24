@@ -23,7 +23,7 @@ export const getActualRoomGameType = createSelector(
     ({ gameType }) => gameType,
 );
 
-export const getStepOrder = createSelector(
+export const getStepOrderSelector = createSelector(
     gameStore,
     ({ stepOrder }) => stepOrder,
 );
