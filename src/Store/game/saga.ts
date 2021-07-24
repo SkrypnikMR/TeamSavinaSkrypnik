@@ -8,6 +8,7 @@ import i18next from 'i18next';
 import { routes } from '../../constants/routes';
 import { getUserLogin, getActualRoom, getStepOrderSelector } from './selectors';
 import { support } from '../../helpers/support';
+import { BOT_NAME } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
 import {
     putRooms,
@@ -109,7 +110,7 @@ export function* workerCleanOldGame() {
     yield put(setStepHistory([]));
 }
 export function* workerAddBot({ payload }) {
-    const body = { guestLogin: 'Bot', id: payload };
+    const body = { guestLogin: BOT_NAME, id: payload };
     yield call(workerBotSub, payload);
     yield call([stompClient, stompClient.send], routes.ws.actions.joinRoom, {}, JSON.stringify(body));
     yield call([stompClient, stompClient.send], routes.ws.actions.getRooms);
@@ -124,7 +125,7 @@ export function* workerBotSub(payload) {
 }
 export function* workerDoBotStepTic({ payload }) {
     const { id, gameType } = yield select(getActualRoom);
-    const userLogin = 'Bot';
+    const userLogin = BOT_NAME;
     yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
         gameType, stepDto: { login: userLogin, step: payload, time: Date.now(), id },
      }));
@@ -151,7 +152,7 @@ export function* workerGameEvent({ payload }) {
     if (parsedBody.stepOrderLogin) {
         const stepOrder = yield select(getStepOrderSelector);
         if (stepOrder === parsedBody.stepOrderLogin) return;
-        if (parsedBody.stepOrderLogin === 'Bot') yield put(askBotStep());
+        if (parsedBody.stepOrderLogin === BOT_NAME) yield put(askBotStep());
         return yield put(setStepOrder(parsedBody.stepOrderLogin)); 
     }
 }
