@@ -16,4 +16,5 @@ export enum actionTypes{
     CLEAN_OLD_GAME = '@@game/CLEAN_OLD_GAME',
     ASK_BOT_STEP = '@@game/ASK_BOT_STEP',
     DO_BOT_STEP_TIC = '@@game/DO_BOT_STEP_TIC',
+    GAME_EVENT = '@@game/GAME_EVENT',
 }
