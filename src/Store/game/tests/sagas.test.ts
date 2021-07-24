@@ -3,9 +3,9 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { setStepHistory } from '../actions';
+import { stompClient } from '../saga';
 import { getActualRoom, getUserLogin } from '../selectors';
-
+import { setStepHistory, getStepOrder as actionGetStepOrder } from '../actions';
 import { support } from '../../../helpers/support';
 import { routes } from '../../../constants/routes';
 import * as sagas from '../saga';
@@ -13,8 +13,10 @@ import * as sagas from '../saga';
 jest.mock('../../../index', () => ({ store: { dispatch: jest.fn() } }));
 Date.now = jest.fn().mockReturnValue(1);
 
-
 describe('gameSaga', () => {
+    beforeEach(() => {
+        sagas.setStompClient({ send: jest.fn(), subscribe: jest.fn() });
+    });
     describe('fork', () => {
         it('should fork watchers', () => {
             expectSaga(sagas.watcherGame)
@@ -161,13 +163,16 @@ describe('gameSaga', () => {
                     routes.ws.actions.doStep, { uuid: testActualRoom.id },
                     testBody)
                 .next()
-                .call(sagas.workerGetStepOrder,
-                    { payload: { gameType: testActualRoom.gameType, uuid: testActualRoom.id } })
+                .put(actionGetStepOrder(
+                    {
+                        gameType: testActualRoom.gameType,
+                        uuid: testActualRoom.id,
+                    }))
                 .next()
                 .isDone();
         });
     });
-        describe('workerCleanOldGame', () => {
+    describe('workerCleanOldGame', () => {
             it('should call workerCleanOldGame', () => {
             testSaga(sagas.workerCleanOldGame)
                 .next()
@@ -176,6 +181,21 @@ describe('gameSaga', () => {
                 .call([localStorage, localStorage.removeItem], 'stepHistory')
                 .next()
                 .put(setStepHistory([]))
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerAddBot', () => {
+        it('should call workerAddBot', () => {
+            const payload = '21u3127398217398217398213';
+            testSaga(sagas.workerAddBot, { payload })
+                .next()
+                .call(sagas.workerBotSub, payload)
+                .next()
+                .call([stompClient, stompClient.send], routes.ws.actions.joinRoom,
+                    {}, JSON.stringify({ guestLogin: 'Bot', id: payload }))
+                .next()
+                .call([stompClient, stompClient.send], routes.ws.actions.getRooms)
                 .next()
                 .isDone();
         });

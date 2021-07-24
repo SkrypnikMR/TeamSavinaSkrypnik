@@ -20,7 +20,9 @@ import {
 } from './actions';
 
 export let stompClient: CompatClient | null = null;
-
+export const setStompClient = (arg: any) => {
+    stompClient = arg;
+};
 export const connection = (token: string) => {
     const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
     stompClient = Stomp.over(socket);
