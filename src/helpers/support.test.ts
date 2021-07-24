@@ -1,11 +1,12 @@
 import { NotificationManager } from 'react-notifications';
 import { support } from './support';
 import { store } from '../index';
+import { doBotStepTic, gameEvent } from '../store/game/actions';
 
 const { setTokenInCookie,
     getTokenFromCookie,
     deleteTokenFromCookie,
-    errorCatcher, subGame } = support;
+    errorCatcher, subGame, subBot } = support;
 
 jest.mock('react-notifications', () => ({
     NotificationManager: { error: jest.fn() },
@@ -79,54 +80,23 @@ describe('support', () => {
         it('should be function', () => {
             expect(typeof subGame).toBe('function');
         });
-        it('should call dispatch with setWinner', () => {
-            const winner = 'WINNER: ME';
-            const message = { body: winner };
-            expect(subGame(message)).toBe(1);
-            expect(store.dispatch)
-                .toHaveBeenCalledWith({ payload: 'ME', type: '@@game/SET_WINNER' });
+        it('should call store.dispatch with gameEvent', () => {
+            const payload = '{ gameType: \'\', creatorLogin: \'\', guestLogin: \'\', startTime: 0, id: \'\', stepDoList: [] }';
+            subGame({ body: payload });
+            expect(store.dispatch).toHaveBeenCalledWith(gameEvent(payload));
         });
-        it('should return 2', () => {
-            const message = { body: '[someArrayMessage]' };
-            expect(subGame(message)).toBe(2);
+    });
+    describe('subBot', () => {
+        it('should be defined', () => {
+            expect(subBot).toBeDefined();
         });
-        it('should setStepOrder', () => {
-            const message = { body: 'Maxim' };
-            expect(subGame(message)).toBe(undefined);
-            expect(store.dispatch).toHaveBeenCalledWith({ payload: 'Maxim', type: '@@game/SET_STEP_ORDER' });
+        it('should be function', () => {
+            expect(typeof subBot).toBe('function');
         });
-        it('should setNewActualRoom', () => {
-            const message = {
-                body: '{"gameType": "Chekers", "creatorLogin": "Max", "guestLogin" : "NeMax", "startTime": 12321321321312, "id": "1232176372132173"}',
-            };
-            const getStepOrderPayload = { uuid: '1232176372132173', gameType: 'Chekers' };
-            expect(subGame(message)).toBe(1);
-            expect(store.dispatch)
-                .toHaveBeenCalledWith(
-                    {
-                        payload: JSON.parse(message.body),
-                        type: '@@game/SET_ACTUAL_ROOM',
-                    });
-            expect(store.dispatch)
-                .toHaveBeenCalledWith({ type: '@@game/GET_STEP_ORDER', payload: getStepOrderPayload });
-            expect(store.dispatch)
-                .toHaveBeenCalledWith({ type: '@@game/SET_WINNER', payload: '' });
-            expect(localStorage.getItem('actualRoom')).toBe(message.body);
-            expect(localStorage.getItem('stepHistory')).toBe(JSON.stringify([]));
-        });
-        it('should setHistory', () => {
-            const message = {
-                body: '{"step": "1"}',
-            };
-            localStorage.setItem('stepHistory', JSON.stringify([]));
-            expect(subGame(message)).toBe(1);
-        });
-        it('should setHistory and we have old', () => {
-            const message = {
-                body: '{"step": "1"}',
-            };
-            localStorage.setItem('stepHistory', JSON.stringify([{ stepCount: 0 }]));
-            expect(subGame(message)).toBe(1);
+        it('should call store.dispatch with gameEvent', () => {
+            const payload = '4';
+            subBot({ body: payload });
+            expect(store.dispatch).toHaveBeenCalledWith(doBotStepTic(payload));
         });
     });
 });

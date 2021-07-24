@@ -17,3 +17,6 @@ export const doTicStep = (payload: string) => action(AT.DO_TIC_STEP, payload);
 export const setStepHistory = (payload: []) => action(AT.SET_STEP_HISTORY, payload);
 export const setWinner = (payload: string) => action(AT.SET_WINNER, payload);
 export const cleanOldGame = () => action(AT.CLEAN_OLD_GAME);
+export const askBotStep = () => action(AT.ASK_BOT_STEP);
+export const doBotStepTic = (payload: string) => action(AT.DO_BOT_STEP_TIC, payload);
+export const gameEvent = (payload: string) => action(AT.GAME_EVENT, payload);
