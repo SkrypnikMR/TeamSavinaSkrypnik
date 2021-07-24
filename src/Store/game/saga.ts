@@ -132,17 +132,13 @@ export function* workerDoBotStepTic({ payload }) {
 }
 export function* workerGameEvent({ payload }) {
     const parsedBody = yield call([JSON, JSON.parse], payload);
-    if (parsedBody.winner) {
-        yield put(setWinner(parsedBody.winner));
-        return 1;
-    }
+    if (parsedBody.winner) return yield put(setWinner(parsedBody.winner));
     if (parsedBody.field) {
         const { id, gameType } = yield select(getActualRoom);
         const stringifyField = yield call([JSON, JSON.stringify], parsedBody.field);
         yield call([localStorage, localStorage.setItem], 'stepHistory', stringifyField);
         yield put(setStepHistory(parsedBody.field));
-        yield put(getStepOrder({ uuid: id, gameType }));
-        return 2;
+        return yield put(getStepOrder({ uuid: id, gameType }));
     }
     if (parsedBody.stepDtoList) {
         const firstStepHistory = yield call([JSON, JSON.stringify], []);
@@ -150,15 +146,13 @@ export function* workerGameEvent({ payload }) {
         yield put(getStepOrder({ uuid: parsedBody.id, gameType: parsedBody.gameType }));
         yield put(setWinner(''));
         yield call([localStorage, localStorage.setItem], 'actualRoom', payload);
-        yield call([localStorage, localStorage.setItem], 'stepHistory', firstStepHistory);
-        return 3;
+        return yield call([localStorage, localStorage.setItem], 'stepHistory', firstStepHistory);
     }
     if (parsedBody.stepOrderLogin) {
         const stepOrder = yield select(getStepOrderSelector);
-        if (stepOrder === parsedBody.stepOrderLogin) return 1;
+        if (stepOrder === parsedBody.stepOrderLogin) return;
         if (parsedBody.stepOrderLogin === 'Bot') yield put(askBotStep());
-        yield put(setStepOrder(parsedBody.stepOrderLogin));
-        return 4;
+        return yield put(setStepOrder(parsedBody.stepOrderLogin)); 
     }
 }
 export function* watcherGame() {
