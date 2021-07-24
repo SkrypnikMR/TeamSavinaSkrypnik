@@ -1,6 +1,7 @@
 import { NotificationManager } from 'react-notifications';
 import { support } from './support';
 import { store } from '../index';
+import { doBotStepTic, gameEvent } from '../store/game/actions';
 
 const { setTokenInCookie,
     getTokenFromCookie,
@@ -82,7 +83,7 @@ describe('support', () => {
         it('should call store.dispatch with gameEvent', () => {
             const payload = '{ gameType: \'\', creatorLogin: \'\', guestLogin: \'\', startTime: 0, id: \'\', stepDoList: [] }';
             subGame({ body: payload });
-            expect(store.dispatch).toHaveBeenCalledWith({ type: '@@game/GAME_EVENT', payload });
+            expect(store.dispatch).toHaveBeenCalledWith(gameEvent(payload));
         });
     });
     describe('subBot', () => {
@@ -95,7 +96,7 @@ describe('support', () => {
         it('should call store.dispatch with gameEvent', () => {
             const payload = '4';
             subBot({ body: payload });
-            expect(store.dispatch).toHaveBeenCalledWith({ type: '@@game/DO_BOT_STEP_TIC', payload });
+            expect(store.dispatch).toHaveBeenCalledWith(doBotStepTic(payload));
         });
     });
 });
