@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import StatisticCard from '../StatisticCard';
 import { StStatisticPage, StStatisticContent } from './styled';
 
-const StatisticPage = ({ getFullStat, fullStatistic }) => {
+const StatisticPage = ({ getFullStat, fullStatistic, userLogin }) => {
     useEffect(() => getFullStat(), []);
     console.log(fullStatistic);
     return (
@@ -19,6 +19,11 @@ const StatisticPage = ({ getFullStat, fullStatistic }) => {
                                 draw={game.draw}
                                 winnerLogin={game.winnerLogin}
                                 gameType={game.gameType}
+                                userLogin={userLogin}
+                                creatorLogin={game.creatorLogin}
+                                guestLogin={game.guestLogin}
+                                startTime={game.startTime}
+                                finishTime={game.finishTime}
                             />
                     ))
                     : 'nothing to see'

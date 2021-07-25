@@ -49,6 +49,9 @@
     "loser": "You lost, but it was a good try!",
     "draw": "Draw",
     "draw_in_game": "The game was played to a draw",
-    "winner_in_game": "Winner of the game",
-    "game_type": "Game in"
+    "winner_in_game": "Game winner",
+    "game_type": "Game in",
+    "oponnent": "Oponnent",
+    "game_start": "The game started",
+    "game_finish": "Game over"
 }

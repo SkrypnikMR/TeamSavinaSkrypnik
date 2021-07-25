@@ -1,12 +1,34 @@
 import styled from 'styled-components';
 
 export const StStatisticCardWrapper = styled.div`
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: repeat(6,1fr);
+    grid-gap: 0px;
     align-items: center;
-    flex-direction: column;
+    justify-items: center;
     width: 100%;
+    border-radius: 10px;
     border: 1px solid white;
-    height: 200px;
+    height: 300px;
     font-size: 15px;
+`;
+
+export const StStatisticCardTitle = styled.h3`
+    font-size: 25px;
+`;
+
+export const StStatisticCardOponnent = styled.p`
+    font-size: 18px;
+`;
+
+export const StStatisticCardDate = styled.p`
+    font-size: 13px;
+`;
+
+export const StStatisticCardResult = styled.p`
+    font-size: 18px;
+`;
+
+export const StStatisticCardParticipant = styled.span`
+    font-size: 20px;
 `;
