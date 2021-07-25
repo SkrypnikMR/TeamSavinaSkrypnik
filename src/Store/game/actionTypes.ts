@@ -17,4 +17,5 @@ export enum actionTypes{
     ASK_BOT_STEP = '@@game/ASK_BOT_STEP',
     DO_BOT_STEP_TIC = '@@game/DO_BOT_STEP_TIC',
     GAME_EVENT = '@@game/GAME_EVENT',
+    DISCONNECT = '@@game/DISCONNECT',
 }

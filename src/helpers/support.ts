@@ -1,5 +1,6 @@
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
+import moment from 'moment';
 import { store } from '../index';
 import { 
   gameEvent,
@@ -24,5 +25,6 @@ export const support = {
     NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
   },
   subGame: message => store.dispatch(gameEvent(message.body)),
-  subBot: message => store.dispatch(doBotStepTic(message.body)), 
+  subBot: message => store.dispatch(doBotStepTic(message.body)),
+  getPrettyDate: (timestamp: number) => moment(timestamp).format('L h:mm:ss'),
 };

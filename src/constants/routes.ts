@@ -4,6 +4,9 @@ export const routes = {
         registration: 'registration/reg',
         login: 'authorization/auth',
     },
+    statistic: {
+        byUserName: 'statistic/search-by-username',
+    },
     baseWebSocketUrl: 'ws://35.176.167.155:8082/',
     ws: {
         game_menu: 'game-menu',
