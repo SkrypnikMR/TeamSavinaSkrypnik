@@ -1,6 +1,7 @@
 export const BOT_NAME = 'Bot';
 export const DRAW = 'draw';
 export const CHECKER_FIELD_INIT = [
+  null,
   {
     checker: { blackChecker: false, queen: false },
     index: 1,

@@ -35,6 +35,12 @@ export const getTicStatus = createSelector(
     (_store, id: number) => id,
     ({ stepHistory }, id) => stepHistory[id],
 );
+
+export const getPossibleSteps = createSelector(
+    gameStore,
+    ({ possibleSteps }) => possibleSteps,
+);
+
 export const getPossibleStepPosition = createSelector(
     gameStore,
     (_store, id: number) => id,

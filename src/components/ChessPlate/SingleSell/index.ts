@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import SingleSell from './SingleSell';
 import { getTicStatus, getPossibleStepPosition } from '../../../store/game/selectors';
 import { ApplicationState } from '../../../store/types';
-import { getPosibleStep } from '../../../store/game/actions';
+import { getPosibleStep, doCheckerStep } from '../../../store/game/actions';
 
 const mapStateToProps = (store: ApplicationState, props) => ({
     status: getTicStatus(store, props.id),
@@ -11,6 +11,7 @@ const mapStateToProps = (store: ApplicationState, props) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getPosibleStep: (payload: string) => dispatch(getPosibleStep(payload)),
+    doCheckerStep: (payload: string) => dispatch(doCheckerStep(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleSell);

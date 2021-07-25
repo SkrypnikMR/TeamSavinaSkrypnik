@@ -13,8 +13,9 @@ export const StSingleSell = styled.div < IDiv > `
 `;
 
 export const StPossition = styled.div`
-    width:  50px;
-    height: 50px;
+    width:  45px;
+    height: 45px;
     cursor: pointer;
-    color: green;
+    border: 5px solid green;
+    z-index: 1000;
 `;

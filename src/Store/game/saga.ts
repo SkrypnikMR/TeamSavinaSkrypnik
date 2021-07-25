@@ -6,7 +6,7 @@ import { NotificationManager } from 'react-notifications';
 import { eventChannel } from 'redux-saga';
 import i18next from 'i18next';
 import { routes } from '../../constants/routes';
-import { getUserLogin, getActualRoom, getStepOrderSelector } from './selectors';
+import { getUserLogin, getActualRoom, getStepOrderSelector, getPossibleSteps } from './selectors';
 import { support } from '../../helpers/support';
 import { BOT_NAME, DRAW, CHECKER_FIELD_INIT } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
@@ -18,6 +18,7 @@ import {
     setWinner,
     setStepOrder,
     askBotStep,
+    putPossibleSteps,
 } from './actions';
 
 export let stompClient: CompatClient | null = null;
@@ -144,10 +145,16 @@ export function* workerDoBotStepTic({ payload }) {
 }
 export function* workerGameEvent({ payload }) {
     const parsedBody = yield call([JSON, JSON.parse], payload);
-    console.log('____________________', parsedBody);
     if (parsedBody.winner === null) return yield put(setWinner(DRAW));
     if (parsedBody.winner) return yield put(setWinner(parsedBody.winner));
     if (parsedBody.field) {
+        if (parsedBody.field?.gameField) {
+            const { id, gameType } = yield select(getActualRoom);
+            const stringifyField = yield call([JSON, JSON.stringify], parsedBody.field.gameField);
+            yield call([localStorage, localStorage.setItem], 'stepHistory', stringifyField);
+            yield put(setStepHistory(parsedBody.field.gameField));
+            return yield put(getStepOrder({ uuid: id, gameType }));
+        }
         const { id, gameType } = yield select(getActualRoom);
         const stringifyField = yield call([JSON, JSON.stringify], parsedBody.field);
         yield call([localStorage, localStorage.setItem], 'stepHistory', stringifyField);
@@ -176,7 +183,6 @@ export function* workerGameEvent({ payload }) {
 export function* workerDisconnect() {
     yield call([stompClient, stompClient.disconnect]);
 }
-
 export function* workerGetPosibleStep({ payload }) {
     const { id, gameType } = yield select(getActualRoom);
     const login = yield select(getUserLogin);
@@ -190,6 +196,20 @@ export function* workerGetPosibleStep({ payload }) {
         },
     });
     yield call([stompClient, stompClient.send], '/radioactive/get-possible-steps', { uuid: id }, body);
+}
+export function* workerCheckerStep({ payload }) {
+    payload = payload.toString();
+    const possibleSteps = yield select(getPossibleSteps);
+    const startIndex = possibleSteps[0].startIndex;
+    const step = `${startIndex}_${payload}`;
+    console.log(step);
+    const { id, gameType } = yield select(getActualRoom);
+    const userLogin = yield select(getUserLogin);
+    yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
+       gameType, stepDto: { login: userLogin, step, time: Date.now(), id },
+    }));
+    yield put(putPossibleSteps([]));
+    yield put(getStepOrder({ uuid: id, gameType }));
 }
 
 export function* watcherGame() {
@@ -206,4 +226,5 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.GAME_EVENT, workerGameEvent);
     yield takeEvery(actionTypes.DISCONNECT, workerDisconnect);
     yield takeEvery(actionTypes.GET_POSIBLE_STEP, workerGetPosibleStep);
+    yield takeEvery(actionTypes.DO_CHECKER_STEP, workerCheckerStep);
 }

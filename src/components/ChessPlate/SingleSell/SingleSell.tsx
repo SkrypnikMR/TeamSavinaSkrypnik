@@ -2,8 +2,11 @@ import React from 'react';
 import { StSingleSell, StPossition } from './styled';
 import { TSingleSell } from './types';
 
-const SingleSell = ({ id, status, getPosibleStep, position }: TSingleSell) => {
+const SingleSell = ({ id, status, getPosibleStep, position, doCheckerStep }: TSingleSell) => {
     const handleClick = (e) => {
+        if (position) {
+           return doCheckerStep(id);
+        }
         getPosibleStep(e.target.id);
     };
     return (
@@ -14,7 +17,6 @@ const SingleSell = ({ id, status, getPosibleStep, position }: TSingleSell) => {
         >
             {position ? <StPossition/> : position}
             {status?.checker ? status?.checker.blackChecker ? '●' : '○' : null}
-            {id}
         </StSingleSell>
     );
 };

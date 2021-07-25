@@ -3,11 +3,13 @@ export interface IDiv {
     height: string;
     background: string;
     cursor: string;
+    id: number;
 }
 
 export type TSingleSell = {
     id: number;
     status: { checker: any, blackSquare: any };
-    askPosibleStep: (arg: string) => void;
+    getPosibleStep: (arg: string) => void;
+    doCheckerStep: (arg: number) => void;
     position: boolean | null;
 }
