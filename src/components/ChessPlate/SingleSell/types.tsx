@@ -7,4 +7,7 @@ export interface IDiv {
 
 export type TSingleSell = {
     id: number;
+    status: { checker: any, blackSquare: any };
+    askPosibleStep: (arg: string) => void;
+    position: boolean | null;
 }

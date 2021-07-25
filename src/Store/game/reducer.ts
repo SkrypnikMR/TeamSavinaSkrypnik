@@ -19,6 +19,7 @@ export const initialState: TInitialGame = {
         ? JSON.parse(localStorage.getItem('stepHistory'))
         : [],
     winner: '',
+    possibleSteps: [],
 };
 
 export const reducer: Reducer<TInitialGame, TActionsRegistration> = (state = initialState, action) => {
@@ -29,6 +30,7 @@ export const reducer: Reducer<TInitialGame, TActionsRegistration> = (state = ini
         case AT.SET_STEP_ORDER: return { ...state, stepOrder: action.payload };
         case AT.SET_STEP_HISTORY: return { ...state, stepHistory: action.payload };
         case AT.SET_WINNER: return { ...state, winner: action.payload };
+        case AT.PUT_POSSIBLE_STEPS: return { ...state, possibleSteps: action.payload };
         default: return state;
     }
 };

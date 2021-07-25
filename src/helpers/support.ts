@@ -5,6 +5,7 @@ import { store } from '../index';
 import { 
   gameEvent,
   doBotStepTic,
+  putPossibleSteps,
 } from '../store/game/actions';
 
 export const support = {
@@ -27,4 +28,5 @@ export const support = {
   subGame: message => store.dispatch(gameEvent(message.body)),
   subBot: message => store.dispatch(doBotStepTic(message.body)),
   getPrettyDate: (timestamp: number) => moment(timestamp).format('L h:mm:ss'),
+  possibleStep: ({ body }) => store.dispatch(putPossibleSteps(JSON.parse(body))),
 };

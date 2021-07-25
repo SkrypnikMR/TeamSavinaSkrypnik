@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions';
 import { actionTypes as AT } from './actionTypes';
-import { TRoom, TStepOrder } from './types';
+import { TRoom, TStepOrder, THistory } from './types';
 
 export const getSockJSConnection = () => action(AT.GET_SOCKJS_CONNECTION);
 export const putRooms = (payload: TRoom[]) => action(AT.PUT_ROOMS, payload);
@@ -14,10 +14,12 @@ export const deleteRoom = () => action(AT.DELETE_ROOM);
 export const getStepOrder = (payload: TStepOrder) => action(AT.GET_STEP_ORDER, payload);
 export const setStepOrder = (payload: string) => action(AT.SET_STEP_ORDER, payload);
 export const doTicStep = (payload: string) => action(AT.DO_TIC_STEP, payload);
-export const setStepHistory = (payload: []) => action(AT.SET_STEP_HISTORY, payload);
+export const setStepHistory = (payload: THistory) => action(AT.SET_STEP_HISTORY, payload);
 export const setWinner = (payload: string) => action(AT.SET_WINNER, payload);
 export const cleanOldGame = () => action(AT.CLEAN_OLD_GAME);
 export const askBotStep = () => action(AT.ASK_BOT_STEP);
 export const doBotStepTic = (payload: string) => action(AT.DO_BOT_STEP_TIC, payload);
 export const gameEvent = (payload: string) => action(AT.GAME_EVENT, payload);
 export const disconnect = () => action(AT.DISCONNECT);
+export const getPosibleStep = (payload: string) => action(AT.GET_POSIBLE_STEP, payload);
+export const putPossibleSteps = (payload: any) => action(AT.PUT_POSSIBLE_STEPS, payload);

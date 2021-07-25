@@ -32,8 +32,17 @@ export const getStepOrderSelector = createSelector(
 
 export const getTicStatus = createSelector(
     gameStore,
-    (store, id: number) => id,
+    (_store, id: number) => id,
     ({ stepHistory }, id) => stepHistory[id],
+);
+export const getPossibleStepPosition = createSelector(
+    gameStore,
+    (_store, id: number) => id,
+    ({ possibleSteps }, id) => {
+        const position = possibleSteps.find(el => el.stepIndex === id);
+        if (position) return true;
+        return null;
+    },
 );
 
 export const getWinner = createSelector(

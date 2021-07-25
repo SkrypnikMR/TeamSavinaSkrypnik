@@ -8,7 +8,7 @@ import i18next from 'i18next';
 import { routes } from '../../constants/routes';
 import { getUserLogin, getActualRoom, getStepOrderSelector } from './selectors';
 import { support } from '../../helpers/support';
-import { BOT_NAME, DRAW } from '../../constants/simpleConstants';
+import { BOT_NAME, DRAW, CHECKER_FIELD_INIT } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
 import {
     putRooms,
@@ -33,9 +33,11 @@ export const connection = (token: string) => {
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
     const errorSub = stompClient.subscribe(routes.ws.subs.user_errors, support.errorCatcher);
+    const stepsSub = stompClient.subscribe('/user/topic/game/', support.possibleStep);
     return () => {
         roomsSub.unsubscribe();
         errorSub.unsubscribe();
+        stepsSub.unsubscribe();
     };
 });
 export const init = (stompClient: CompatClient) => {
@@ -129,7 +131,7 @@ export function* workerAskBotStep() {
     const body = { id, gameType };
     yield call([stompClient, stompClient.send], routes.ws.actions.getBotStep, { uuid: id }, JSON.stringify(body));
 }
-export function* workerBotSub(payload) {
+export function* workerBotSub(payload: string) {
     yield call([stompClient, stompClient.subscribe], `${routes.ws.subs.botStep}${payload}`, support.subBot);
 }
 export function* workerDoBotStepTic({ payload }) {
@@ -142,6 +144,7 @@ export function* workerDoBotStepTic({ payload }) {
 }
 export function* workerGameEvent({ payload }) {
     const parsedBody = yield call([JSON, JSON.parse], payload);
+    console.log('____________________', parsedBody);
     if (parsedBody.winner === null) return yield put(setWinner(DRAW));
     if (parsedBody.winner) return yield put(setWinner(parsedBody.winner));
     if (parsedBody.field) {
@@ -152,7 +155,11 @@ export function* workerGameEvent({ payload }) {
         return yield put(getStepOrder({ uuid: id, gameType }));
     }
     if (parsedBody.stepDtoList) {
-        const firstStepHistory = yield call([JSON, JSON.stringify], []);
+        let firstStepHistory = yield call([JSON, JSON.stringify], []);
+        if (parsedBody.gameType === 'Checkers') {
+            firstStepHistory = yield call([JSON, JSON.stringify], CHECKER_FIELD_INIT);
+            yield put(setStepHistory(CHECKER_FIELD_INIT));
+        }
         yield put(setActualRoom(parsedBody));
         yield put(getStepOrder({ uuid: parsedBody.id, gameType: parsedBody.gameType }));
         yield put(setWinner(''));
@@ -170,6 +177,21 @@ export function* workerDisconnect() {
     yield call([stompClient, stompClient.disconnect]);
 }
 
+export function* workerGetPosibleStep({ payload }) {
+    const { id, gameType } = yield select(getActualRoom);
+    const login = yield select(getUserLogin);
+    const body = yield call([JSON, JSON.stringify], {
+        gameType,
+        stepDto: {
+            login,
+            step: payload,
+            time: Date.now(),
+            id,
+        },
+    });
+    yield call([stompClient, stompClient.send], '/radioactive/get-possible-steps', { uuid: id }, body);
+}
+
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
     yield takeEvery(actionTypes.SUBSCRIBE_ROOM, workerSubscribeRoom);
@@ -183,4 +205,5 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.DO_BOT_STEP_TIC, workerDoBotStepTic);
     yield takeEvery(actionTypes.GAME_EVENT, workerGameEvent);
     yield takeEvery(actionTypes.DISCONNECT, workerDisconnect);
+    yield takeEvery(actionTypes.GET_POSIBLE_STEP, workerGetPosibleStep);
 }

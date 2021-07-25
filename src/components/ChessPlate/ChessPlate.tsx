@@ -6,7 +6,7 @@ import { StChessPlate } from './styled';
 
 const Chessplate = () => {
     const items = [];
-    for (let i = 63; i > -1; i--) {
+    for (let i = 64; i >= 1; i--) {
         items.push(i);
     }
     return (
