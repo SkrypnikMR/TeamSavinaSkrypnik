@@ -12,12 +12,21 @@ export const StStatisticContent = styled.div`
   background: ${midGrey};
   height: 80vh;
   margin: 10px;
+  padding: 10px;
   color: ${white};
   display: grid;
   grid-template-columns: repeat(5,1fr);
   justify-items: center;
   align-items: center;
   grid-gap: 10px;
-  overflow-x : hidden;
-  overflow-y: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+        ::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+            ::-webkit-scrollbar-thumb {
+              width: 8px;
+              background-color: ${({ color = white }) => color};
+            }
 `;
