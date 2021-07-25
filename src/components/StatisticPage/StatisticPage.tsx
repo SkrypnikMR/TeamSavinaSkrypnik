@@ -3,17 +3,18 @@ import Header from '../Header';
 import Footer from '../Footer';
 import StatisticCard from '../StatisticCard';
 import { StStatisticPage, StStatisticContent } from './styled';
+import { TStatGame } from '../../store/statistic/types';
+import { TStatisticPage } from './types';
 
-const StatisticPage = ({ getFullStat, fullStatistic, userLogin }) => {
+const StatisticPage = ({ getFullStat, fullStatistic, userLogin }: TStatisticPage) => {
     useEffect(() => getFullStat(), []);
-    console.log(fullStatistic);
     return (
         <StStatisticPage>
             <Header/>
             <StStatisticContent>
 {
                 fullStatistic.length > 0
-                        ? fullStatistic.map(game => (
+                        ? fullStatistic.map((game: TStatGame) => (
                             <StatisticCard
                                 key={game.uuidGame}
                                 draw={game.draw}

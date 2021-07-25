@@ -16,8 +16,10 @@ export function* workerFullStatistic(): SagaIterator {
         const authHeader = { Authorization: token };
         const body = { username };
         const answer = yield call(postRequest, routes.statistic.byUserName, body, authHeader);
-        const parsedAnswer = yield call([answer, answer.json]);
-        yield put(putFullStatistic(parsedAnswer));
+        if (answer.status < 400) {
+            const parsedAnswer = yield call([answer, answer.json]);
+            yield put(putFullStatistic(parsedAnswer));
+        }
     } catch (e) {
         yield call([NotificationManager, NotificationManager.error],
             i18next.t('server_error_text'), i18next.t('server_error'), 2000);
