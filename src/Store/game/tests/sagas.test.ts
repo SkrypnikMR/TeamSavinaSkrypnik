@@ -6,16 +6,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { askBotStep, setStepOrder, setActualRoom, setWinner, setStepHistory, getStepOrder as actionGetStepOrder } from '../actions';
 import { getStepOrderSelector, getActualRoom, getUserLogin } from '../selectors';
 
-
 import { stompClient } from '../saga';
 
 import { support } from '../../../helpers/support';
 import { routes } from '../../../constants/routes';
 import * as sagas from '../saga';
 
-<<<<<<< HEAD
-describe('loginSaga', () => {
-=======
 jest.mock('../../../index', () => ({ store: { dispatch: jest.fn() } }));
 Date.now = jest.fn().mockReturnValue(1);
 
@@ -23,7 +19,6 @@ describe('gameSaga', () => {
     beforeEach(() => {
         sagas.setStompClient({ send: jest.fn(), subscribe: jest.fn() });
     });
->>>>>>> 42bdb436a50890f0f20f2f7d0046f6005aa14663
     describe('fork', () => {
         it('should fork watchers', () => {
             expectSaga(sagas.watcherGame)
