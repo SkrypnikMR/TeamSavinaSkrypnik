@@ -5,6 +5,7 @@ import { useTheme } from '../Hook/useTheme';
 import { StGameZone } from './styled';
 import { TGZ } from './types';
 import Turn from '../Turn';
+import Hello from '../Hello';
 
 const GameZone = ({ gameType }: TGZ) => {
     const { colors, theme } = useTheme();
@@ -22,9 +23,10 @@ const GameZone = ({ gameType }: TGZ) => {
             </StGameZone>
         );
         default: return (
-            <StGameZone colors={colors} theme={theme}>
-                Тут будет компонент приветствия
-            </StGameZone>
+            // <StGameZone colors={colors} theme={theme}>
+                // Тут будет компонент приветствия
+                <Hello></Hello>
+            // </StGameZone>
 );
     }
 };

@@ -10,4 +10,5 @@ export const StGameZone = styled.div < IDiv > `
     text-align: end;
     padding: 10px;
     max-height: 100%;
+    border-radius: 3px;
 `;

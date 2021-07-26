@@ -7,4 +7,5 @@ background: ${({ colors, theme }) => colors[theme].backgroundSecondary};
 margin: 10px;
 width: 70%;
 padding: 10px;
+border-radius: 3px;
 `;

@@ -11,6 +11,7 @@ export const StModalCreateRoom = styled.div`
   height: 100%;
   overflow: auto;
   background: rgba(0,0,0, 0.8);
+  border-radius: 3px;
 `;
 
 export const StModalContent = styled.div`
@@ -20,6 +21,7 @@ export const StModalContent = styled.div`
     width: 30%;
     align-items: center;
     position: relative;
+    border-radius: 3px;
 `;
 
 export const StModalContentItems = styled.div`

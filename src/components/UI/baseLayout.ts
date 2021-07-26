@@ -23,6 +23,7 @@ export const darkGrey = '#404040';
 export const midGrey = '#808080';
 export const lightGray = '#C4C4C4';
 export const white = '#ffffff';
+export const turquous = '#23EFFC';
 
 export const colors = {
   light: {
