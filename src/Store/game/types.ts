@@ -5,6 +5,10 @@ export type TRoom = {
     gameType: string;
     id: string;
 }
+export type TTicSelector = {
+    stepIndex: number;
+}
+
 export type TActualRoom = {
     gameType: string;
     creatorLogin: string;
