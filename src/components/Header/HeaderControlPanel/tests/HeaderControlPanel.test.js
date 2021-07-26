@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallowSmart, mountSmart } from '/src/helpers/testHelper';
 import { useTranslation } from 'react-i18next';
+import { shallowSmart, mountSmart } from '../../../../../__tests__/testHelper';
 import HeaderControlPanel from '../HeaderControlPanel';
 
 jest.mock('react-i18next', () => ({
@@ -58,7 +58,7 @@ describe('HeaderControlPanel', () => {
             themeMode: 'light',
         };
         const component = mountSmart(<HeaderControlPanel {...props} />);
-        expect(component.find('button')).toHaveLength(5);
+        expect(component.find('button')).toHaveLength(3);
     });
     it('should render all buttons in /account', () => {
         const props = {
@@ -68,7 +68,7 @@ describe('HeaderControlPanel', () => {
             themeMode: 'light',
         };
         const component = mountSmart(<HeaderControlPanel {...props} />);
-        expect(component.find('button')).toHaveLength(4);
+        expect(component.find('button')).toHaveLength(3);
     });
     it('should call history push', () => {
         const props = {

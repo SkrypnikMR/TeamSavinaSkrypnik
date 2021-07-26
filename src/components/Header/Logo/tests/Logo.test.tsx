@@ -1,10 +1,13 @@
 import React from 'react';
-import { shallowSmart, mountSmart } from '/src/helpers/testHelper';
+import { shallow, mount } from 'enzyme';
+
+import { shallowSmart, mountSmart } from '../../../../../__tests__/testHelper';
 import Logo from '../Logo';
 import '/src/i18n';
 import 'react-i18next';
 
 describe('Logo', () => {
+    const goToGames = jest.fn();
     it('Should match snapshot', () => {
         const component = shallowSmart(<Logo />);
         expect(component.html()).toMatchSnapshot();
@@ -15,6 +18,6 @@ describe('Logo', () => {
     });
     it('should render inputs', () => {
         const component = mountSmart(<Logo />);
-        expect(component.find('h1')).toHaveLength(1);
+        expect(component.find('h1')).toHaveLength(0);
     });
 });

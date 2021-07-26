@@ -7,4 +7,6 @@ export interface IDiv {
 
 export type TSingleSell = {
     id: number;
+    isChecked: boolean;
+    color: string;
 }

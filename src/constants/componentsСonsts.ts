@@ -27,7 +27,7 @@ export const HEADER_CONTROL_BTNS = [
     {
         id: 'theme_btn',
         value: 'dark',
-        content: '🌞',
+        content: '💡',
     },
     {
         id: 'en',
@@ -63,3 +63,20 @@ export const GAME_TYPE = {
     tic_tac_toe: 'Tic-tac-toe',
     checkers: 'Checkers',
 };
+
+export const INITIAL_STATE_FOR_CHECKER = Array.from({ length: 64 }, (_, i) => {
+    let color = null;
+    let isChecked = null;
+    if (i >= 41 && i <= 64) {
+        color = "black";
+        if (parseInt((i / 8) + i) % 2 === 0) {
+            isChecked = true;
+        }
+    } else if (i >= 0 && i <= 23) {
+        color = "white";
+        if (parseInt((i / 8) + i) % 2 === 0) {
+            isChecked = true;
+        }
+    }
+    return { position: 63 - i, isChecked, color };
+});

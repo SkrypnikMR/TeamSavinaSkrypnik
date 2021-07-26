@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { routes } from 'src/constants/routes';
+=======
 import { SagaIterator } from '@redux-saga/types';
+>>>>>>> 42bdb436a50890f0f20f2f7d0046f6005aa14663
 import { takeEvery, call, take, put, select } from 'redux-saga/effects';
 import { Stomp, CompatClient } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,6 +14,12 @@ import { getUserLogin, getActualRoom, getStepOrderSelector } from './selectors';
 import { support } from '../../helpers/support';
 import { BOT_NAME, DRAW } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
+<<<<<<< HEAD
+import { putRooms, setUserLogin, logOut } from './actions';
+import { getUserLogin } from './selectors';
+
+let stompClient: CompatClient | null = null;
+=======
 import {
     putRooms,
     setActualRoom,
@@ -19,6 +29,7 @@ import {
     setStepOrder,
     askBotStep,
 } from './actions';
+>>>>>>> 42bdb436a50890f0f20f2f7d0046f6005aa14663
 
 export let stompClient: CompatClient | null = null;
 export const setStompClient = (arg: any) => {

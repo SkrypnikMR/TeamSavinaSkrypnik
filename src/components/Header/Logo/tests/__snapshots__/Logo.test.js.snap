@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Logo Should match snapshot 1`] = `"<div class=\\"styled__StLogo-sc-9vy3sh-0 dOfUuH\\"><img src=\\"./public/assets/images/logo.png\\"/><h1>Header&amp;Shmeader</h1></div>"`;

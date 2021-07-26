@@ -11,5 +11,4 @@ const rootReducer = combineReducers({
   statistic: statisticReducer,
 });
 
-
 export default rootReducer;

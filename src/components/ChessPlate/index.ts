@@ -1,3 +1,11 @@
+import { connect } from 'react-redux';
+import { ApplicationState } from '../../Store/types';
+import { getCheckerDesk } from '../../Store/game/selectors';
+
 import Chessplate from './ChessPlate';
 
-export default Chessplate;
+const mapStateToProps = (state: ApplicationState) => ({
+    checker: getCheckerDesk(state),
+});
+
+export default connect(mapStateToProps)(Chessplate);

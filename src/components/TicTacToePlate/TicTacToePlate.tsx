@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SingleSellTicTac from './SingleSellTicTac';
 import Button from '../UI/Button';
@@ -9,7 +9,7 @@ const TicTacToePlate = () => {
     for (let i = 0; i < 9; i++) { items.push(i); }
     return (
         <StTicTacToePlate>
-            {items.map(item => <SingleSellTicTac id={item} key={item} />)}
+            {items.map((item) => <SingleSellTicTac id={item} key={item} />)}
         </StTicTacToePlate>
     );
 };
