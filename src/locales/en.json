@@ -46,7 +46,7 @@
     "cancel": "Cancel",
     "game_error": "",
     "winner": "Congratulations, you won!",
-    "loser": "You lost, but it was a good try!",
+    "loser": "You lose, but it was a good try!",
     "draw": "Draw",
     "draw_in_game": "The game was played to a draw",
     "winner_in_game": "Game winner",

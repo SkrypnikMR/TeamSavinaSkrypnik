@@ -141,7 +141,9 @@ export function* workerDoBotStepTic({ payload }) {
     yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
         gameType, stepDto: { login: userLogin, step: payload, time: Date.now(), id },
      }));
-     yield call(workerGetStepOrder, { payload: { gameType, uuid: id } });
+    yield call(workerGetStepOrder, { payload: { gameType, uuid: id } });
+    const turn = yield select(getStepOrderSelector);
+    if (turn === BOT_NAME) yield put(askBotStep());
 }
 export function* workerGameEvent({ payload }) {
     const parsedBody = yield call([JSON, JSON.parse], payload);
@@ -202,7 +204,6 @@ export function* workerCheckerStep({ payload }) {
     const possibleSteps = yield select(getPossibleSteps);
     const startIndex = possibleSteps[0].startIndex;
     const step = `${startIndex}_${payload}`;
-    console.log(step);
     const { id, gameType } = yield select(getActualRoom);
     const userLogin = yield select(getUserLogin);
     yield call([stompClient, stompClient.send], routes.ws.actions.doStep, { uuid: id }, JSON.stringify({
