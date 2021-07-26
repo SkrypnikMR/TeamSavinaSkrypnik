@@ -53,5 +53,9 @@
     "game_type": "Game in",
     "oponnent": "Oponnent",
     "game_start": "The game started",
-    "game_finish": "Game over"
+    "game_finish": "Game over",
+    "hi": "Hi",
+    "joing_room": "Join someone's room or create yours",
+    "delete_game": "Delete game",
+    "are_you_sure": "Are you sure???"
 }

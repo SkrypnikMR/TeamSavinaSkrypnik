@@ -15,6 +15,7 @@ export const StStatisticCardWrapper = styled.div`
 
 export const StStatisticCardTitle = styled.h3`
     font-size: 25px;
+    margin-left: 10px;
 `;
 
 export const StStatisticCardOponnent = styled.p`

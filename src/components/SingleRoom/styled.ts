@@ -18,4 +18,7 @@ export const StSingleRoom = styled.div`
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22);
         transition-duration: 0.3s;
     }
+    p{
+        word-wrap: break-word;
+    }
 `;

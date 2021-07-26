@@ -1,21 +1,23 @@
 import styled from 'styled-components';
+import { white } from 'src/components/UI/baseLayout';
 import { IDiv } from './types';
 
 export const StSingleSell = styled.div < IDiv > `
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     cursor: pointer;
     display: flex;
     font-size: 50px;
     justify-content: center;
     align-items: center;
-    ${({ color = 'red' }) => color && `background-color: ${color}`};
+    ${({ color = `${white}` }) => color && `background-color: ${color}`};
 `;
 
 export const StPossition = styled.div`
-    width:  45px;
-    height: 45px;
+    width:  74px;
+    height: 74px;
     cursor: pointer;
-    border: 5px solid green;
+    border: 1px solid green;
     z-index: 1000;
+    box-shadow: 0 0 10px 5px rgba(35, 239, 252, 1);
 `;
