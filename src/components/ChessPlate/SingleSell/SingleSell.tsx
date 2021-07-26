@@ -1,6 +1,7 @@
 import React from 'react';
 import { StSingleSell, StPossition } from './styled';
 import { TSingleSell } from './types';
+import { white, blackPic } from '../../UI/baseLayout';
 
 const SingleSell = ({ id, status, getPosibleStep, position, doCheckerStep }: TSingleSell) => {
     const handleClick = (e) => {
@@ -13,10 +14,12 @@ const SingleSell = ({ id, status, getPosibleStep, position, doCheckerStep }: TSi
         <StSingleSell
             onClick={handleClick}
             id={id}
-            color={status?.blackSquare ? 'black' : 'white'}
+            color={status?.blackSquare ? `${blackPic}` : `${white}`}
         >
             {position ? <StPossition/> : position}
-            {status?.checker ? status?.checker.blackChecker ? '●' : '○' : null}
+            {status?.checker ? status?.checker.blackChecker ? <img width='45px' id={id} src='../../../../public/assets/images/chinese-checkers (4).png'/>
+                                                            : <img width='45px' id={id} src='../../../../public/assets/images/chinese-checkers (1).png'/>
+                                                            : null}
         </StSingleSell>
     );
 };

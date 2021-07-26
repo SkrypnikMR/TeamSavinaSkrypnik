@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Portal from '../Portal';
 import Button from '../UI/Button';
 import { GAME_TYPE } from '../../constants/componentsСonsts';
-import { lightGray } from '../UI/baseLayout';
-
-import { StModalCreateRoom, StModalContent, StModalContentItems, StModalHeader, StModalButtonBox } from './styled';
+import { StModalButtonBox } from './styled';
 import Select from '../UI/Select';
 
 const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
@@ -17,27 +14,7 @@ const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
     };
     const handleOnchange = (e) => setState({ ...state, gameType: e.target.value });
     return (
-        <Portal>
-            <StModalCreateRoom>
-                <StModalContent>
-                    <Button 
-                        content="X"
-                        onClick={handlecloseModal}
-                        id="CloseButton"
-                        name="CloseButton"
-                        value="Close"
-                        type="button"
-                        title="Close"
-                        height="40px"
-                        width="40px"
-                        bgColor={lightGray}
-                        position="absolute"
-                        right="10px"
-                    />
-                    <StModalContentItems>
-                        <StModalHeader>
-                            {t('create_new_game')}
-                        </StModalHeader>
+                    <div>
                         <Select
                             onChange={handleOnchange}
                             value={state.gameType}
@@ -65,10 +42,7 @@ const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
                                 title="Cancel"
                             />
                         </StModalButtonBox>
-                    </StModalContentItems>
-                </StModalContent>
-            </StModalCreateRoom>
-        </Portal>
+                    </div>
     );
 };
 

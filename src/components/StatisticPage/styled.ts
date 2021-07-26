@@ -10,7 +10,8 @@ export const StStatisticPage = styled.div`
 `;
 export const StStatisticContent = styled.div`
   background: ${midGrey};
-  height: 80vh;
+  border-radius: 3px;
+  height: 82vh;
   margin: 10px;
   padding: 10px;
   color: ${white};
