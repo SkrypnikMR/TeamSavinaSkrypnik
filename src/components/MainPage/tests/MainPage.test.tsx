@@ -41,16 +41,6 @@ describe('MainPage', () => {
         mountSmart(<MainPage {...props}/>, store);
         expect(props.getSockJSConnection).toHaveBeenCalled();
     });
-        it('should call props.getSockJSConnection', async () => {
-            const component = shallowSmart(<MainPage {...props} />, store);
-            await act(() => {
-                component.unmount();
-            })
-            component.update();
-            console.log(component.debug());
-            console.log(component);
-        expect(props.disconnect).toHaveBeenCalled();
-    });
     it('should render StMainPage', () => {
         const component = mountSmart(<MainPage {...props}/>, store);
         expect(component.find('styled__StMainPage')).toHaveLength(1);
