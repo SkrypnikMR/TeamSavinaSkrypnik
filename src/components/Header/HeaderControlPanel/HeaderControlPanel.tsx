@@ -24,17 +24,12 @@ const HeaderControlPanel = ({
     };
     const handleLogOutClick = () => {
         history.push(APP_ROUTES.login);
+        localStorage.clear();
     };
-    const handleNotifClick = (e) => {
-        support.setSessionStorageItem('settings', { notifications: Boolean(e.target.value) });
-    };
-    const handleMyAccountClick = () => history.push(APP_ROUTES.account);
     const getFunctionForButtons = (el) => {
         switch (el.id) {
             case 'theme_btn': return handleThemeClick;
             case 'logOut': return handleLogOutClick;
-            case 'account': return handleMyAccountClick;
-            case 'notif_btn': return handleNotifClick;
             default: return handleChangeLanguage;
         }
     };
