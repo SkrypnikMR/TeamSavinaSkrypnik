@@ -1,6 +1,8 @@
 export const BOT_NAME = 'Bot';
 export const DRAW = 'draw';
 export const CHECKERS = 'Checkers';
+export const BOT_TIC = 'Not your turn Bot';
+export const BOT_CHECKERS = 'NOT YOU TURN Bot';
 export const CHECKER_FIELD_INIT = [
   null,
   {
