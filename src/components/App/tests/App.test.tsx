@@ -9,50 +9,34 @@ jest.mock('react-modal');
 const mockStore = configureStore();
 const store = mockStore({
   registration: {
-    email: '',
+    login: '',
     password: '',
     confirm: '',
-    firstName: '',
-    lastName: '',
     success: null,
   },
   login: {
-    email: '',
+    login: '',
     password: '',
-    confirm: '',
-    firstName: '',
-    lastName: '',
     success: null,
   },
   user: {
     themeMode: 'light',
   },
-  modals: {
-    notificationSettings: {
-        type: 'notificationSettings',
-        data: {},
-        isOpen: true,
+  game: {
+     rooms: [],
+    userLogin: localStorage.getItem('login') || '',
+    actualRoom: {
+      gameType: '',
+      creatorLogin: '',
+      guestLogin: '',
+      startTime: 0,
+      id: '',
+      stepDoList: [],
     },
-    logOut: {
-        type: 'logOut',
-        data: {},
-        isOpen: false,
-    },
-    allNotification: {
-        type: 'allNotification',
-        data: {},
-        isOpen: false,
-    },
-    usersInChat: {
-        type: 'usersInChat',
-        data: {},
-        isOpen: false,
-    },
-    createChat: {
-        type: 'usersInChat',
-        data: {},
-        isOpen: false,
-    },
+    stepOrder: '',
+    stepHistory: [],
+    winner: '',
+    possibleSteps: [],
   },
 });
 const props = { 
