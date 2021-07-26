@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "header_shmeader_team",
   "license": "ISC",
+  "engines": {
+    "node": "16.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/plugin-transform-runtime": "^7.14.5",
