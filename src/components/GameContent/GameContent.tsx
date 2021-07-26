@@ -9,6 +9,7 @@ const GameContent = ({ winner, cleanOldGame }) => {
     if (winner) setTimeout(() => cleanOldGame());
     return (
         <StGameContent colors={colors} theme={theme}>
+            {/* <Winner></Winner> */}
             {winner ? <Winner winner={winner}/> : <GameZone />}
         </StGameContent>
     );
