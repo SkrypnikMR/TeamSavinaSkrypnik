@@ -143,8 +143,6 @@ export function* workerDoBotStepTic({ payload }) {
         gameType, stepDto: { login: userLogin, step: payload, time: Date.now(), id },
      }));
     yield call(workerGetStepOrder, { payload: { gameType, uuid: id } });
-    const turn = yield select(getStepOrderSelector);
-    if (turn === BOT_NAME) yield put(askBotStep());
 }
 export function* workerGameEvent({ payload }) {
     const parsedBody = yield call([JSON, JSON.parse], payload);
@@ -163,6 +161,7 @@ export function* workerGameEvent({ payload }) {
         yield call([localStorage, localStorage.setItem], 'stepHistory', stringifyField);
         yield put(setStepHistory(parsedBody.field));
         return yield put(getStepOrder({ uuid: id, gameType }));
+        
     }
     if (parsedBody.stepDtoList) {
         let firstStepHistory = yield call([JSON, JSON.stringify], []);
@@ -177,9 +176,22 @@ export function* workerGameEvent({ payload }) {
         return yield call([localStorage, localStorage.setItem], 'stepHistory', firstStepHistory);
     }
     if (parsedBody.stepOrderLogin) {
-        const stepOrder = yield select(getStepOrderSelector);
-        if (stepOrder === parsedBody.stepOrderLogin) return;
-        if (parsedBody.stepOrderLogin === BOT_NAME) yield put(askBotStep());
+        const actualRoom = yield select(getActualRoom);
+        if (actualRoom.gameType === CHECKERS
+            && parsedBody.stepOrderLogin === actualRoom.guestLogin) {
+            yield put(setStepOrder(actualRoom.creatorLogin))
+            const turn = yield select(getStepOrderSelector);
+            if(turn === BOT_NAME) yield put(askBotStep())
+            return
+        }
+        if (actualRoom.gameType === CHECKERS
+            && parsedBody.stepOrderLogin === actualRoom.creatorLogin) {
+            yield put(setStepOrder(actualRoom.guestLogin))
+            const turn = yield select(getStepOrderSelector);
+            if(turn === BOT_NAME) yield put(askBotStep())
+            return
+        }
+        if(parsedBody.stepOrderLogin === BOT_NAME)yield put(askBotStep())
         return yield put(setStepOrder(parsedBody.stepOrderLogin)); 
     }
 }

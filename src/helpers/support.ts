@@ -23,9 +23,15 @@ export const support = {
   },
   errorCatcher: ({ body }) => {
     const { body: parsedBody } = JSON.parse(body);
-    if (parsedBody === BOT_TIC) return 1;
-    if (parsedBody === BOT_CHECKERS) return 1;
-    NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
+    switch (parsedBody) {
+      case BOT_TIC: return 1;
+      case BOT_CHECKERS: return 1;
+      case 'Invalid step Bot1': return 1;
+      case 'Invalid step Bot2': return 1;
+      case 'Invalid step Bot3': return 1;
+      case 'Invalid step {}': return 1;
+      default: NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
+    }
   },
   subGame: message => store.dispatch(gameEvent(message.body)),
   subBot: message => store.dispatch(doBotStepTic(message.body)),
