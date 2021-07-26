@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ITheme } from '../App/types';
 
 export interface IDiv extends ITheme{
@@ -9,4 +7,8 @@ export interface IDiv extends ITheme{
     textAlign: string;
     padding: string;
     maxHeight: string;
+}
+
+export type TGZ = {
+    gameType: string;
 }

@@ -6,9 +6,13 @@ import Footer from '../Footer';
 import { useTheme } from '../Hook/useTheme';
 import { StMainPage } from './styled';
 
-const MainPage = ({ getSockJSConnection }: any) => {
+const MainPage = ({ getSockJSConnection, disconnect }: any) => {
     const { colors, theme } = useTheme();
-    useEffect(() => getSockJSConnection(), []);
+    useEffect(() => {
+        getSockJSConnection();
+        return () => disconnect();
+    },
+             []);
     return (
         <StMainPage colors={colors} theme={theme}>
             <Header />

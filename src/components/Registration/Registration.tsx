@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { regInputs } from 'src/constants/componentsСonsts';
 import { APP_ROUTES } from '../../constants/reactRoutes';
 import Form from '../UI/Form';
@@ -61,12 +59,6 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
             </Form>
         </StRegDiv>
     );
-};
-
-Registration.propTypes = {
-    sendRegistrationRequest: PropTypes.func.isRequired,
-    setRegistrationValue: PropTypes.func.isRequired,
-    fields: PropTypes.object.isRequired,
 };
 
 export default Registration;

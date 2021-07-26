@@ -7,12 +7,26 @@ export const StStatisticPage = styled.div`
   background: ${darkGrey};
   display: flex;
   flex-direction: column;
-  .timeless{
-      background: ${midGrey};
-      height: 84vh;
-      margin: 10px;
-      color: ${white};
-      font-size: 25px;
-      text-align: center;
-  }
+`;
+export const StStatisticContent = styled.div`
+  background: ${midGrey};
+  height: 80vh;
+  margin: 10px;
+  padding: 10px;
+  color: ${white};
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  justify-items: center;
+  align-items: center;
+  grid-gap: 10px;
+      overflow-y: auto;
+      overflow-x: hidden;
+        ::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+            ::-webkit-scrollbar-thumb {
+              width: 8px;
+              background-color: ${({ color = white }) => color};
+            }
 `;

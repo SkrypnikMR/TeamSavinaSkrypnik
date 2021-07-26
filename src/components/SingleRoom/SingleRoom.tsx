@@ -4,7 +4,7 @@ import Button from '../UI/Button';
 import { StSingleRoom } from './styled';
 import { TSingleRoom, TDistResult } from './types';
 
-const SingleRoom = ({ creatorLogin, gameType, userLogin, id, joinRoom, playWithBot } : TSingleRoom) => {
+const SingleRoom = ({ creatorLogin, gameType, userLogin, id, joinRoom, playWithBot, subscribeRoom }: TSingleRoom) => {
     const { t } = useTranslation();
     const roomOwner: string = creatorLogin === userLogin ? t('your_room') : creatorLogin;
     const onClickDistributor = (creatorLogin: string, userLogin: string) : TDistResult => {
@@ -15,7 +15,10 @@ const SingleRoom = ({ creatorLogin, gameType, userLogin, id, joinRoom, playWithB
             }
             : {
                 content: 'join',
-                onClickFunc: e => joinRoom(e.target.id),
+                onClickFunc: (e) => {
+                    joinRoom(e.target.id);
+                    subscribeRoom(e.target.id);
+                },
             };
     };
     const { content, onClickFunc } = onClickDistributor(creatorLogin, userLogin);
