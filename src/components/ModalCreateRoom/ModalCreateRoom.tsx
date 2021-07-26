@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import { GAME_TYPE } from '../../constants/componentsСonsts';
-
 import { StModalButtonBox } from './styled';
 import Select from '../UI/Select';
 
 const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
-    console.log(createRoom);
     const [state, setState] = useState({ gameType: GAME_TYPE.tic_tac_toe });
     const { t } = useTranslation();
     const handleModalClick = () => {

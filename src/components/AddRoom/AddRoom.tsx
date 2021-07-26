@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ModalCreateRoom from '../ModalCreateRoom/ModalCreateRoom';
+import ModalCreateRoom from '../ModalCreateRoom';
 import ModalCustom from '../ModalCustom';
 
 import { StAddRoom } from './styled';
