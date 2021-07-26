@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Should match snapshot 1`] = `"<div class=\\"styled__StFooter-sc-1xbiugi-0 bClKzk\\">create_for <a href=\\"https://deveducation.com/\\" target=\\"_blank\\" rel=\\"noreferrer\\">dev{Education}</a></div>"`;

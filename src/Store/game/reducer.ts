@@ -3,6 +3,7 @@ import { ActionType } from 'typesafe-actions';
 import { actionTypes as AT } from './actionTypes';
 import { TInitialGame } from './types';
 import * as actions from './actions';
+import { INITIAL_STATE_FOR_CHECKER } from '../../constants/componentsСonsts';
 
 const actionTypes1 = actions;
 type TActions = typeof actionTypes1;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { IDiv } from './types';
 
 export const StSingleSell = styled.div < IDiv > `

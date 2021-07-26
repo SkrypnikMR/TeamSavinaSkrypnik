@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleSell Should match snapshot 1`] = `"<div id=\\"NaN\\" style=\\"background:white\\" class=\\"styled__StSingleSell-sc-1rn7xd3-0 iBlbrM\\">NaN</div>"`;

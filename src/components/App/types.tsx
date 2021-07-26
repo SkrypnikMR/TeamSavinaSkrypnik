@@ -11,3 +11,4 @@ export interface IDiv extends ITheme {
     backgroundSize: string;
     direction: string;
 }
+

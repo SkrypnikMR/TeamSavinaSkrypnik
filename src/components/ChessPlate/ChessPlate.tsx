@@ -1,7 +1,6 @@
 import React from 'react';
-
+import { TCheckers } from 'src/Store/game/types';
 import SingleSell from './SingleSell';
-
 import { StChessPlate } from './styled';
 
 const Chessplate = () => {

@@ -2,7 +2,6 @@ import React from 'react';
 import SingleRoom from '../SingleRoom';
 import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 
-
 describe('SingleRoom', () => {
     let props;
     beforeEach(() => {

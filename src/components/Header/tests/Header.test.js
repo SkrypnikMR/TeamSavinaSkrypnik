@@ -1,6 +1,6 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import { shallowSmart, mountSmart } from '/src/helpers/testHelper';
+import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 import Header from '../Header';
 
 const mockStore = configureStore();
