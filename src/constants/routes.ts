@@ -13,7 +13,7 @@ export const routes = {
         subs: {
             rooms: '/topic/rooms',
             user_errors: '/user/topic/errors',
-            user_game: '/user/topic/game',
+            user_game: '/user/topic/game/',
             newGame: '/topic/game/',
             botStep: '/topic/bot/',
         },
@@ -25,6 +25,7 @@ export const routes = {
             getStepOrder: '/radioactive/get-step-order',
             doStep: '/radioactive/do-step',
             getBotStep: '/radioactive/get-bot-step',
+            getPossibleStep: '/radioactive/get-possible-steps',
         },
     },
 

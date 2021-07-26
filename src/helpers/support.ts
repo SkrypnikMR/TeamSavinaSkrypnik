@@ -5,7 +5,9 @@ import { store } from '../index';
 import { 
   gameEvent,
   doBotStepTic,
+  putPossibleSteps,
 } from '../store/game/actions';
+import { BOT_CHECKERS, BOT_TIC } from '../constants/simpleConstants';
 
 export const support = {
     setTokenInCookie: (payload: string, age: number = 3600 * 8) => {
@@ -21,10 +23,12 @@ export const support = {
   },
   errorCatcher: ({ body }) => {
     const { body: parsedBody } = JSON.parse(body);
-    if (parsedBody === 'Not your turn Bot') return 1;
+    if (parsedBody === BOT_TIC) return 1;
+    if (parsedBody === BOT_CHECKERS) return 1;
     NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
   },
   subGame: message => store.dispatch(gameEvent(message.body)),
   subBot: message => store.dispatch(doBotStepTic(message.body)),
   getPrettyDate: (timestamp: number) => moment(timestamp).format('L h:mm:ss'),
+  possibleStep: ({ body }) => store.dispatch(putPossibleSteps(JSON.parse(body))),
 };

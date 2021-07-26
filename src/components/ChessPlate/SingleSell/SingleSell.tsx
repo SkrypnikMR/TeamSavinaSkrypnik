@@ -1,23 +1,22 @@
 import React from 'react';
-import Checker from '../Checher';
-import { StSingleSell } from './styled';
+import { StSingleSell, StPossition } from './styled';
 import { TSingleSell } from './types';
 
-const SingleSell = ({ id, isChecked, color } : TSingleSell) => {
+const SingleSell = ({ id, status, getPosibleStep, position, doCheckerStep }: TSingleSell) => {
     const handleClick = (e) => {
-        console.log(e.target.id);
+        if (position) {
+           return doCheckerStep(id);
+        }
+        getPosibleStep(e.target.id);
     };
-    const background = parseInt((id / 8) + id) % 2 === 0 ? 'grey' : 'white';
     return (
         <StSingleSell
-            id={id + 1}
-            style={{
-                background: parseInt((id / 8) + id) % 2 === 0
-                    ? 'black' : 'white',
-            }}
-onClick={handleClick}
+            onClick={handleClick}
+            id={id}
+            color={status?.blackSquare ? 'black' : 'white'}
         >
-{id + 1}
+            {position ? <StPossition/> : position}
+            {status?.checker ? status?.checker.blackChecker ? '●' : '○' : null}
         </StSingleSell>
     );
 };

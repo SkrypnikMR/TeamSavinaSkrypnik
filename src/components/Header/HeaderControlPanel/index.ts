@@ -1,7 +1,7 @@
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { logOut } from 'src/Store/game/actions';
+import { logOut } from '../../../store/game/actions';
 
 import HeaderControlPanel from './HeaderControlPanel';
 
