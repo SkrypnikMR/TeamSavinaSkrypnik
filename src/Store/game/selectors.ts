@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import i18next from 'i18next';
+import { DRAW } from '../../constants/simpleConstants';
 import { ApplicationState } from '../types';
 
 export const gameStore = (store: ApplicationState) => store.game;
@@ -23,7 +25,7 @@ export const getActualRoomGameType = createSelector(
     ({ gameType }) => gameType,
 );
 
-export const getStepOrder = createSelector(
+export const getStepOrderSelector = createSelector(
     gameStore,
     ({ stepOrder }) => stepOrder,
 );
@@ -31,15 +33,19 @@ export const getStepOrder = createSelector(
 export const getTicStatus = createSelector(
     gameStore,
     (store, id: number) => id,
-    ({ stepHistory, userLogin }, id) => {
-        const answer = stepHistory.find(step => Number(step.step) === id);
-        if (!answer) return '';
-        if (answer && answer.login === userLogin) return 'x';
-        return 'o';
-    },
+    ({ stepHistory }, id) => stepHistory[id],
 );
 
 export const getWinner = createSelector(
     gameStore,
-    ({ winner }) => winner,
+    ({ winner, userLogin }) => {
+        switch (winner) {
+            case userLogin: return i18next.t('winner');
+            case DRAW: return i18next.t(DRAW);
+            default: {
+                if (winner === '') return '';
+                if (winner !== userLogin) return i18next.t('loser');
+            }
+        }
+    },
 );

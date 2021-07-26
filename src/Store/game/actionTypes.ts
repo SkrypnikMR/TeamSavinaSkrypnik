@@ -14,4 +14,8 @@ export enum actionTypes{
     SET_STEP_HISTORY = '@@game/SET_STEP_HISTORY',
     SET_WINNER = '@@game/SET_WINNER',
     CLEAN_OLD_GAME = '@@game/CLEAN_OLD_GAME',
+    ASK_BOT_STEP = '@@game/ASK_BOT_STEP',
+    DO_BOT_STEP_TIC = '@@game/DO_BOT_STEP_TIC',
+    GAME_EVENT = '@@game/GAME_EVENT',
+    DISCONNECT = '@@game/DISCONNECT',
 }

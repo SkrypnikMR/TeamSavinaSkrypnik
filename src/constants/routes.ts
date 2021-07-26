@@ -4,6 +4,9 @@ export const routes = {
         registration: 'registration/reg',
         login: 'authorization/auth',
     },
+    statistic: {
+        byUserName: 'statistic/search-by-username',
+    },
     baseWebSocketUrl: 'ws://35.176.167.155:8082/',
     ws: {
         game_menu: 'game-menu',
@@ -12,6 +15,7 @@ export const routes = {
             user_errors: '/user/topic/errors',
             user_game: '/user/topic/game',
             newGame: '/topic/game/',
+            botStep: '/topic/bot/',
         },
         actions: {
             getRooms: '/radioactive/update-room',
@@ -20,6 +24,7 @@ export const routes = {
             deleteRoom: '/radioactive/delete-room',
             getStepOrder: '/radioactive/get-step-order',
             doStep: '/radioactive/do-step',
+            getBotStep: '/radioactive/get-bot-step',
         },
     },
 

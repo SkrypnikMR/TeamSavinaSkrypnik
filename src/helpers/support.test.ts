@@ -1,11 +1,18 @@
 import { NotificationManager } from 'react-notifications';
+import moment from 'moment';
 import { support } from './support';
 import { store } from '../index';
+import { doBotStepTic, gameEvent } from '../store/game/actions';
 
-const { setTokenInCookie,
+const {
+    subBot,
+    subGame,
+    errorCatcher,
+    getPrettyDate,
+    setTokenInCookie,
     getTokenFromCookie,
     deleteTokenFromCookie,
-    errorCatcher, subGame } = support;
+     } = support;
 
 jest.mock('react-notifications', () => ({
     NotificationManager: { error: jest.fn() },
@@ -64,6 +71,13 @@ describe('support', () => {
         it('should be function', () => {
             expect(typeof errorCatcher).toBe('function');
         });
+        it('should return 1 and not call NotificationManager', () => {
+            const errorMessage = 'Not your turn Bot';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
         it('should call NotificationManager.error with right arguments', () => {
             const errorMessage = 'error message';
             const messageBody = JSON.stringify({ body: errorMessage });
@@ -79,54 +93,36 @@ describe('support', () => {
         it('should be function', () => {
             expect(typeof subGame).toBe('function');
         });
-        it('should call dispatch with setWinner', () => {
-            const winner = 'WINNER: ME';
-            const message = { body: winner };
-            expect(subGame(message)).toBe(1);
-            expect(store.dispatch)
-                .toHaveBeenCalledWith({ payload: 'ME', type: '@@game/SET_WINNER' });
+        it('should call store.dispatch with gameEvent', () => {
+            const payload = '{ gameType: \'\', creatorLogin: \'\', guestLogin: \'\', startTime: 0, id: \'\', stepDoList: [] }';
+            subGame({ body: payload });
+            expect(store.dispatch).toHaveBeenCalledWith(gameEvent(payload));
         });
-        it('should return 2', () => {
-            const message = { body: '[someArrayMessage]' };
-            expect(subGame(message)).toBe(2);
+    });
+    describe('subBot', () => {
+        it('should be defined', () => {
+            expect(subBot).toBeDefined();
         });
-        it('should setStepOrder', () => {
-            const message = { body: 'Maxim' };
-            expect(subGame(message)).toBe(undefined);
-            expect(store.dispatch).toHaveBeenCalledWith({ payload: 'Maxim', type: '@@game/SET_STEP_ORDER' });
+        it('should be function', () => {
+            expect(typeof subBot).toBe('function');
         });
-        it('should setNewActualRoom', () => {
-            const message = {
-                body: '{"gameType": "Chekers", "creatorLogin": "Max", "guestLogin" : "NeMax", "startTime": 12321321321312, "id": "1232176372132173"}',
-            };
-            const getStepOrderPayload = { uuid: '1232176372132173', gameType: 'Chekers' };
-            expect(subGame(message)).toBe(1);
-            expect(store.dispatch)
-                .toHaveBeenCalledWith(
-                    {
-                        payload: JSON.parse(message.body),
-                        type: '@@game/SET_ACTUAL_ROOM',
-                    });
-            expect(store.dispatch)
-                .toHaveBeenCalledWith({ type: '@@game/GET_STEP_ORDER', payload: getStepOrderPayload });
-            expect(store.dispatch)
-                .toHaveBeenCalledWith({ type: '@@game/SET_WINNER', payload: '' });
-            expect(localStorage.getItem('actualRoom')).toBe(message.body);
-            expect(localStorage.getItem('stepHistory')).toBe(JSON.stringify([]));
+        it('should call store.dispatch with gameEvent', () => {
+            const payload = '4';
+            subBot({ body: payload });
+            expect(store.dispatch).toHaveBeenCalledWith(doBotStepTic(payload));
         });
-        it('should setHistory', () => {
-            const message = {
-                body: '{"step": "1"}',
-            };
-            localStorage.setItem('stepHistory', JSON.stringify([]));
-            expect(subGame(message)).toBe(1);
+    });
+    describe('getPrettyDate', () => {
+        it('should be defined', () => {
+            expect(getPrettyDate).toBeDefined();
         });
-        it('should setHistory and we have old', () => {
-            const message = {
-                body: '{"step": "1"}',
-            };
-            localStorage.setItem('stepHistory', JSON.stringify([{ stepCount: 0 }]));
-            expect(subGame(message)).toBe(1);
+        it('should be function', () => {
+            expect(typeof getPrettyDate).toBe('function');
+        });
+        it('should call moment with testTimeStamp and return in format like in func', () => {
+            const testTimeStamp = 123123214214;
+            expect(getPrettyDate(testTimeStamp))
+                .toBe(moment(testTimeStamp).format('L h:mm:ss'));
         });
     });
 });
