@@ -64,3 +64,5 @@ export const ROOMS_CONTAINER_BG = '#C4C4C4';
 
 //SingleRoom
 export const SINGLE_ROOM_BG = '#808080';
+export const BLACKCHECKER = 'public/assets/images/chinese-checkers (4).png';
+export const WHITECHECKER = 'public/assets/images/chinese-checkers (1).png';
