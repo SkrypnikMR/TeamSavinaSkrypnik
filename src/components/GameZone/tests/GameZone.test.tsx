@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { act } from 'react-dom/test-utils';
+import GameZone from '../GameZone';
 import { mountSmart } from '../../../../__tests__/testHelper';
 
 const mockStore = configureStore();
@@ -23,8 +24,6 @@ const store = mockStore({
     possibleSteps: [],
   },
 });
-
-import GameZone from '../GameZone';
 
 describe('GameZone', () => {
     let portalFolder: any;

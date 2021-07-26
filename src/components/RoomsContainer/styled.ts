@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { white, turquous } from '../UI/baseLayout';
+import { TStyledConatiner } from './types';
 
-export const StRoomsContainer = styled.div`
+export const StRoomsContainer = styled.div < TStyledConatiner > `
     background: ${({ colors, theme }) => colors[theme].backgroundSecondary};
     width: 28%;
     margin: 10px;
