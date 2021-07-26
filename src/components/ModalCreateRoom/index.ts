@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { createRoom } from 'src/Store/game/actions';
 import { Dispatch } from 'redux';
+import { createRoom } from '../../store/game/actions';
 import ModalCreateRoom from './ModalCreateRoom';
 
 const mapDispatchToProps = (dispatch:Dispatch) => ({

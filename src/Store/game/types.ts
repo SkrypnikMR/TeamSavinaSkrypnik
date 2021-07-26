@@ -1,4 +1,4 @@
-import { setStepHistory } from './actions';
+import { CHECKER_FIELD__INIT } from '../../constants/simpleConstants';
 
 export type TRoom = {
     creatorLogin: string;
@@ -33,4 +33,7 @@ export type TInitialGame = {
     stepOrder: string;
     stepHistory: TStepInStepHistory[] | [];
     winner: string;
+    possibleSteps: [] | any;
 }
+
+export type THistory = Array<typeof CHECKER_FIELD__INIT> | [];

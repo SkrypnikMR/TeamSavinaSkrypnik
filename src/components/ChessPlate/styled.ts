@@ -4,8 +4,8 @@ import { IDiv } from './types';
 
 export const StChessPlate = styled.div < IDiv > `
     background: white;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { white } from '../UI/baseLayout';
 
 export const StWinnerWrapper = styled.div`
         display:flex;
@@ -6,6 +7,8 @@ export const StWinnerWrapper = styled.div`
         align-items: center;
         width: 100%;
         height: 300px;
-        border:solid;
         margin-top: 150px;
+        color: ${white};
+        background: ${({ colors, theme }) => colors[theme].background};
+
 `;

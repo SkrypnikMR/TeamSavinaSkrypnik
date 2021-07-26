@@ -1,23 +1,25 @@
 import React from 'react';
-import Checker from '../Checher';
-import { StSingleSell } from './styled';
+import { StSingleSell, StPossition } from './styled';
 import { TSingleSell } from './types';
+import { white, blackPic } from '../../UI/baseLayout';
 
-const SingleSell = ({ id, isChecked, color } : TSingleSell) => {
+const SingleSell = ({ id, status, getPosibleStep, position, doCheckerStep }: TSingleSell) => {
     const handleClick = (e) => {
-        console.log(e.target.id);
+        if (position) {
+           return doCheckerStep(id);
+        }
+        getPosibleStep(e.target.id);
     };
-    const background = parseInt((id / 8) + id) % 2 === 0 ? 'grey' : 'white';
     return (
         <StSingleSell
-            id={id + 1}
-            style={{
-                background: parseInt((id / 8) + id) % 2 === 0
-                    ? 'black' : 'white',
-            }}
-onClick={handleClick}
+            onClick={handleClick}
+            id={id}
+            color={status?.blackSquare ? `${blackPic}` : `${white}`}
         >
-{id + 1}
+            {position ? <StPossition/> : position}
+            {status?.checker ? status?.checker.blackChecker ? <img width='45px' id={id} src='../../../../public/assets/images/chinese-checkers (4).png'/>
+                                                            : <img width='45px' id={id} src='../../../../public/assets/images/chinese-checkers (1).png'/>
+                                                            : null}
         </StSingleSell>
     );
 };
