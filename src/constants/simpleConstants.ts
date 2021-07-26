@@ -1,5 +1,6 @@
 export const BOT_NAME = 'Bot';
 export const DRAW = 'draw';
+export const CHECKERS = 'Checkers';
 export const CHECKER_FIELD_INIT = [
   null,
   {

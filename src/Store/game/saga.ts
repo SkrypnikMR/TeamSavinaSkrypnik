@@ -9,7 +9,7 @@ import i18next from 'i18next';
 import { routes } from '../../constants/routes';
 import { getUserLogin, getActualRoom, getStepOrderSelector, getPossibleSteps } from './selectors';
 import { support } from '../../helpers/support';
-import { BOT_NAME, DRAW, CHECKER_FIELD_INIT } from '../../constants/simpleConstants';
+import { BOT_NAME, DRAW, CHECKER_FIELD_INIT, CHECKERS } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
 import {
     putRooms,
@@ -35,7 +35,7 @@ export const connection = (token: string) => {
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
     const roomsSub = stompClient.subscribe(routes.ws.subs.rooms, ({ body }) => emit(putRooms(JSON.parse(body))));
     const errorSub = stompClient.subscribe(routes.ws.subs.user_errors, support.errorCatcher);
-    const stepsSub = stompClient.subscribe('/user/topic/game/', support.possibleStep);
+    const stepsSub = stompClient.subscribe(routes.ws.subs.user_game, support.possibleStep);
     return () => {
         roomsSub.unsubscribe();
         errorSub.unsubscribe();
@@ -166,7 +166,7 @@ export function* workerGameEvent({ payload }) {
     }
     if (parsedBody.stepDtoList) {
         let firstStepHistory = yield call([JSON, JSON.stringify], []);
-        if (parsedBody.gameType === 'Checkers') {
+        if (parsedBody.gameType === CHECKERS) {
             firstStepHistory = yield call([JSON, JSON.stringify], CHECKER_FIELD_INIT);
             yield put(setStepHistory(CHECKER_FIELD_INIT));
         }
@@ -198,7 +198,7 @@ export function* workerGetPosibleStep({ payload }) {
             id,
         },
     });
-    yield call([stompClient, stompClient.send], '/radioactive/get-possible-steps', { uuid: id }, body);
+    yield call([stompClient, stompClient.send], routes.ws.actions.getPossibleStep, { uuid: id }, body);
 }
 export function* workerCheckerStep({ payload }) {
     payload = payload.toString();
