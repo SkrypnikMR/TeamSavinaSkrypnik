@@ -7,6 +7,7 @@ export const StSingleSell = styled.div < IDiv > `
     height: 50px;
     cursor: pointer;
     display: flex;
+    font-size: 50px;
     justify-content: center;
     align-items: center;
     ${({ color = 'red' }) => color && `background-color: ${color}`};
