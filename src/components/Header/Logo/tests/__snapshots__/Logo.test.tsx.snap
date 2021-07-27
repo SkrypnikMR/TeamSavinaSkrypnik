@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Logo Should match snapshot 1`] = `"<div class=\\"styled__StLogo-sc-1lhyjdk-0 eFYqgc\\"><img src=\\"../../../public/assets/images/game-development.png\\"/><div><button type=\\"button\\" font-size=\\"20px\\" class=\\"styled__StButton-sc-1y35zax-0 cKnloK\\">Game Zone</button><button type=\\"button\\" font-size=\\"20px\\" class=\\"styled__StButton-sc-1y35zax-0 dYyTdn\\">Statistics</button></div></div>"`;
+exports[`Logo Should match snapshot 1`] = `"<div class=\\"styled__StLogo-sc-1lhyjdk-0 eFYqgc\\"><img src=\\"public/assets/images/game-development.png\\"/><div><button type=\\"button\\" font-size=\\"20px\\" class=\\"styled__StButton-sc-1y35zax-0 gyyVRB\\">Game Zone</button><button type=\\"button\\" font-size=\\"20px\\" class=\\"styled__StButton-sc-1y35zax-0 bUgvgU\\">Statistics</button></div></div>"`;
