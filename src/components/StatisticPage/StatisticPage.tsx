@@ -12,7 +12,7 @@ const StatisticPage = ({ getFullStat, fullStatistic, userLogin }: TStatisticPage
         <StStatisticPage>
             <Header/>
             <StStatisticContent>
-{
+                {
                 fullStatistic.length > 0
                         ? fullStatistic.map((game: TStatGame) => (
                             <StatisticCard
@@ -28,7 +28,7 @@ const StatisticPage = ({ getFullStat, fullStatistic, userLogin }: TStatisticPage
                             />
                     ))
                     : 'nothing to see'
-            }
+                }
             </StStatisticContent>
             <Footer/>
         </StStatisticPage>

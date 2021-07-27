@@ -11,6 +11,7 @@ import { actionTypes } from '../actionTypes';
 import { validation } from '../../../helpers/validation';
 import { setUserLogin } from '../../game/actions';
 
+jest.mock('../../../index', () => ({ store: {} }));
 
 describe('loginSaga', () => {
     describe('workerLogin', () => {

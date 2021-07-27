@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderControlPanel Should match snapshot 1`] = `"<div class=\\"styled__StControl-sc-1l7fu2q-0 bcijKV\\"> <button id=\\"theme_btn\\" type=\\"button\\" value=\\"dark\\" color=\\"white\\" font-size=\\"26px\\" width=\\"40px\\" class=\\"styled__StButton-sc-1y35zax-0 eJAoQM\\"></button><button id=\\"en\\" type=\\"button\\" value=\\"en\\" color=\\"white\\" font-size=\\"26px\\" width=\\"40px\\" class=\\"styled__StButton-sc-1y35zax-0 gpYQlr\\"></button><button id=\\"ru\\" type=\\"button\\" value=\\"ru\\" color=\\"white\\" font-size=\\"26px\\" width=\\"40px\\" class=\\"styled__StButton-sc-1y35zax-0 coNgnP\\"></button><img src=\\"public/assets/images/log-out.png\\"/></div>"`;

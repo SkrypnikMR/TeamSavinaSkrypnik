@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import i18next from 'i18next';
 import { DRAW } from '../../constants/simpleConstants';
 import { ApplicationState } from '../types';
+import { TTicSelector } from './types';
 
 export const gameStore = (store: ApplicationState) => store.game;
 
@@ -45,7 +46,7 @@ export const getPossibleStepPosition = createSelector(
     gameStore,
     (_store, id: number) => id,
     ({ possibleSteps }, id) => {
-        const position = possibleSteps.find(el => el.stepIndex === id);
+        const position = possibleSteps.find((el: TTicSelector) => el.stepIndex === id);
         if (position) return true;
         return null;
     },

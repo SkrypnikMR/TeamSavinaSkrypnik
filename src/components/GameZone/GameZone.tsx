@@ -18,14 +18,21 @@ const GameZone = ({ gameType }: TGZ) => {
     const { colors, theme } = useTheme(); 
     switch (gameType) {
         case 'Checkers': return (
-            <div>
+            <>
                 <StGameZone colors={colors} theme={theme}>
                     <Turn/>
                     <Button content="???" onClick={handleClick}/>
                     <Chessplate />
                 </StGameZone>
-                {isOpen && <ModalCustom header={t('delete_game')} content={<ModalDelete handlecloseModal={handleClick}/>} handlecloseModal={handleClick}/>}
-            </div>
+                {isOpen
+                    && (
+                        <ModalCustom
+                        header={t('delete_game')}
+                    content={<ModalDelete handlecloseModal={handleClick} />}
+                    handlecloseModal={handleClick}
+                        />
+                )}
+            </>
         );
         case 'Tic-tac-toe': return (
             <StGameZone colors={colors} theme={theme}>

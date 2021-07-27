@@ -2,70 +2,46 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { shallowSmart } from '../../../../__tests__/testHelper';
 import App from '../App';
-import '/src/i18n';
 
-jest.mock('react-modal');
+jest.mock('../../../index', () => ({ store: { dispatch: jest.fn() } }));
 
 const mockStore = configureStore();
 const store = mockStore({
   registration: {
-    email: '',
+    login: '',
     password: '',
     confirm: '',
-    firstName: '',
-    lastName: '',
     success: null,
   },
   login: {
-    email: '',
+    login: '',
     password: '',
-    confirm: '',
-    firstName: '',
-    lastName: '',
     success: null,
   },
-  user: {
-    themeMode: 'light',
+  game: {
+     rooms: [],
+    userLogin: localStorage.getItem('login') || '',
+    actualRoom: {
+      gameType: '',
+      creatorLogin: '',
+      guestLogin: '',
+      startTime: 0,
+      id: '',
+      stepDoList: [],
+    },
+    stepOrder: '',
+    stepHistory: [],
+    winner: '',
+    possibleSteps: [],
   },
-  modals: {
-    notificationSettings: {
-        type: 'notificationSettings',
-        data: {},
-        isOpen: true,
-    },
-    logOut: {
-        type: 'logOut',
-        data: {},
-        isOpen: false,
-    },
-    allNotification: {
-        type: 'allNotification',
-        data: {},
-        isOpen: false,
-    },
-    usersInChat: {
-        type: 'usersInChat',
-        data: {},
-        isOpen: false,
-    },
-    createChat: {
-        type: 'usersInChat',
-        data: {},
-        isOpen: false,
-    },
+  statistic: {
+    fullStatistic: [],
   },
 });
-const props = { 
-  userTheme: {
-    light: 'lightBackground',
-    dark: 'darkBackground',
-  },
-  userThemeMode: 'dark',
-};
 
 describe('App', () => {
   it('Should match snapshot', () => {
-    const component = shallowSmart(<App {...props} />, store);
+    const component = shallowSmart(<App />, store);
     expect(component.html()).toMatchSnapshot();
   });
 });
