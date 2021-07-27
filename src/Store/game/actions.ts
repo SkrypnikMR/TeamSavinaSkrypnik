@@ -24,4 +24,4 @@ export const disconnect = () => action(AT.DISCONNECT);
 export const getPosibleStep = (payload: string) => action(AT.GET_POSIBLE_STEP, payload);
 export const putPossibleSteps = (payload: any) => action(AT.PUT_POSSIBLE_STEPS, payload);
 export const doCheckerStep = (payload: string) => action(AT.DO_CHECKER_STEP, payload);
-export const logOut = () => action(AT.LOGOUT);
+export const exitGame = () => action(AT.EXIT_GAME);

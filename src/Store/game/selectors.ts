@@ -25,6 +25,7 @@ export const getActualRoomGameType = createSelector(
     getActualRoom,
     ({ gameType }) => gameType,
 );
+export const getActualRoomId = createSelector(getActualRoom, ({ id }) => id);
 
 export const getStepOrderSelector = createSelector(
     gameStore,
