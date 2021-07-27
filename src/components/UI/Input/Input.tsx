@@ -23,8 +23,6 @@ const Input = ({
     borderColor,
     placeholder,
     errorMessage,
-    eye,
-    handleShowPassword,
 } : IInput) => {
     const { t } = useTranslation();
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) : void => {
