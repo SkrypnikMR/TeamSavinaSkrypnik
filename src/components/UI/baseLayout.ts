@@ -63,6 +63,8 @@ export const MAIN_PAGE_BG = '#404040';
 export const ROOMS_CONTAINER_BG = '#C4C4C4';
 
 export const SINGLE_ROOM_BG = '#808080';
+
+export const EYE = '../../../../public/assets/images/show_hide.svg';
 export const BLACKCHECKER = 'public/assets/images/chinese-checkers (4).png';
 export const WHITECHECKER = 'public/assets/images/chinese-checkers (1).png';
 export const CROSS = 'public/assets/images/747953.png';

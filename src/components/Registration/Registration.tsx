@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { regInputs } from 'src/constants/componentsСonsts';
@@ -14,6 +14,8 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
     const { t } = useTranslation();
     const { colors, theme } = useTheme();
     const { success } = fields;
+    const [eye, setEye] = useState(true);
+    const handleShowPassword = () => setEye(!eye);
     if (success) return <Redirect to={APP_ROUTES.login} />;
     const handleOnChange = (data) => {
         const { error } = fields;
@@ -33,6 +35,8 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
                         height="100px"
                         key={input.id}
                         name={input.id}
+                        eye={eye}
+                        handleShowPassword={handleShowPassword}
                         inputHeight="50px"
                         borderRadius="5px"
                         label={t(input.label)}

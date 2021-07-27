@@ -32,6 +32,8 @@ export type TInputChangeArg = {
 
 export interface IInput{
     id: string;
+    eye?: boolean;
+    handleShowPassword?: () => void;
     name?: string;
     type?: string;
     label?: string;

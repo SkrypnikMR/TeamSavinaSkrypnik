@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { NavLink, Redirect } from 'react-router-dom';
@@ -14,7 +14,8 @@ import { StLoginDiv } from './styled';
 
 const Login = ({ sendLoginRequest, setLoginValue, fields, setValue }) => {
   const { t } = useTranslation();
-
+  const [eye, setEye] = useState(true);
+  const handleShowPassword = () => setEye(!eye);
   if (fields.success) {
     setValue({ name: 'success', value: false });
     return <Redirect to={APP_ROUTES.mainPage} />;
