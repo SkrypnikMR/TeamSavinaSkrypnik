@@ -75,6 +75,7 @@
         "no-trailing-spaces": "off",
         "import/extensions": "off",
         "import/no-unresolved": "off",
+        "import/no-cycle": "off",
         "import/no-extraneous-dependencies": "off",
         "function-paren-newline": "off",
         "import/no-dynamic-require": "off",

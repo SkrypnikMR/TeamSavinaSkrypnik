@@ -2,9 +2,8 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { shallowSmart } from '../../../../__tests__/testHelper';
 import App from '../App';
-import '/src/i18n';
 
-jest.mock('react-modal');
+jest.mock('../../../index', () => ({ store: { dispatch: jest.fn() } }));
 
 const mockStore = configureStore();
 const store = mockStore({
@@ -18,9 +17,6 @@ const store = mockStore({
     login: '',
     password: '',
     success: null,
-  },
-  user: {
-    themeMode: 'light',
   },
   game: {
      rooms: [],
@@ -38,18 +34,14 @@ const store = mockStore({
     winner: '',
     possibleSteps: [],
   },
-});
-const props = { 
-  userTheme: {
-    light: 'lightBackground',
-    dark: 'darkBackground',
+  statistic: {
+    fullStatistic: [],
   },
-  userThemeMode: 'dark',
-};
+});
 
 describe('App', () => {
   it('Should match snapshot', () => {
-    const component = shallowSmart(<App {...props} />, store);
+    const component = shallowSmart(<App />, store);
     expect(component.html()).toMatchSnapshot();
   });
 });
