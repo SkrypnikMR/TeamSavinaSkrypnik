@@ -21,7 +21,7 @@ const GameZone = ({ gameType }: TGZ) => {
             <>
                 <StGameZone colors={colors} theme={theme}>
                     <Turn/>
-                    <Button content="???" onClick={handleClick}/>
+                    <Button content="???" position="absolute" width="35px" right="3%" onClick={handleClick}/>
                     <Chessplate />
                 </StGameZone>
                 {isOpen

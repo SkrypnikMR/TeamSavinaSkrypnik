@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { RouterProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { APP_ROUTES } from '../../../constants/reactRoutes';
@@ -8,6 +9,8 @@ import Button from '../../UI/Button';
 import { colorDefault, LOGOUTICON } from '../../UI/baseLayout';
 
 import { StControl } from './styled';
+import ModalCustom from 'src/components/ModalCustom';
+import ModalLogout from 'src/components/ModalLogout';
 
 const HeaderControlPanel = ({ history }: RouterProps) => {
     const { i18n } = useTranslation();
@@ -29,6 +32,9 @@ const HeaderControlPanel = ({ history }: RouterProps) => {
             default: return handleChangeLanguage;
         }
     };
+    const [isOpen, setIsOpen] = useState(false);
+    const handleClick = () => setIsOpen((prev) => !prev);
+    const { t } = useTranslation();
     return (
         <StControl >
             {' '}
@@ -48,7 +54,8 @@ const HeaderControlPanel = ({ history }: RouterProps) => {
                     />
                 );
             })}
-            <img src={LOGOUTICON} onClick={handleLogOutClick}/>
+            <img src={LOGOUTICON} onClick={handleClick}/>
+            {isOpen && <ModalCustom header={t('go_out')} content={<ModalLogout handlecloseModal={handleClick}/>} handlecloseModal={handleClick}/>}
         </StControl>
     );
 };
