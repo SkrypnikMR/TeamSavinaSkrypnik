@@ -1,24 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
 import Button from 'src/components/UI/Button';
-
 import { StLogo } from './styled';
+import { LOGO } from '../../UI/baseLayout';
 
 const Logo = ({ history }) => {
-    const goToGames = () => {
-        const { pathname } = history.location;
-        history.push('/mainPage');
-    };
-    const goToStats = () => {
-        const { pathname } = history.location;
-        history.push('/statistics');
-    };
+    const goToGames = () => history.push('/mainPage');
+    const goToStats = () => history.push('/statistics');
     const { t } = useTranslation();
     return (
         <StLogo >
-            <img src="../../../public/assets/images/game-development.png" onClick={goToGames} />
-            <div >
+            <img src={LOGO} onClick={goToGames} />
+            <div>
                 <Button
                     content={t('game_zone')}
                     fontSize='20px'

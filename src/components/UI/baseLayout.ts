@@ -68,3 +68,4 @@ export const WHITECHECKER = 'public/assets/images/chinese-checkers (1).png';
 export const CROSS = 'public/assets/images/747953.png';
 export const ZEROTIC = 'public/assets/images/rec.png';
 export const LOGOUTICON = 'public/assets/images/log-out.png';
+export const LOGO = 'public/assets/images/game-development.png';
