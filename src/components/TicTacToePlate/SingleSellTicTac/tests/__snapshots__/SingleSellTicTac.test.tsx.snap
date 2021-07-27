@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleSellTicTac Should match snapshot 1`] = `"<div id=\\"1\\" class=\\"styled__StSingleSellTicTac-sc-1ruk552-0 jiqoBQ\\"><img width=\\"40px\\" src=\\"\\"/></div>"`;

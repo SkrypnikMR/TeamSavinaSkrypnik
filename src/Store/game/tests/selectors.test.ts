@@ -80,13 +80,13 @@ describe('login selectors', () => {
     });
     describe('selectors.getStepOrder', () => {
         it('toBe defined', () => {
-            expect(selectors.getStepOrder).toBeDefined();
+            expect(selectors.getStepOrderSelector).toBeDefined();
         });
         it('toBe function', () => {
-            expect(typeof selectors.getStepOrder).toBe('function');
+            expect(typeof selectors.getStepOrderSelector).toBe('function');
         });
         it('should return value', () => {
-            expect(selectors.getStepOrder(state)).toEqual(state.game.stepOrder);
+            expect(selectors.getStepOrderSelector(state)).toEqual(state.game.stepOrder);
         });
     });
     describe('selectors.getWinner', () => {
@@ -107,17 +107,10 @@ describe('login selectors', () => {
         it('toBe function', () => {
             expect(typeof selectors.getTicStatus).toBe('function');
         });
-        it('should return o', () => {
-            state.game.stepHistory = [{ step: '1' }];
-            expect(selectors.getTicStatus(state, 1)).toEqual('o');
-        });
-        it('should return value "" ', () => {
-            state.game.stepHistory = [{ step: '1' }];
-            expect(selectors.getTicStatus(state, 3)).toEqual('');
-        });
-                it('should return value x ', () => {
-            state.game.stepHistory = [{ step: '1', login: 'kek' }];
-            expect(selectors.getTicStatus(state, 1)).toEqual('x');
+        it('should return expectedObj', () => {
+            const expectedObj = { someField: 'field' };
+            state.game.stepHistory = [expectedObj];
+            expect(selectors.getTicStatus(state, 0)).toEqual(expectedObj);
         });
     });
 });

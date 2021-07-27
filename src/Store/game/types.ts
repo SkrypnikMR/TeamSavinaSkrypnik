@@ -1,10 +1,15 @@
-import { CHECKER_FIELD__INIT } from '../../constants/simpleConstants';
+import { CHECKER_FIELD_INIT } from '../../constants/simpleConstants';
 
+export type THistory = Array<typeof CHECKER_FIELD_INIT> | [];
 export type TRoom = {
     creatorLogin: string;
     gameType: string;
     id: string;
 }
+export type TTicSelector = {
+    stepIndex: number;
+}
+
 export type TActualRoom = {
     gameType: string;
     creatorLogin: string;
@@ -35,5 +40,3 @@ export type TInitialGame = {
     winner: string;
     possibleSteps: [] | any;
 }
-
-export type THistory = Array<typeof CHECKER_FIELD__INIT> | [];

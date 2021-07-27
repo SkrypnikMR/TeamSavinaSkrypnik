@@ -29,15 +29,15 @@ const Input = ({
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) : void => {
         onChange({ name: e.target.name, value: e.target.value });
     };
-    // const [typeInp, setType] = useState('text');
-    // const handleShowPassword = () => { setType(typeInp === 'password' ? 'text' : 'password'); console.log(typeInp); };
+    const [typeInp, setType] = useState('text');
+    const handleShowPassword = () => { setType(typeInp === 'password' ? 'text' : 'password'); console.log(typeInp); };
     return (
         <StInputContainer width={width} height={height}>
             {!!label && <StLabel htmlFor={id}>{label}</StLabel>}
             <StInput
                 id={id}
                 name={name}
-                type={type}
+                type={typeInp}
                 value={value}
                 margin={margin}
                 color={color}
@@ -51,7 +51,7 @@ const Input = ({
                 fontSizeInp={fontSizeInp}
                 bgFocusColor={bgFocusColor}
             />
-            {/* {(id === 'password' || id === 'confirm') && <StEyeImg src={EYE} onClick={handleShowPassword}/>} */}
+            {(id === 'password' || id === 'confirm') && <StEyeImg src={EYE} onClick={handleShowPassword}/>}
             {!!errorMessage && <StErrorSpan>{errorMessage}</StErrorSpan>}
         </StInputContainer>
     );

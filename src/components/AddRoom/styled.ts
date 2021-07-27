@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-
-import { IDiv } from './types';
 import { midGrey, bgColorDefault } from '../UI/baseLayout';
 
-export const StAddRoom = styled.div < IDiv > `
+export const StAddRoom = styled.div`
     background: ${midGrey};
     padding: 2px;
     font-size: 30px;

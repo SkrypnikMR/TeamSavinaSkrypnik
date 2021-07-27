@@ -22,12 +22,12 @@ export interface IStyledButton{
     right?:string;
 }
 export interface IButton {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     onClick: (e: React.MouseEvent<Element, MouseEvent>) => void;
     value?: string;
-    type: 'submit' | 'reset' | 'button' | undefined;
-    title: string;
+    type?: 'submit' | 'reset' | 'button';
+    title?: string;
     borderRadius?: string;
     isDisabled?: boolean;
     color?: string;
