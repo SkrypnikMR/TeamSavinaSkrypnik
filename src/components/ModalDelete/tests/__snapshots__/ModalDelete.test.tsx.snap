@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalCreateRoom should snapshot 1`] = `"<div class=\\"styled__StModalDelete-sc-1bs2vgy-0 bJVuRx\\"><p>are_you_sure</p><div class=\\"styled__StModalButtonBox-sc-1lbp0ln-0 kgpYEL\\"><button id=\\"okButton\\" name=\\"okButton\\" type=\\"button\\" value=\\"OK\\" title=\\"OK\\" class=\\"styled__StButton-sc-1y35zax-0 hBgoPh\\">OK</button><button id=\\"CancelButton\\" name=\\"CancelButton\\" type=\\"button\\" value=\\"Cancel\\" title=\\"Cancel\\" class=\\"styled__StButton-sc-1y35zax-0 efYwVL\\">cancel</button></div></div>"`;

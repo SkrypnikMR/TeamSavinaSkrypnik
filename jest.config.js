@@ -33,6 +33,7 @@ module.exports = {
         'index.tsx',
         'src/store/index.ts',
         'src/store/saga.ts',
+        'index.ts',
     ],
     moduleNameMapper: {
         '^.+\\.(css|scss)$': 'identity-obj-proxy',

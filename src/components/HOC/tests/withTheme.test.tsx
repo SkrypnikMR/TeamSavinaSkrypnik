@@ -9,4 +9,8 @@ describe('withTheme', () => {
     it('toBe function', () => {
         expect(typeof withTheme).toBe('function');
     });
+    it('should call', () => {
+        const div = React.createElement('div');
+        withTheme(div);
+    });
 });

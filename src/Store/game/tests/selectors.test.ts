@@ -1,5 +1,12 @@
 import * as selectors from '../selectors';
 
+jest.mock('i18next', () => ({
+    t: jest.fn().mockImplementation((arg) => {
+        if (arg === 'winner') return 'winner';
+        if (arg === 'draw') return 'DRAW';
+        if (arg === 'loser') return 'loser';
+}) }));
+
 describe('login selectors', () => {
     let state : any;
     beforeEach(() => {
@@ -20,6 +27,7 @@ describe('login selectors', () => {
                 stepOrder: 'YOU',
                 winner: '',
                 stepHistory: [],
+                pissibleSteps: [],
             },
         };
     });
@@ -96,8 +104,25 @@ describe('login selectors', () => {
         it('toBe function', () => {
             expect(typeof selectors.getWinner).toBe('function');
         });
-        it('should return value', () => {
-            expect(selectors.getWinner(state)).toEqual(state.game.winner);
+        it('should return winner === login', () => {
+            state.game.userLogin = 'Maxim';
+            state.game.winner = 'Maxim';
+            expect(selectors.getWinner(state)).toBe('winner');
+        });
+        it('should return DRAW', () => {
+            state.game.userLogin = 'Maxim';
+            state.game.winner = 'draw';
+            expect(selectors.getWinner(state)).toBe('DRAW');
+        });
+        it('should return loser', () => {
+            state.game.userLogin = 'Maxim';
+            state.game.winner = 'neMaxim';
+            expect(selectors.getWinner(state)).toBe('loser');
+        });
+        it('should return "" ', () => {
+            state.game.userLogin = 'Maxim';
+            state.game.winner = '';
+            expect(selectors.getWinner(state)).toBe('');
         });
     });
     describe('selectors.getTicStatus', () => {
@@ -111,6 +136,47 @@ describe('login selectors', () => {
             const expectedObj = { someField: 'field' };
             state.game.stepHistory = [expectedObj];
             expect(selectors.getTicStatus(state, 0)).toEqual(expectedObj);
+        });
+    });
+    describe('selectors.getActualRoomId ', () => {
+        it('toBe defined', () => {
+            expect(selectors.getActualRoomId).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof selectors.getActualRoomId).toBe('function');
+        });
+        it('should return expectedID', () => {
+            const expectedId = '123721378213';
+            expect(selectors.getActualRoomId(state)).toEqual(expectedId);
+        });
+    });
+    describe('selectors.getPossibleSteps  ', () => {
+        it('toBe defined', () => {
+            expect(selectors.getPossibleSteps).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof selectors.getPossibleSteps).toBe('function');
+        });
+        it('should return expectedID', () => {
+            expect(selectors.getPossibleSteps(state)).toEqual(state.game.possibleSteps);
+        });
+    });
+    describe('selectors.getPossibleStepPosition', () => {
+        it('toBe defined', () => {
+            expect(selectors.getPossibleStepPosition).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof selectors.getPossibleStepPosition).toBe('function');
+        });
+        it('should return null', () => {
+            state.game.possibleSteps = [{ stepIndex: 2 }];
+            const id = 1;
+            expect(selectors.getPossibleStepPosition(state, id)).toEqual(null);
+        });
+        it('should return true', () => {
+            state.game.possibleSteps = [{ stepIndex: 1 }];
+            const id = 1;
+            expect(selectors.getPossibleStepPosition(state, id)).toEqual(true);
         });
     });
 });

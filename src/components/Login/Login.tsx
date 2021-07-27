@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { NavLink, Redirect } from 'react-router-dom';
-
 import { logInputs } from '../../constants/componentsСonsts';
 import { APP_ROUTES } from '../../constants/reactRoutes';
 import Form from '../UI/Form';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import { useTheme } from '../Hook/useTheme';
-
 import { StLoginDiv } from './styled';
 
 const Login = ({ sendLoginRequest, setLoginValue, fields, setValue }) => {
   const { t } = useTranslation();
-  const [eye, setEye] = useState(true);
-  const handleShowPassword = () => setEye(!eye);
+  const { colors, theme } = useTheme();
   if (fields.success) {
     setValue({ name: 'success', value: false });
     return <Redirect to={APP_ROUTES.mainPage} />;
   }
-  const { colors, theme } = useTheme();
-
   return (
     <StLoginDiv colors={colors} theme={theme}>
       <img src="../../../public/assets/images/game-development.png"/>

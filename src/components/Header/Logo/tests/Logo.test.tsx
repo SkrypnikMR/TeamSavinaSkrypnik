@@ -1,23 +1,31 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
-import { shallowSmart, mountSmart } from '../../../../../__tests__/testHelper';
 import Logo from '../Logo';
-import '/src/i18n';
-import 'react-i18next';
 
 describe('Logo', () => {
-    const goToGames = jest.fn();
+    const props = {
+        history: { push: jest.fn() },
+    };
     it('Should match snapshot', () => {
-        const component = shallowSmart(<Logo />);
+        const component = shallow(<Logo {...props}/>);
         expect(component.html()).toMatchSnapshot();
     });
-    it('should render p', () => {
-        const component = mountSmart(<Logo />);
+    it('Should render 2 btns', () => {
+        const component = mount(<Logo {...props} />);
+        expect(component.find('Button')).toHaveLength(2);
+    });
+    it('Should render img', () => {
+        const component = mount(<Logo {...props} />);
         expect(component.find('img')).toHaveLength(1);
     });
-    it('should render inputs', () => {
-        const component = mountSmart(<Logo />);
-        expect(component.find('h1')).toHaveLength(0);
+    it('Should cal history push with /mainPage', () => {
+        const component = mount(<Logo {...props} />);
+        component.find('Button').at(0).props().onClick();
+        expect(props.history.push).toHaveBeenCalledWith('/mainPage');
+    });
+    it('Should cal history push with /statistics', () => {
+        const component = mount(<Logo {...props} />);
+        component.find('Button').at(1).props().onClick();
+        expect(props.history.push).toHaveBeenCalledWith('/statistics');
     });
 });

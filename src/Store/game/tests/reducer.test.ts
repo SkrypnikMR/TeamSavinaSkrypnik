@@ -2,6 +2,10 @@ import { reducer, initialState } from '../reducer';
 import * as actions from '../actions';
 
 describe('gameReducer', () => {
+    it('default', () => {
+        const defaultAction = jest.fn().mockReturnValue({ type: '' });
+        expect(reducer(initialState, defaultAction())).toEqual({ ...initialState });
+    });
     it('PUT_ROOMS', () => {
         const rooms = [
             { creatorLogin: 'KekShrek', gameType: 'Checkers', id: 'dashgdsahgd213123-dsadhsakd' },
@@ -33,6 +37,11 @@ describe('gameReducer', () => {
         const stepOrder = 'YOU';
         expect(reducer(initialState, actions.setStepOrder(stepOrder)))
             .toEqual({ ...initialState, stepOrder });
+    });
+    it('PUT_POSSIBLE_STEPS', () => {
+            const possibleSteps = [];
+        expect(reducer(initialState, actions.putPossibleSteps(possibleSteps)))
+            .toEqual({ ...initialState, possibleSteps });
     });
     it('SET_STEP_HISTORY', () => {
         const stepHistory = [

@@ -194,4 +194,97 @@ describe('game actions', () => {
                 .toEqual({ type: actionTypes.SET_WINNER, payload: winner });
         });
     });
+    describe('actions.disconnect ', () => {
+        it('toBe defined', () => {
+            expect(actions.disconnect).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.disconnect).toBe('function');
+        });
+        it('should return value', () => {
+            expect(actions.disconnect()).toEqual({ type: actionTypes.DISCONNECT });
+        });
+    });
+    describe('actions.askBotStep ', () => {
+        it('toBe defined', () => {
+            expect(actions.askBotStep).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.askBotStep).toBe('function');
+        });
+        it('should return value', () => {
+            expect(actions.askBotStep()).toEqual({ type: actionTypes.ASK_BOT_STEP });
+        });
+    });
+    describe('actions.doBotStepTic', () => {
+        it('toBe defined', () => {
+            expect(actions.doBotStepTic).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.doBotStepTic).toBe('function');
+        });
+        it('should return value', () => {
+            const payload = '13_17';
+            expect(actions.doBotStepTic(payload)).toEqual({ type: actionTypes.DO_BOT_STEP_TIC, payload });
+        });
+    });
+    describe('actions.gameEvent ', () => {
+        it('toBe defined', () => {
+            expect(actions.gameEvent).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.gameEvent).toBe('function');
+        });
+        it('should return value', () => {
+            const payload = JSON.stringify({ someGameEventField: '' });
+            expect(actions.gameEvent(payload)).toEqual({ type: actionTypes.GAME_EVENT, payload });
+        });
+    });
+    describe('actions.getPosibleStep', () => {
+        it('toBe defined', () => {
+            expect(actions.getPosibleStep).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.getPosibleStep).toBe('function');
+        });
+        it('should return value', () => {
+            const payload = '17';
+            expect(actions.getPosibleStep(payload)).toEqual({ type: actionTypes.GET_POSIBLE_STEP, payload });
+        });
+    });
+    describe('actions.putPossibleSteps', () => {
+        it('toBe defined', () => {
+            expect(actions.putPossibleSteps).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.putPossibleSteps).toBe('function');
+        });
+        it('should return value', () => {
+            const payload = { startIndex: '21', index: '30' };
+            expect(actions.putPossibleSteps(payload)).toEqual({ type: actionTypes.PUT_POSSIBLE_STEPS, payload });
+        });
+    });
+    describe('actions.doCheckerStep', () => {
+        it('toBe defined', () => {
+            expect(actions.doCheckerStep).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.doCheckerStep).toBe('function');
+        });
+        it('should return value', () => {
+            const payload = '21';
+            expect(actions.doCheckerStep(payload)).toEqual({ type: actionTypes.DO_CHECKER_STEP, payload });
+        });
+    });
+    describe('actions.exitGame', () => {
+        it('toBe defined', () => {
+            expect(actions.exitGame).toBeDefined();
+        });
+        it('toBe function', () => {
+            expect(typeof actions.exitGame).toBe('function');
+        });
+        it('should return value', () => {
+            expect(actions.exitGame()).toEqual({ type: actionTypes.EXIT_GAME });
+        });
+    });
 });
