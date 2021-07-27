@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { APP_ROUTES } from 'src/constants/reactRoutes';
 
@@ -9,6 +9,8 @@ import { colorDefault } from '../../UI/baseLayout';
 import { useTheme } from 'src/components/Hook/useTheme';
 
 import { StControl } from './styled';
+import ModalCustom from 'src/components/ModalCustom';
+import ModalLogout from 'src/components/ModalLogout';
 
 const HeaderControlPanel = ({
     history,
@@ -33,6 +35,9 @@ const HeaderControlPanel = ({
             default: return handleChangeLanguage;
         }
     };
+    const [isOpen, setIsOpen] = useState(false);
+    const handleClick = () => setIsOpen((prev) => !prev);
+    const { t } = useTranslation();
     return (
         <StControl >
             {' '}
@@ -52,7 +57,8 @@ const HeaderControlPanel = ({
                     />
                 );
             })}
-            <img src="../../../../public/assets/images/log-out.png" onClick={handleLogOutClick}/>
+            <img src="../../../../public/assets/images/log-out.png" onClick={handleClick}/>
+            {isOpen && <ModalCustom header={t('go_out')} content={<ModalLogout handlecloseModal={handleClick}/>} handlecloseModal={handleClick}/>}
         </StControl>
     );
 };

@@ -5,8 +5,6 @@ import { midGrey, bgColorDefault } from '../UI/baseLayout';
 
 export const StAddRoom = styled.div < IDiv > `
     background: ${midGrey};
-    bottom: 0px;
-    right: 0px;
     padding: 2px;
     font-size: 30px;
     font-weight: bold;
@@ -18,11 +16,14 @@ export const StAddRoom = styled.div < IDiv > `
     text-align: center;
     margin: 0 10px 30px;
     cursor: pointer;
+    position: absolute;
+    right: 73%;
+    top: 90%;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
     :hover {
-        -webkit-transform: scale(1.005);
-        -ms-transform: scale(1.005);
-        transform: scale(1.005);
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22);
+        -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        transform: scale(1.5);
         transition-duration: 0.3s;
     }
 `;
