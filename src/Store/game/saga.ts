@@ -6,7 +6,7 @@ import { NotificationManager } from 'react-notifications';
 import { eventChannel } from 'redux-saga';
 import i18next from 'i18next';
 import { routes } from '../../constants/routes';
-import { getUserLogin, getActualRoom, getStepOrderSelector, getPossibleSteps } from './selectors';
+import { getUserLogin, getActualRoom, getStepOrderSelector, getPossibleSteps, getActualRoomId } from './selectors';
 import { support } from '../../helpers/support';
 import { BOT_NAME, DRAW, CHECKER_FIELD_INIT, CHECKERS } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
@@ -223,6 +223,13 @@ export function* workerCheckerStep({ payload }) {
     yield put(putPossibleSteps([]));
     yield put(getStepOrder({ uuid: id, gameType }));
 }
+export function* workerExitGame() {
+    const guestLogin = yield select(getUserLogin);
+    const id = yield select(getActualRoomId);
+    const body = yield call([JSON, JSON.stringify], { guestLogin, id });
+    yield call([stompClient, stompClient.send], routes.ws.actions.leaveTheGame, { uuid: id }, body);
+    yield call(workerCleanOldGame);
+}
 
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
@@ -239,4 +246,5 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.DISCONNECT, workerDisconnect);
     yield takeEvery(actionTypes.GET_POSIBLE_STEP, workerGetPosibleStep);
     yield takeEvery(actionTypes.DO_CHECKER_STEP, workerCheckerStep);
+    yield takeEvery(actionTypes.EXIT_GAME, workerExitGame);
 }

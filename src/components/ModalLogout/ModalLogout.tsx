@@ -1,12 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
 import Button from '../UI/Button';
-
+import { APP_ROUTES } from '../../constants/reactRoutes';
 import { StModalButtonBox } from '../ModalCreateRoom/styled';
 import { StModalLogout } from './styled';
 
-const ModalLogout = (handlecloseModal) => {
+const ModalLogout = ({ handlecloseModal, history, exitGame }) => {
+    const handleOkClick = () => {
+        exitGame();
+        history.push(APP_ROUTES.login);
+        localStorage.clear();
+        handlecloseModal();
+    };
     const { t } = useTranslation();
     return (
         <StModalLogout>
@@ -15,7 +20,7 @@ const ModalLogout = (handlecloseModal) => {
                 <Button 
                     content="OK"
                     focusColor="black"
-                    onClick={handlecloseModal}
+                    onClick={handleOkClick}
                     id="okButton"
                     name="okButton"
                     value="OK"
