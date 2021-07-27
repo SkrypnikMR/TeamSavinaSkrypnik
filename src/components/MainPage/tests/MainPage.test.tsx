@@ -1,7 +1,7 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import MainPage from '../MainPage';
 import { act } from 'react-dom/test-utils';
+import MainPage from '../MainPage';
 import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 import { TMainPage } from '../types';
 
@@ -30,9 +30,9 @@ describe('MainPage', () => {
     beforeEach(() => {
         props = {
             getSockJSConnection: jest.fn(),
-            disconnect: jest.fn()
-        }
-    })
+            disconnect: jest.fn(),
+        };
+    });
     it('Should match snapshot', () => {
         const component = shallowSmart(<MainPage {...props}/>, store);
         expect(component.html()).toMatchSnapshot();
@@ -40,6 +40,13 @@ describe('MainPage', () => {
     it('should call props.getSockJSConnection', () => {
         mountSmart(<MainPage {...props}/>, store);
         expect(props.getSockJSConnection).toHaveBeenCalled();
+    });
+        it('should call props.disconnect', () => {
+            const component = mountSmart(<MainPage {...props} />, store);
+            act(() => {
+                component.unmount();
+            });
+        expect(props.disconnect).toHaveBeenCalled();
     });
     it('should render StMainPage', () => {
         const component = mountSmart(<MainPage {...props}/>, store);
