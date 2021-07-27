@@ -49,9 +49,7 @@ export const StInput = styled.input < IStyledInput > `
     }
 `;
 
-export const StErrorSpan = styled.span`
-    color: ${({ color = 'red' }) => color}; // ToDo Move color to color matrix
-`;
+export const StErrorSpan = styled.span`color: ${({ color = 'red' }) => color}`;
 
 export const StInputContainer = styled.div < IStyledContainer > `
     ${({ width = '100%' }) => width && `width: ${width}`};
@@ -59,8 +57,8 @@ export const StInputContainer = styled.div < IStyledContainer > `
 `;
 
 export const StEyeImg = styled.img`
-  position: relative;
   width: 25px;
+  position: relative;
   left: 90%;
-  bottom: 197%;
+  bottom: 170%;
 `;
