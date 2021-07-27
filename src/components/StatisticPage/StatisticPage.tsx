@@ -5,13 +5,15 @@ import StatisticCard from '../StatisticCard';
 import { StStatisticPage, StStatisticContent } from './styled';
 import { TStatGame } from '../../store/statistic/types';
 import { TStatisticPage } from './types';
+import { useTheme } from '../Hook/useTheme';
 
 const StatisticPage = ({ getFullStat, fullStatistic, userLogin }: TStatisticPage) => {
     useEffect(() => getFullStat(), []);
+    const { colors, theme } = useTheme();
     return (
-        <StStatisticPage>
+        <StStatisticPage colors={colors} theme={theme}>
             <Header/>
-            <StStatisticContent>
+            <StStatisticContent colors={colors} theme={theme}>
                 {
                 fullStatistic.length > 0
                         ? fullStatistic.map((game: TStatGame) => (
