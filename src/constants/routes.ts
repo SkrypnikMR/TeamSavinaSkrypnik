@@ -26,6 +26,7 @@ export const routes = {
             doStep: '/radioactive/do-step',
             getBotStep: '/radioactive/get-bot-step',
             getPossibleStep: '/radioactive/get-possible-steps',
+            leaveTheGame: '/radioactive/leave-the-game',
         },
     },
 
