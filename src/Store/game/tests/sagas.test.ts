@@ -3,8 +3,9 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { askBotStep, setStepOrder, setActualRoom, setWinner, setStepHistory, getStepOrder as actionGetStepOrder } from '../actions';
-import { getStepOrderSelector, getActualRoom, getUserLogin } from '../selectors';
+import { putPossibleSteps, getStepOrder, askBotStep, setStepOrder, setActualRoom, setWinner, setStepHistory, getStepOrder as actionGetStepOrder } from '../actions';
+
+import { getStepOrderSelector, getActualRoom, getUserLogin, getPossibleSteps } from '../selectors';
 
 import { stompClient } from '../saga';
 
@@ -17,7 +18,7 @@ Date.now = jest.fn().mockReturnValue(1);
 
 describe('gameSaga', () => {
     beforeEach(() => {
-        sagas.setStompClient({ send: jest.fn(), subscribe: jest.fn() });
+        sagas.setStompClient({ send: jest.fn(), subscribe: jest.fn(), disconnect: jest.fn() });
     });
     describe('fork', () => {
         it('should fork watchers', () => {
@@ -54,6 +55,8 @@ describe('gameSaga', () => {
                 .next(stompClient)
                 .call(sagas.createStompChannel, stompClient)
                 .next()
+                .put(setWinner(''))
+                .next()
                 .call([localStorage, localStorage.getItem], 'actualRoom')
                 .next(null)
                 .call(sagas.init, stompClient)
@@ -84,7 +87,7 @@ describe('gameSaga', () => {
     });
     describe('createRoomSaga', () => {
         it('should call createRoomSaga', () => {
-            const payload = 'Checkers';
+            const payload = 'Tic-tac-toe';
             const userLogin = 'kekShrek';
             const token = 'sometokenstring';
             const uuid = '21361287362183127836213';
@@ -131,7 +134,7 @@ describe('gameSaga', () => {
     });
     describe('workerGetStepOrder', () => {
         it('should call workerJoinRoom', () => {
-            const payload = { gameType: 'Checkers', uuid: '2187378213621y312321' };
+            const payload = { gameType: 'Tic-tac-toe', uuid: '2187378213621y312321' };
             const testBody = JSON.stringify({ gameType: payload.gameType });
             testSaga(sagas.workerGetStepOrder, { payload })
                 .next()
@@ -144,7 +147,7 @@ describe('gameSaga', () => {
     describe('workerTicStep', () => {
         it('should call workerTicStep', () => {
             const payload = '4';
-            const testActualRoom = { id: '213123213', gameType: 'Chekers' };
+            const testActualRoom = { id: '213123213', gameType: 'Tic-tac-toe' };
             const testLogin = 'KekShrek';
             const testBody = JSON.stringify({
                 gameType: testActualRoom.gameType,
@@ -175,7 +178,15 @@ describe('gameSaga', () => {
         });
     });
     describe('workerCleanOldGame', () => {
-            it('should call workerCleanOldGame', () => {
+        it('should call workerCleanOldGame', () => {
+            const standartActualRoom = {
+                gameType: '',
+                creatorLogin: '',
+                guestLogin: '',
+                tartTime: 0,
+                id: '',
+                stepDoList: [],
+            };
             testSaga(sagas.workerCleanOldGame)
                 .next()
                 .call([localStorage, localStorage.removeItem], 'actualRoom')
@@ -183,6 +194,8 @@ describe('gameSaga', () => {
                 .call([localStorage, localStorage.removeItem], 'stepHistory')
                 .next()
                 .put(setStepHistory([]))
+                .next()
+                .put(setActualRoom(standartActualRoom))
                 .next()
                 .isDone();
         });
@@ -313,47 +326,36 @@ describe('gameSaga', () => {
                 .next()
                 .isDone();
         });
-        it('should call workerGameEvent, parsedBody with stepOrderLogin field, === stepOrderSelector', () => {
+        it('should call workerGameEvent, parsedBody with stepOrderLogin field !== stepOrderSelector !== Bot gameType === "Tic-tac-toe"', () => {
             const parsedBody = {
-                stepOrderLogin: 'KekShrek',
+                stepOrderLogin: 'grek',
             };
+            const actualRoom = { id: '1212', gameType: 'Tic-tac-toe' };
             const payload = JSON.stringify(parsedBody);
             testSaga(sagas.workerGameEvent, { payload })
                 .next()
                 .call([JSON, JSON.parse], payload)
                 .next(parsedBody)
-                .select(getStepOrderSelector)
-                .next('KekShrek')
-                .isDone();
-        });
-        it('should call workerGameEvent, parsedBody with stepOrderLogin field !== stepOrderSelector', () => {
-            const parsedBody = {
-                stepOrderLogin: 'Bot',
-            };
-            const payload = JSON.stringify(parsedBody);
-            testSaga(sagas.workerGameEvent, { payload })
-                .next()
-                .call([JSON, JSON.parse], payload)
-                .next(parsedBody)
-                .select(getStepOrderSelector)
-                .next('Kek')
-                .put(askBotStep())
-                .next()
+                .select(getActualRoom)
+                .next(actualRoom)
                 .put(setStepOrder(parsedBody.stepOrderLogin))
                 .next()
                 .isDone();
         });
-        it('should call workerGameEvent, parsedBody with stepOrderLogin field !== stepOrderSelector !== Bot', () => {
+        it('should call workerGameEvent, parsedBody with stepOrderLogin field !== stepOrderSelector === Bot gameType === "Tic-tac-toe"', () => {
             const parsedBody = {
-                stepOrderLogin: 'grek',
+                stepOrderLogin: 'Bot',
             };
+            const actualRoom = { id: '1212', gameType: 'Tic-tac-toe' };
             const payload = JSON.stringify(parsedBody);
             testSaga(sagas.workerGameEvent, { payload })
                 .next()
                 .call([JSON, JSON.parse], payload)
                 .next(parsedBody)
-                .select(getStepOrderSelector)
-                .next('Kek')
+                .select(getActualRoom)
+                .next(actualRoom)
+                .put(askBotStep())
+                .next()
                 .put(setStepOrder(parsedBody.stepOrderLogin))
                 .next()
                 .isDone();
@@ -365,6 +367,71 @@ describe('gameSaga', () => {
                 .next()
                 .call([JSON, JSON.parse], payload)
                 .next(parsedBody)
+                .isDone();
+        });
+    });
+    describe('workerDisconnect', () => {
+        it('should call workerDisconnect', () => {
+            testSaga(sagas.workerDisconnect)
+                .next()
+                .call([stompClient, stompClient.disconnect])
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerGetPosibleStep', () => {
+        it('should call workerGetPosibleStep', () => {
+            const payload = '13';
+            const actualRoom = { id: '12321312', gameType: 'Checkers' };
+            const login = 'userLogin';
+            const body = {
+                gameType: actualRoom.gameType,
+                stepDto: {
+                    login,
+                    step: payload,
+                    time: Date.now(),
+                    id: actualRoom.id,
+                },
+            };
+            testSaga(sagas.workerGetPosibleStep, { payload })
+                .next()
+                .select(getActualRoom)
+                .next(actualRoom)
+                .select(getUserLogin)
+                .next(login)
+                .call([JSON, JSON.stringify], body)
+                .next(JSON.stringify(body))
+                .call([stompClient, stompClient.send],
+                    routes.ws.actions.getPossibleStep,
+                    { uuid: actualRoom.id },
+                    JSON.stringify(body))
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerCheckerStep', () => {
+        it('should call workerCheckerStep', () => {
+            const payload = 17;
+            const possibleSteps = [{ startIndex: 13 }];
+            const actualRoom = { id: '12321321312', gameType: 'Checkers' };
+            const userLogin = 'SADKEK';
+            testSaga(sagas.workerCheckerStep, { payload })
+                .next()
+                .select(getPossibleSteps)
+                .next(possibleSteps)
+                .select(getActualRoom)
+                .next(actualRoom)
+                .select(getUserLogin)
+                .next(userLogin)
+                .call([stompClient, stompClient.send],
+                    routes.ws.actions.doStep, { uuid: actualRoom.id }, JSON.stringify({
+                    gameType: actualRoom.gameType, stepDto: { login: userLogin, step: '13_17', time: Date.now(), id: actualRoom.id },
+                    }))
+                .next()
+                .put(putPossibleSteps([]))
+                .next()
+                .put(getStepOrder({ uuid: actualRoom.id, gameType: actualRoom.gameType }))
+                .next()
                 .isDone();
         });
     });
