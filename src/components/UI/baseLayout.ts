@@ -64,3 +64,5 @@ export const ROOMS_CONTAINER_BG = '#C4C4C4';
 
 //SingleRoom
 export const SINGLE_ROOM_BG = '#808080';
+
+export const EYE = '../../../../public/assets/images/show_hide.svg';

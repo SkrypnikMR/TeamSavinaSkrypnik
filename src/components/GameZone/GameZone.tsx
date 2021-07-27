@@ -21,17 +21,21 @@ const GameZone = ({ gameType }: TGZ) => {
             <div>
                 <StGameZone colors={colors} theme={theme}>
                     <Turn/>
-                    <Button content="???" position="absolute" width="35px" right="3%" onClick={handleClick}/>
+                    <Button content="???" position="absolute" bgColorShadow="0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22)" width="35px" right="3%" onClick={handleClick}/>
                     <Chessplate />
                 </StGameZone>
                 {isOpen && <ModalCustom header={t('delete_game')} content={<ModalDelete handlecloseModal={handleClick}/>} handlecloseModal={handleClick}/>}
             </div>
         );
         case 'Tic-tac-toe': return (
-            <StGameZone colors={colors} theme={theme}>
-                <Turn/>
-                <TicTacToePlate />
-            </StGameZone>
+            <div>
+                <StGameZone colors={colors} theme={theme}>
+                    <Turn/>
+                    <Button content="???" position="absolute" bgColorShadow="0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22)" width="35px" right="3%" onClick={handleClick}/>
+                    <TicTacToePlate />
+                </StGameZone>
+                {isOpen && <ModalCustom header={t('delete_game')} content={<ModalDelete handlecloseModal={handleClick}/>} handlecloseModal={handleClick}/>}
+            </div>
         );
         default: return (
                 <Hello/>

@@ -27,7 +27,7 @@ const SingleRoom = ({ creatorLogin, gameType, userLogin, id, joinRoom, playWithB
         <StSingleRoom>
             <p>{roomOwner}</p>
             <p>{t(gameType)}</p>
-            <Button content={content} width="150px" onClick={onClickFunc} id={id}/>
+            <Button content={content} width="150px" bgColorShadow="0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22)" onClick={onClickFunc} id={id}/>
         </StSingleRoom>
     );
 };

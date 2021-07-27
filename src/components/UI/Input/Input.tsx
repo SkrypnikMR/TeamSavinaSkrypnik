@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StErrorSpan, StInput, StInputContainer, StLabel } from './styled';
+import { StErrorSpan, StInput, StInputContainer, StLabel, StEyeImg } from './styled';
 import { IInput } from './types';
+import { EYE } from '../baseLayout';
 
 const Input = ({
     id,
@@ -28,6 +29,8 @@ const Input = ({
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) : void => {
         onChange({ name: e.target.name, value: e.target.value });
     };
+    // const [typeInp, setType] = useState('text');
+    // const handleShowPassword = () => { setType(typeInp === 'password' ? 'text' : 'password'); console.log(typeInp); };
     return (
         <StInputContainer width={width} height={height}>
             {!!label && <StLabel htmlFor={id}>{label}</StLabel>}
@@ -48,6 +51,7 @@ const Input = ({
                 fontSizeInp={fontSizeInp}
                 bgFocusColor={bgFocusColor}
             />
+            {/* {(id === 'password' || id === 'confirm') && <StEyeImg src={EYE} onClick={handleShowPassword}/>} */}
             {!!errorMessage && <StErrorSpan>{errorMessage}</StErrorSpan>}
         </StInputContainer>
     );

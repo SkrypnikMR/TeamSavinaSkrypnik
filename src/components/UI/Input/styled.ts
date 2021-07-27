@@ -57,3 +57,10 @@ export const StInputContainer = styled.div < IStyledContainer > `
     ${({ width = '100%' }) => width && `width: ${width}`};
     ${({ height = '50px' }) => height && `height: ${height}`};
 `;
+
+export const StEyeImg = styled.img`
+  position: relative;
+  width: 25px;
+  left: 90%;
+  bottom: 197%;
+`;
