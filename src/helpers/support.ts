@@ -23,6 +23,7 @@ export const support = {
   },
   errorCatcher: ({ body }) => {
     const { body: parsedBody } = JSON.parse(body);
+    if (parsedBody.includes('Game with')) return;
     switch (parsedBody) {
       case BOT_TIC: return 1;
       case BOT_CHECKERS: return 1;
@@ -30,11 +31,12 @@ export const support = {
       case 'Invalid step Bot2': return 1;
       case 'Invalid step Bot3': return 1;
       case 'Invalid step {}': return 1;
+      case 'Permission denied': return 1;
       default: NotificationManager.error(parsedBody, i18next.t('game_error'), 3000);
     }
   },
-  subGame: message => store.dispatch(gameEvent(message.body)),
-  subBot: message => store.dispatch(doBotStepTic(message.body)),
+  subGame: (message) => store.dispatch(gameEvent(message.body)),
+  subBot: (message) => store.dispatch(doBotStepTic(message.body)),
   getPrettyDate: (timestamp: number) => moment(timestamp).format('L h:mm:ss'),
   possibleStep: ({ body }) => store.dispatch(putPossibleSteps(JSON.parse(body))),
 };

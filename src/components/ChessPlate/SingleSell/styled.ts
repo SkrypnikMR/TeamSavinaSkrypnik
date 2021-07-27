@@ -21,3 +21,11 @@ export const StPossition = styled.div`
     z-index: 1000;
     box-shadow: 0 0 10px 5px rgba(35, 239, 252, 1);
 `;
+
+export const STQueen = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+`;

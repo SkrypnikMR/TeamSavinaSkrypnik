@@ -1,12 +1,9 @@
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { logOut } from '../../../store/game/actions';
-
 import HeaderControlPanel from './HeaderControlPanel';
+import { getActualRoomId } from '../../../store/game/selectors';
+import { ApplicationState } from '../../../store/types';
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-    logout: (payload: string) => dispatch(logOut(payload)),
-});
+const mapStateToProps = (store: ApplicationState) => ({ actualRoomId: getActualRoomId(store) });
 
-export default connect(null, mapDispatchToProps)(withRouter(HeaderControlPanel));
+export default connect(mapStateToProps)(withRouter(HeaderControlPanel));

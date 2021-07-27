@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RoomsContainer Should match snapshot 1`] = `"<div class=\\"styled__StRoomsContainer-sc-2jyga5-0 ilAtBM\\"><div class=\\"styled__StSingleRoom-sc-1b2p865-0 jzlaBL\\">Who create<button type=\\"button\\" width=\\"70px\\" class=\\"styled__StButton-sc-1y35zax-0 fkzlAn\\">Join</button></div><div class=\\"styled__StSingleRoom-sc-1b2p865-0 jzlaBL\\">Who create<button type=\\"button\\" width=\\"70px\\" class=\\"styled__StButton-sc-1y35zax-0 fkzlAn\\">Join</button></div><div class=\\"styled__StSingleRoom-sc-1b2p865-0 jzlaBL\\">Who create<button type=\\"button\\" width=\\"70px\\" class=\\"styled__StButton-sc-1y35zax-0 fkzlAn\\">Join</button></div></div>"`;
+exports[`RoomsContainer Should match snapshot 1`] = `"<div class=\\"styled__StRoomsContainer-sc-2jyga5-0 iHEkTO\\"><div class=\\"styled__StAddRoom-sc-5w938c-0 djgSFI\\">+</div></div>"`;

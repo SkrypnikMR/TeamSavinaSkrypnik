@@ -6,7 +6,7 @@ import { NotificationManager } from 'react-notifications';
 import { eventChannel } from 'redux-saga';
 import i18next from 'i18next';
 import { routes } from '../../constants/routes';
-import { getUserLogin, getActualRoom, getStepOrderSelector, getPossibleSteps } from './selectors';
+import { getUserLogin, getActualRoom, getStepOrderSelector, getPossibleSteps, getActualRoomId } from './selectors';
 import { support } from '../../helpers/support';
 import { BOT_NAME, DRAW, CHECKER_FIELD_INIT, CHECKERS } from '../../constants/simpleConstants';
 import { actionTypes } from './actionTypes';
@@ -28,7 +28,7 @@ export const setStompClient = (arg: any) => {
 export const connection = (token: string) => {
     const socket = new WebSocket(`${routes.baseWebSocketUrl}${routes.ws.game_menu}`);
     stompClient = Stomp.over(socket);
-    return new Promise(resolve => stompClient
+    return new Promise((resolve) => stompClient
          .connect({ Authorization: `Bearer ${token}` }, () => resolve(stompClient)));
 };
 export const createStompChannel = (stompClient: CompatClient) => eventChannel((emit) => {
@@ -63,7 +63,7 @@ export function* workerConnection() :SagaIterator {
             const action = yield take(stompChannel);
             if (Array.isArray(action.payload)) {
                 const userLogin = yield select(getUserLogin);
-                const actualRoom = action.payload.find(el => el.creatorLogin === userLogin);
+                const actualRoom = action.payload.find((el) => el.creatorLogin === userLogin);
                 if (actualRoom) yield call(workerSubscribeRoom, { payload: actualRoom.id });
             }
             yield put(action);
@@ -160,7 +160,6 @@ export function* workerGameEvent({ payload }) {
         yield call([localStorage, localStorage.setItem], 'stepHistory', stringifyField);
         yield put(setStepHistory(parsedBody.field));
         return yield put(getStepOrder({ uuid: id, gameType }));
-        
     }
     if (parsedBody.stepDtoList) {
         let firstStepHistory = yield call([JSON, JSON.stringify], []);
@@ -178,19 +177,19 @@ export function* workerGameEvent({ payload }) {
         const actualRoom = yield select(getActualRoom);
         if (actualRoom.gameType === CHECKERS
             && parsedBody.stepOrderLogin === actualRoom.guestLogin) {
-            yield put(setStepOrder(actualRoom.creatorLogin))
+            yield put(setStepOrder(actualRoom.creatorLogin));
             const turn = yield select(getStepOrderSelector);
-            if(turn === BOT_NAME) yield put(askBotStep())
-            return
+            if (turn === BOT_NAME) yield put(askBotStep());
+            return;
         }
         if (actualRoom.gameType === CHECKERS
             && parsedBody.stepOrderLogin === actualRoom.creatorLogin) {
-            yield put(setStepOrder(actualRoom.guestLogin))
+            yield put(setStepOrder(actualRoom.guestLogin));
             const turn = yield select(getStepOrderSelector);
-            if(turn === BOT_NAME) yield put(askBotStep())
-            return
+            if (turn === BOT_NAME) yield put(askBotStep());
+            return;
         }
-        if(parsedBody.stepOrderLogin === BOT_NAME)yield put(askBotStep())
+        if (parsedBody.stepOrderLogin === BOT_NAME)yield put(askBotStep());
         return yield put(setStepOrder(parsedBody.stepOrderLogin)); 
     }
 }
@@ -224,6 +223,13 @@ export function* workerCheckerStep({ payload }) {
     yield put(putPossibleSteps([]));
     yield put(getStepOrder({ uuid: id, gameType }));
 }
+export function* workerExitGame() {
+    const guestLogin = yield select(getUserLogin);
+    const id = yield select(getActualRoomId);
+    const body = yield call([JSON, JSON.stringify], { guestLogin, id });
+    yield call([stompClient, stompClient.send], routes.ws.actions.leaveTheGame, { uuid: id }, body);
+    yield call(workerCleanOldGame);
+}
 
 export function* watcherGame() {
     yield takeEvery(actionTypes.GET_SOCKJS_CONNECTION, workerConnection);
@@ -240,4 +246,5 @@ export function* watcherGame() {
     yield takeEvery(actionTypes.DISCONNECT, workerDisconnect);
     yield takeEvery(actionTypes.GET_POSIBLE_STEP, workerGetPosibleStep);
     yield takeEvery(actionTypes.DO_CHECKER_STEP, workerCheckerStep);
+    yield takeEvery(actionTypes.EXIT_GAME, workerExitGame);
 }

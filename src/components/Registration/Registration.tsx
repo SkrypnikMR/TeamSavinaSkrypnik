@@ -7,7 +7,6 @@ import Form from '../UI/Form';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import { useTheme } from '../Hook/useTheme';
-
 import { StRegDiv } from './styled';
 
 const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields }) => {
@@ -32,6 +31,7 @@ const Registration = ({ sendRegistrationRequest, setRegistrationValue, fields })
                         id={input.id}
                         height="100px"
                         key={input.id}
+                        type={input.type}
                         name={input.id}
                         inputHeight="50px"
                         borderRadius="5px"

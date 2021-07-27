@@ -6,3 +6,8 @@ export interface IDiv extends ITheme{
     width: string;
     padding: string;
 }
+
+export type TGameContent = {
+    winner? : string;
+    cleanOldGame: () => void;
+}

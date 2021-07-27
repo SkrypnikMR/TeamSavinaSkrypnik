@@ -5,9 +5,9 @@ import { IInput } from './types';
 
 const Input = ({
     id,
-    type = 'text',
     name,
     width,
+    type = 'text',
     label,
     value,
     height,

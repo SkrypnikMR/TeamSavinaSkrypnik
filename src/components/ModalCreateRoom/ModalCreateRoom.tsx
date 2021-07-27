@@ -4,15 +4,18 @@ import Button from '../UI/Button';
 import { GAME_TYPE } from '../../constants/componentsСonsts';
 import { StModalButtonBox } from './styled';
 import Select from '../UI/Select';
+import { TModalCreateRoom } from './types';
 
-const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
+const ModalCreateRoom = ({
+    createRoom,
+    handlecloseModal }: TModalCreateRoom) => {
     const [state, setState] = useState({ gameType: GAME_TYPE.tic_tac_toe });
     const { t } = useTranslation();
     const handleModalClick = () => {
         createRoom(state.gameType);
         handlecloseModal();
     };
-    const handleOnchange = (e) => setState({ ...state, gameType: e.target.value });
+    const handleOnchange = (e: any) => setState({ ...state, gameType: e.target.value });
     return (
                     <div>
                         <Select
@@ -30,6 +33,7 @@ const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
                                 value="OK"
                                 type="button"
                                 title="OK"
+                                bgColorShadow="0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22)"
                             />
                             <Button
                                 content={t('cancel')}
@@ -40,6 +44,7 @@ const ModalCreateRoom = ({ handlecloseModal, createRoom }) => {
                                 value="Cancel"
                                 type="button"
                                 title="Cancel"
+                                bgColorShadow="0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22)"
                             />
                         </StModalButtonBox>
                     </div>

@@ -31,7 +31,8 @@ export const StButton = styled.button < IStyledButton > `
     background: ${({ bgColor = bgMessage }) => bgColor};
     color: ${({ colors, theme }) => colors[theme].buttonText};
     border: ${({ border = 'none' }) => border};
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: ${({ bgColorShadow = 'none' }) => bgColorShadow};
+    /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.22); */
     }
   &:focus {
     color: ${({ focusColor = focusColorDefault }) => focusColor};

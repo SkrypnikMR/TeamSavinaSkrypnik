@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { RouterProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { APP_ROUTES } from 'src/constants/reactRoutes';
-
-import { HEADER_CONTROL_BTNS } from 'src/constants/componentsСonsts';
+import ModalCustom from '../../ModalCustom';
+import ModalLogout from '../../ModalLogout';
+import { APP_ROUTES } from '../../../constants/reactRoutes';
+import { HEADER_CONTROL_BTNS } from '../../../constants/componentsСonsts';
+import { useTheme } from '../../Hook/useTheme';
 import Button from '../../UI/Button';
-import { support } from '../../../helpers/support';
-import { colorDefault } from '../../UI/baseLayout';
-import { useTheme } from 'src/components/Hook/useTheme';
+import { colorDefault, LOGOUTICON } from '../../UI/baseLayout';
 
 import { StControl } from './styled';
 
-const HeaderControlPanel = ({
-    history,
-    location }) => {
-    const { i18n } = useTranslation();
+const HeaderControlPanel = ({ history, actualRoomId }: RouterProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const { i18n, t } = useTranslation();
+    const handleModalClick = () => setIsOpen((prev) => !prev);
     const { changeTheme } = useTheme();
     const handleChangeLanguage = (e) => {
         i18n.changeLanguage(e.target.value);
@@ -23,13 +24,13 @@ const HeaderControlPanel = ({
         changeTheme();
     };
     const handleLogOutClick = () => {
+        if (actualRoomId) return handleModalClick(); 
         history.push(APP_ROUTES.login);
         localStorage.clear();
     };
-    const getFunctionForButtons = (el) => {
+    const getFunctionForButtons = (el:any) => {
         switch (el.id) {
             case 'theme_btn': return handleThemeClick;
-            case 'logOut': return handleLogOutClick;
             default: return handleChangeLanguage;
         }
     };
@@ -52,7 +53,14 @@ const HeaderControlPanel = ({
                     />
                 );
             })}
-            <img src="../../../../public/assets/images/log-out.png" onClick={handleLogOutClick}/>
+            <img src={LOGOUTICON} onClick={handleLogOutClick}/>
+            {isOpen && (
+                        <ModalCustom
+                            header={t('go_out')}
+                            content={<ModalLogout handlecloseModal={handleModalClick} />}
+                            handlecloseModal={handleModalClick}
+                        />
+)}
         </StControl>
     );
 };

@@ -21,4 +21,5 @@ export enum actionTypes{
     GET_POSIBLE_STEP = '@@game/GET_POSIBLE_STEP',
     PUT_POSSIBLE_STEPS = '@@game/PUT_POSSIBLE_STEPS',
     DO_CHECKER_STEP = '@@game/DO_CHECKER_STEP',
+    EXIT_GAME = '@@game/EXIT_GAME',
 }
