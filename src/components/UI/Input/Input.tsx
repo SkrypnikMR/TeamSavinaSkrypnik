@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StErrorSpan, StInput, StInputContainer, StLabel, StEyeImg } from './styled';
+import { StErrorSpan, StInput, StInputContainer, StLabel } from './styled';
 import { IInput } from './types';
-import { EYE } from '../baseLayout';
 
 const Input = ({
     id,
     name,
     width,
+    type = 'text',
     label,
     value,
     height,
@@ -30,14 +30,13 @@ const Input = ({
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) : void => {
         onChange({ name: e.target.name, value: e.target.value });
     };
-    const inputType = eye ? 'password' : 'text';
     return (
         <StInputContainer width={width} height={height}>
             {!!label && <StLabel htmlFor={id}>{label}</StLabel>}
             <StInput
                 id={id}
                 name={name}
-                type={inputType}
+                type={type}
                 value={value}
                 margin={margin}
                 color={color}
@@ -51,8 +50,6 @@ const Input = ({
                 fontSizeInp={fontSizeInp}
                 bgFocusColor={bgFocusColor}
             />
-            {id === 'password' && <StEyeImg src={EYE} onClick={handleShowPassword} />}
-            {id === 'confirm' && <StEyeImg src={EYE} onClick={handleShowPassword}/>}
             {!!errorMessage && <StErrorSpan>{errorMessage}</StErrorSpan>}
         </StInputContainer>
     );
