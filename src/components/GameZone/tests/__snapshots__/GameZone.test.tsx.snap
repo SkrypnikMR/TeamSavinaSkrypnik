@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GameZone Should match snapshot 1`] = `"<div class=\\"styled__StHello-sc-3v9sfb-0 bwTzmh\\"><img src=\\"https://i.gifer.com/origin/51/518532f622d962be53e2e1f8989263a8_w200.gif\\"/><p>hi, Unknown!!!<br/>joing_room</p></div>"`;
+exports[`GameZone Should match snapshot 1`] = `"<div class=\\"styled__StHello-sc-3v9sfb-0 kCiutw\\"><img src=\\"https://i.gifer.com/origin/51/518532f622d962be53e2e1f8989263a8_w200.gif\\"/><p>hi <br/>joing_room</p></div>"`;

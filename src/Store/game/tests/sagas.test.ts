@@ -3,9 +3,8 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { NotificationManager } from 'react-notifications';
 import i18next from 'i18next';
 import { v4 as uuidv4 } from 'uuid';
+import { getActualRoomId, getActualRoom, getUserLogin, getPossibleSteps } from '../selectors';
 import { putPossibleSteps, getStepOrder, askBotStep, setStepOrder, setActualRoom, setWinner, setStepHistory, getStepOrder as actionGetStepOrder } from '../actions';
-
-import { getStepOrderSelector, getActualRoom, getUserLogin, getPossibleSteps } from '../selectors';
 
 import { stompClient } from '../saga';
 
@@ -278,7 +277,7 @@ describe('gameSaga', () => {
                 .isDone();
         });
         it('should call workerGameEvent, parsedBody with field field', () => {
-            const parsedBody = { field: ['null', 'X', 'O'] };
+            const parsedBody: any = { field: ['null', 'X', 'O'] };
             const payload = JSON.stringify(parsedBody);
             const stringifyField = JSON.stringify(parsedBody.field);
             const actualRoom = { id: '213218963218392183', gameType: 'Tic-tac-toe' };
@@ -431,6 +430,28 @@ describe('gameSaga', () => {
                 .put(putPossibleSteps([]))
                 .next()
                 .put(getStepOrder({ uuid: actualRoom.id, gameType: actualRoom.gameType }))
+                .next()
+                .isDone();
+        });
+    });
+    describe('workerExitGame', () => {
+        it('should call workerCheckerStep', () => {
+            const guestLogin = 'SADKEK';
+            const id = '1hasdkjsadsadsahdg';
+            const body = { guestLogin, id };
+            const stringifyBody = JSON.stringify(body);
+            testSaga(sagas.workerExitGame)
+                .next()
+                .select(getUserLogin)
+                .next(guestLogin)
+                .select(getActualRoomId)
+                .next(id)
+                .call([JSON, JSON.stringify], body)
+                .next(stringifyBody)
+                .call([stompClient, stompClient.send], routes.ws.actions.leaveTheGame,
+                    { uuid: id }, stringifyBody)
+                .next()
+                .call(sagas.workerCleanOldGame)
                 .next()
                 .isDone();
         });

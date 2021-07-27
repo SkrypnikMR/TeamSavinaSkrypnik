@@ -5,8 +5,21 @@ import Header from '../Header';
 
 const mockStore = configureStore();
 const store = mockStore({
-  user: {
-    themeMode: 'light',
+   game: {
+     rooms: [],
+    userLogin: '',
+    actualRoom: {
+      gameType: '',
+      creatorLogin: '',
+      guestLogin: '',
+      startTime: 0,
+      id: '',
+      stepDoList: [],
+    },
+    stepOrder: '',
+    stepHistory: [],
+    winner: '',
+    possibleSteps: [],
   },
 });
 describe('Header', () => {

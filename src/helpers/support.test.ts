@@ -1,12 +1,13 @@
 import { NotificationManager } from 'react-notifications';
 import moment from 'moment';
+import { putPossibleSteps, doBotStepTic, gameEvent } from '../store/game/actions';
 import { support } from './support';
 import { store } from '../index';
-import { doBotStepTic, gameEvent } from '../store/game/actions';
 
 const {
     subBot,
     subGame,
+    possibleStep,
     errorCatcher,
     getPrettyDate,
     setTokenInCookie,
@@ -71,8 +72,57 @@ describe('support', () => {
         it('should be function', () => {
             expect(typeof errorCatcher).toBe('function');
         });
-        it('should return 1 and not call NotificationManager', () => {
+        it('should return 1 and not call NotificationManager with Not your turn Bot', () => {
             const errorMessage = 'Not your turn Bot';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with Game with', () => {
+            const errorMessage = 'Game with';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(undefined);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with NOT YOU TURN Bot', () => {
+            const errorMessage = 'NOT YOU TURN Bot';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with Invalid step Bot1', () => {
+            const errorMessage = 'Invalid step Bot1';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with Invalid step Bot2', () => {
+            const errorMessage = 'Invalid step Bot2';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with Invalid step Bot3', () => {
+            const errorMessage = 'Invalid step Bot3';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with Invalid step {}', () => {
+            const errorMessage = 'Invalid step {}';
+            const messageBody = JSON.stringify({ body: errorMessage });
+            const message = { body: messageBody };
+            expect(errorCatcher(message)).toBe(1);
+             expect(NotificationManager.error).not.toHaveBeenCalled();
+        });
+        it('should return 1 and not call NotificationManager with Permission denied', () => {
+            const errorMessage = 'Permission denied';
             const messageBody = JSON.stringify({ body: errorMessage });
             const message = { body: messageBody };
             expect(errorCatcher(message)).toBe(1);
@@ -123,6 +173,19 @@ describe('support', () => {
             const testTimeStamp = 123123214214;
             expect(getPrettyDate(testTimeStamp))
                 .toBe(moment(testTimeStamp).format('L h:mm:ss'));
+        });
+    });
+    describe('possibleStep', () => {
+        it('should be defined', () => {
+            expect(possibleStep).toBeDefined();
+        });
+        it('should be function', () => {
+            expect(typeof possibleStep).toBe('function');
+        });
+        it('should call store.dispatch with right action', () => {
+            const message = { body: JSON.stringify({ startIndex: 3, stepIndex: 6 }) };
+            possibleStep(message);
+            expect(store.dispatch).toHaveBeenCalledWith(putPossibleSteps(JSON.parse(message.body)));
         });
     });
 });

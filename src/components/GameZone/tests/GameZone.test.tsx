@@ -1,15 +1,14 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { act } from 'react-dom/test-utils';
 import GameZone from '../GameZone';
-import { mountSmart } from '../../../../__tests__/testHelper';
+import { mountSmart, shallowSmart } from '../../../../__tests__/testHelper';
 
 const mockStore = configureStore();
 const store = mockStore({
   game: {
      rooms: [],
-    userLogin: localStorage.getItem('login') || '',
+    userLogin: '',
     actualRoom: {
       gameType: '',
       creatorLogin: '',
@@ -39,11 +38,11 @@ describe('GameZone', () => {
         gameType: '',
     };
     it('Should match snapshot', () => {
-        const component = shallow(<GameZone {...props}/>);
+        const component = shallowSmart(<GameZone {...props}/>, store);
         expect(component.html()).toMatchSnapshot();
     });
     it('should render Hello', () => {
-        const component = mount(<GameZone {...props}/>);
+        const component = mountSmart(<GameZone {...props}/>, store);
         expect(component.find('Hello')).toHaveLength(1);
     });
     it('should render case Checkers', () => {

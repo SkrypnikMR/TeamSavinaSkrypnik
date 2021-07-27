@@ -8,8 +8,20 @@ jest.mock('../../../index', () => ({ store: {} }));
 const mockStore = configureStore();
 const store = mockStore({
   game: {
-        rooms: [],
-        fullStatistic: [],
+     rooms: [],
+    userLogin: localStorage.getItem('login') || '',
+    actualRoom: {
+      gameType: '',
+      creatorLogin: '',
+      guestLogin: '',
+      startTime: 0,
+      id: '',
+      stepDoList: [],
+    },
+    stepOrder: '',
+    stepHistory: [],
+    winner: '',
+    possibleSteps: [],
   },
 });
 
