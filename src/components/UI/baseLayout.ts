@@ -71,3 +71,5 @@ export const CROSS = 'public/assets/images/747953.png';
 export const ZEROTIC = 'public/assets/images/rec.png';
 export const LOGOUTICON = 'public/assets/images/log-out.png';
 export const LOGO = 'public/assets/images/game-development.png';
+export const WHITEQUEEN = 'public/assets/images/whiteQueen.png';
+export const BLACKQUEEN = 'public/assets/images/blackQueen.png';

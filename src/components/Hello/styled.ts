@@ -9,6 +9,7 @@ background: ${({ colors, theme }) => colors[theme].background};
 height: 100%;
 text-align: center;
 border-radius: 3px;
+font-size: 25px;
 
 img{
     width: 130px;

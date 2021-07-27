@@ -57,8 +57,9 @@
     "game_finish": "Game over",
     "hi": "Hi",
     "joing_room": "Join someone's room or create yours",
-    "delete_game": "Delete game",
+    "delete_game": "Leave game",
     "are_you_sure": "Are you sure???",
     "go_out": "Are you sure you want go out?",
-    "if_logout": "If you leave now, you will automatically surrender your game"
+    "if_logout": "If you leave now, you will automatically surrender your game",
+    "leave_game": "Leave game"
 }
