@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SingleRoom Should match snapshot 1`] = `"<div class=\\"styled__StSingleRoom-sc-1b2p865-0 gacXPN\\"><p>your_room</p><p>Checkers</p><button id=\\"21ue321h3hjk21bh21-asdshjdsad\\" type=\\"button\\" width=\\"150px\\" class=\\"styled__StButton-sc-1y35zax-0 iiQqWS\\">play_with_bot</button></div>"`;
+exports[`SingleRoom Should match snapshot 1`] = `"<div class=\\"styled__StSingleRoom-sc-1b2p865-0 gacXPN\\"><p>your_room</p><p>Checkers</p><button id=\\"21ue321h3hjk21bh21-asdshjdsad\\" type=\\"button\\" width=\\"150px\\" class=\\"styled__StButton-sc-1y35zax-0 hnRRlB\\">play_with_bot</button></div>"`;
