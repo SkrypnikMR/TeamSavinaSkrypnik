@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import SingleSellTicTac from './SingleSellTicTac';
-import Button from '../UI/Button';
 import { StTicTacToePlate } from './styled';
 
 const TicTacToePlate = () => {
