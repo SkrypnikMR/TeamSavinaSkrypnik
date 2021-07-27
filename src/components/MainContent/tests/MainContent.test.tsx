@@ -6,8 +6,20 @@ import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 const mockStore = configureStore();
 const store = mockStore({
   game: {
-    rooms: [],
-    // userLogin: 'login',
+     rooms: [],
+    userLogin: '',
+    actualRoom: {
+      gameType: '',
+      creatorLogin: '',
+      guestLogin: '',
+      startTime: 0,
+      id: '',
+      stepDoList: [],
+    },
+    stepOrder: '',
+    stepHistory: [],
+    winner: '',
+    possibleSteps: [],
   },
 });
 

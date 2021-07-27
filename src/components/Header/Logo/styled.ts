@@ -19,3 +19,5 @@ export const StLogo = styled.div < IDiv > `
         }
     cursor: pointer;
 `;
+
+export const StDiv = styled.div``;

@@ -30,6 +30,9 @@ module.exports = {
         'package.json',
         'webpack.config.js',
         '/coverage/',
+        'index.tsx',
+        'src/store/index.ts',
+        'src/store/saga.ts',
     ],
     moduleNameMapper: {
         '^.+\\.(css|scss)$': 'identity-obj-proxy',

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import { StSingleSellTicTac } from './styled';
+import { TSingleSellTicTac } from './types';
+import { CROSS, ZEROTIC } from '../../UI/baseLayout';
 
-const SingleSellTicTac = ({ id, doStep, status }) => {
+const SingleSellTicTac = ({ id, doStep, status }: TSingleSellTicTac) => {
     let item = '';
     switch (status) {
-        case 'X': item = '../../../../public/assets/images/747953.png'; break;
-        case 'O': item = '../../../../public/assets/images/rec.png'; break;
-        case '': item = 'poooooook'; break;
+        case 'X': item = CROSS; break;
+        case 'O': item = ZEROTIC; break;
         default: break;
     }
     const handleClick = () => doStep(id);

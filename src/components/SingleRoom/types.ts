@@ -6,7 +6,8 @@ export type TSingleRoom = {
     userLogin: string;
     id: string;
     playWithBot: (arg: string) => void,
-    joinRoom: (arg: string) => void
+    joinRoom: (arg: string) => void,
+    subscribeRoom: (arg: string) => void
 }
 
 export type TDistResult = {
