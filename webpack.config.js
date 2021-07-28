@@ -9,7 +9,7 @@ const pages = [
         filename: 'index.html',
     },
 ];
-const getFileLoader = regExp => ({
+const getFileLoader = (regExp) => ({
     test: regExp,
     use: ['file-loader'],
 });
@@ -19,15 +19,15 @@ const getStyleLoader = (regExp, additionalLoaders) => {
         use: ['style-loader', 'css-loader'],
     };
     if (additionalLoaders && additionalLoaders.length) {
-        additionalLoaders.forEach(loader => rules.use.push(loader));
+        additionalLoaders.forEach((loader) => rules.use.push(loader));
     }
     return rules;
 };
-const getPath = url => path.resolve(__dirname, `src/${url}`);
+const getPath = (url) => path.resolve(__dirname, `src/${url}`);
 
 module.exports = {
     entry: {
-        bundle: getPath('index.js'),
+        bundle: getPath('index.tsx'),
     },
     resolve: {
         alias: {
@@ -74,7 +74,7 @@ module.exports = {
         ],
     },
     plugins: [
-        ...pages.map(config => new HTMLWebpackPlugin(config)),
+        ...pages.map((config) => new HTMLWebpackPlugin(config)),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [

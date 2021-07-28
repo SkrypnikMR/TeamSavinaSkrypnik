@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalCreateRoom should snapshot 1`] = `"<div><select class=\\"styled__StSelect-sc-1i888oy-0 ijdFJw\\"><option selected=\\"\\" label=\\"Tic-tac-toe\\">Tic-tac-toe</option><option label=\\"Checkers\\">Checkers</option></select><div class=\\"styled__StModalButtonBox-sc-1lbp0ln-0 kgpYEL\\"><button id=\\"okButton\\" name=\\"okButton\\" type=\\"button\\" value=\\"OK\\" title=\\"OK\\" class=\\"styled__StButton-sc-1y35zax-0 lkPeFg\\">OK</button><button id=\\"CancelButton\\" name=\\"CancelButton\\" type=\\"button\\" value=\\"Cancel\\" title=\\"Cancel\\" class=\\"styled__StButton-sc-1y35zax-0 efYwVL\\">cancel</button></div></div>"`;

@@ -3,15 +3,19 @@ module.exports = {
     moduleFileExtensions: [
         'js',
         'jsx',
+        'ts',
+        'tsx',
     ],
     globals: {
         window: true,
     },
-    collectCoverageFrom: ['**/*.jsx', '**/*.js'],
+    collectCoverageFrom: ['**/*.jsx', '**/*.js', '**/*.tsx', '**/*.ts'],
     moduleDirectories: ['node_modules', '.', 'src'],
     testMatch: [
         '**/*.(test|spec).(js)',
         '**/*.(test|spec).(jsx)',
+        '**/*.(test|spec).(ts)',
+        '**/*.(test|spec).(tsx)',
     ],
     coverageReporters: [
         'json',
@@ -26,10 +30,14 @@ module.exports = {
         'package.json',
         'webpack.config.js',
         '/coverage/',
+        'index.tsx',
+        'src/store/index.ts',
+        'src/store/saga.ts',
+        'index.ts',
     ],
     moduleNameMapper: {
         '^.+\\.(css|scss)$': 'identity-obj-proxy',
-        '^/src/(.*)$': '<rootDir>/src/$1',
+        '^/src/(.*)$': '<rootDir>src/$1',
     },
     testEnvironment: 'jsdom',
 };

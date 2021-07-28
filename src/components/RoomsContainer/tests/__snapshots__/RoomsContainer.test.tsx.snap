@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomsContainer Should match snapshot 1`] = `"<div class=\\"styled__StRoomsContainer-sc-2jyga5-0 iHEkTO\\"><div class=\\"styled__StAddRoom-sc-5w938c-0 djgSFI\\">+</div></div>"`;

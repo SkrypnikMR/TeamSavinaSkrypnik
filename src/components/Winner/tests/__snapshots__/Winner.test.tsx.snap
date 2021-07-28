@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Winner Should match snapshot 1`] = `"<div class=\\"styled__StWinnerWrapper-sc-nohrb0-0 fbeHVT\\">Ya</div>"`;
