@@ -341,6 +341,38 @@ describe('gameSaga', () => {
                 .next()
                 .isDone();
         });
+        it('should call workerGameEvent, winner === null', () => {
+            const parsedBody = { winner: null };
+            const payload = JSON.stringify(parsedBody);
+            testSaga(sagas.workerGameEvent, { payload })
+                .next()
+                .call([JSON, JSON.parse], payload)
+                .next(parsedBody)
+                .put(setWinner('draw'))
+                .next()
+                .isDone();
+        });
+        it('should call workerGameEvent, withe parsed.body.gamefield', () => {
+            const parsedBody = { field: { gameField: [{ chekersField: 1 }] } };
+            const payload = JSON.stringify(parsedBody);
+            const stringifyField = JSON.stringify(parsedBody.field.gameField);
+            const actualRoom = { id: '1212', gameType: 'Checkers' };
+            testSaga(sagas.workerGameEvent, { payload })
+                .next()
+                .call([JSON, JSON.parse], payload)
+                .next(parsedBody)
+                .select(getActualRoom)
+                .next(actualRoom)
+                .call([JSON, JSON.stringify], parsedBody.field.gameField)
+                .next(stringifyField)
+                .call([localStorage, localStorage.setItem], 'stepHistory', stringifyField)
+                .next()
+                .put(setStepHistory(parsedBody.field.gameField))
+                .next()
+                .put(getStepOrder({ uuid: actualRoom.id, gameType: actualRoom.gameType }))
+                .next()
+                .isDone();
+        });
         it('should call workerGameEvent, parsedBody with stepOrderLogin field !== stepOrderSelector === Bot gameType === "Tic-tac-toe"', () => {
             const parsedBody = {
                 stepOrderLogin: 'Bot',

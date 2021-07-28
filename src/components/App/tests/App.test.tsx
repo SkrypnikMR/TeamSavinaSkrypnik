@@ -1,6 +1,6 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import { shallowSmart } from '../../../../__tests__/testHelper';
+import { shallowSmart, mountSmart } from '../../../../__tests__/testHelper';
 import App from '../App';
 
 jest.mock('../../../index', () => ({ store: { dispatch: jest.fn() } }));
@@ -42,6 +42,10 @@ const store = mockStore({
 describe('App', () => {
   it('Should match snapshot', () => {
     const component = shallowSmart(<App />, store);
+    expect(component.html()).toMatchSnapshot();
+  });
+  it('Should render App', () => {
+    const component = mountSmart(<App />, store);
     expect(component.html()).toMatchSnapshot();
   });
 });
